@@ -1,0 +1,309 @@
+<html>
+
+<head>
+    <title> 오몇점 관리자 페이지 </title>
+    <style>
+        .addCard {
+            border: 1px solid #cccccc;
+            width: 700px;
+            height: 190px;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        .noticeCard {
+            height: 100px;
+            padding: 10px;
+            height: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        #userTitle {
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .btnCustom {
+            background-color: #b2b2b2;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+
+        #sleep_out_List {
+            border: 1px solid #e9ecef;
+            padding: 10px;
+        }
+
+        #plusBtn {
+            background-color: #96b5c3;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+    </style>
+
+    <!-- dialog -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase-messaging.js"></script>
+    <script>
+        //push 알림 주기
+        var http = getRequest();
+        function getRequest() {
+            try {
+                xhr = new XMLHttpRequest();
+            } catch (e) {
+                try {
+                    var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    try {
+                        var xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                    } catch (e) {
+                        alert("Your Browser is not Supported");
+                    }
+                }
+            }
+            return xhr;
+        }
+
+        function sendPush(token, title, body) {//푸시 알림 보내는 함수
+            var url = "https://fcm.googleapis.com/fcm/send";
+
+            http.open("POST", url, true);
+            http.setRequestHeader("Content-Type", "application/json");
+            http.setRequestHeader("Authorization", "key=AAAAA8w2Qw0:APA91bFTc5JU_02s3b3RbO3dqsExJo7iUy8Y357kJgK4IMwicndc_aWblxvu_3ghNW843L9UWQ-IkC-nkxo1by3eiRXvJKLiGHbUWxqejvQG6uRJSbknVOfNO10mc2ilEWKftW6uyGaU");
+
+            // JSON.stringify 를 안써줄 경우 
+            http.send(JSON.stringify({
+                notification: {
+                    // 알림 받을 기기에 보여줄 타이틀
+                    title: title,
+                    // 알림 받을 기기에 보여줄 바디
+                    body: body
+                },
+                data: {
+                    // 
+                    id: "1"
+                },
+                to: token
+            }));
+
+        }
+    </script>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCR17c6uLZyAi4OZ89HX_tX3UncpFhzVC8",
+            authDomain: "ohdormitory-mirim.firebaseapp.com",
+            databaseURL: "https://ohdormitory-mirim.firebaseio.com",
+            projectId: "ohdormitory-mirim",
+            storageBucket: "ohdormitory-mirim.appspot.com",
+            messagingSenderId: "16311010061"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
+        var isExistCleanSleepOut = false;
+        //파이어베이스에 추가하기
+
+        function sendQRcode(param) {
+
+            var sleep_outListRef = database.ref("sleep-out/" + sleep_out_max_key);
+            var newNoticeRef = sleep_outListRef.update({
+                "send": "true"
+            });
+            checkSleepOutStudent();
+
+
+        }
+
+
+        var roomNumbers = [
+            "401", "402", "403", "404", "405", "406", "407", "408", "409", "410", "411", "412", "413", "414", "415", "416", "417", "418", "501", "502", "503", "504", "505", "506", "507", "508", "509", "510", "511", "512", "513", "514", "515", "516", "517", "518", "519"
+        ];
+
+        // 글 목록 가져오기
+        var sleep_out_ListRef;
+        var sleep_out_student_ListRef;
+        var student_ListRef;
+
+        var sleep_out_date;
+
+        var sleep_out_max_date = "2000.1.1";
+
+        var sleep_out_max_key;
+
+
+        function getList() {
+            // 기존 목록을 가져온 적이 있을 때는 연결 해제
+
+            if (sleep_out_ListRef != null) {
+                sleep_out_ListRef.off();
+            }
+
+            sleep_out_ListRef = database.ref("sleep-out");
+            sleep_out_ListRef.on('value', function (snapshot) {
+                isExistCleanSleepOut = false;
+                document.getElementById('sleep_out_List').innerHTML = null;
+                snapshot.forEach(function (sleep_outSnapshot) {
+                    var sleep_out_key = sleep_outSnapshot.key;
+                    sleep_out_date = sleep_out_key;
+
+                    checkDate(sleep_out_key);
+
+
+                });
+                sleep_out_student_ListRef = database.ref("sleep-out/" + sleep_out_max_key);
+                sleep_out_student_ListRef.on('value', function (snapshot) {
+                    snapshot.forEach(function (sleep_out_student_Snapshot) {
+                        var sleep_out_student_key = sleep_out_student_Snapshot.key;
+
+                        var sleep_out_student = sleep_out_student_Snapshot.val();
+
+                        var param = sleep_out_max_key + "/" + sleep_out_student_key;
+
+                        if (sleep_out_student_key != 'send') {
+
+                            var recognize_state = sleep_out_student.recognize;
+
+                            if (recognize_state == 'true') {
+                                recognize_state = '인증완료';
+                            }
+                            else {
+                                recognize_state = '인증중';
+                            }
+
+                            student_ListRef = database.ref("user");
+                            student_ListRef.on('value', function (snapshot) {
+                                snapshot.forEach(function (student_Snapshot) {
+                                    var student_ID = student_Snapshot.key;
+                                    var student_info = student_Snapshot.val();
+                                    if (student_info.uid == sleep_out_student_key) {
+
+                                        var post = "<div class='noticeCard'>" +
+                                            "<div id='aaa' style='float:left;font-size:1em;'>" + sleep_out_max_key + "</div>" +
+                                            "<div style='margin-left:40px;width:140px;float:left;font-size:1em;'>" + roomNumbers[student_info.roomNumber] + '호&nbsp;' + student_info.name + "</div>" +
+                                            "<a href='#' class='btnCustom' style='padding-left:10px; padding-right:10px; font-size:0.9em;float:left;' onClick='removeNotice(\'" +
+                                            sleep_out_max_key + "/" + sleep_out_student_key +
+                                            "\')>삭제하기</a>" +
+                                            "<div class='btnCustom' style='padding-left:10px; padding-right:10px; font-size:0.9em;float:left;'>" + recognize_state + "</div>" + '</div>';
+                                        document.getElementById('sleep_out_List').innerHTML += post;
+                                        return false;
+                                    }
+                                });
+                            });
+                        }
+                    });
+
+                });
+            });
+        }
+
+        var token_ListRef;
+        var token_students_ListRef;
+        var token_parents_ListRef;
+        function checkSleepOutStudent() {//외박인증코드 전송을 푸시알림보낼 앱 토큰구하기           
+            sleep_out_student_ListRef = database.ref("sleep-out/" + sleep_out_max_key);
+            sleep_out_student_ListRef.on('value', function (snapshot) {
+                snapshot.forEach(function (sleep_out_student_Snapshot) {
+                    var sleep_out_student_key = sleep_out_student_Snapshot.key;
+                    var sleep_out_student = sleep_out_student_Snapshot.val();
+
+                    if (sleep_out_student_key != "send") {
+                        var parent_number = sleep_out_student.parentNumber.replace(/-/gi, "");
+
+                        token_parents_ListRef = database.ref("token/parents");//부모님
+                        token_parents_ListRef.on('value', function (snapshot) {
+                            snapshot.forEach(function (token_parents_outSnapshot) {
+                                if (token_parents_outSnapshot.key == parent_number) {
+                                    var parentToken = token_parents_outSnapshot.val();
+                                    sendPush(parentToken, "자녀의 외박인증 QRcode가 전송되었습니다.", "자녀의 QRcode인증을 도와주세요.");
+                                }
+                            });
+                        });
+                    }
+
+
+                });
+            });
+            token_students_ListRef = database.ref("token/students");//학생
+            token_students_ListRef.on('value', function (snapshot) {
+                snapshot.forEach(function (token_students_outSnapshot) {
+                    var token = token_students_outSnapshot.val();
+                    sendPush(token, "외박인증 QRcode가 전송되었습니다.", "부모님 핸드폰의 앱에 전송된 QRcode로 인증해주세요.");
+                });
+            });
+        }
+
+        //카드 지우기 --> 파이어베이스에서도 지워짐
+        function removeNotice(key) {
+            var noticeRef = database.ref("sleep-out/" + key);
+            noticeRef.remove();
+        }
+        function checkDate(sleep_out_key) {
+            var simple_sleep_out_date = sleep_out_key.replace("-", ".");
+            simple_sleep_out_date = simple_sleep_out_date.replace("-", ".");
+
+            var index = simple_sleep_out_date.indexOf("-");
+            simple_sleep_out_date = simple_sleep_out_date.substring(0, index);
+
+            var max_date = new Date(sleep_out_max_date);
+            var sleep_out_date = new Date(simple_sleep_out_date);
+
+            if (max_date.getTime() < sleep_out_date.getTime()) {
+                sleep_out_max_date = simple_sleep_out_date;
+                sleep_out_max_key = sleep_out_key;
+            }
+        }
+
+
+        getList();
+
+        $(function () {
+
+            $("#sendQR").on("click", function () {
+                sendQRcode();
+                alert("QR코드를 전송했습니다");
+
+            });
+
+
+        });
+    </script>
+
+
+</head>
+
+<body>
+
+
+    <div id="userTitle">
+        외박증
+        <input type='button' id='sendQR' class="btnCustom" value="외박신청 QR코드 전송">
+    </div>
+    <div id="sleep_out_List"> </div>
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,652 @@
+
+<html>
+  
+  <head>
+    <title> 오몇점 관리자 페이지 </title>
+    <style>
+  .addCard {
+    border: 1px solid #cccccc;
+    width: 700px;
+    height: 190px;
+    margin: 10px;
+    margin-top: 35px;
+    padding: 10px;
+  }
+
+  .noticeCard {
+    border: 1px solid #cccccc;
+    height: 100px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px #d9dadb;
+  }
+  #w_time,#d_time,#sleep_w_time,#sleep_d_time,#notice_title{
+    width: 140px;
+    height: auto;
+    box-shadow: none;
+    border-radius: 0!important;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #88a3ac;
+    color: #88a3ac;
+    text-align: center;
+    margin-left: 10px;
+  }
+  .ui-button{
+    background-color: #fff; /* Green */
+      border: none;
+      color: #797979;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      width: 258px;
+      cursor: pointer;
+  }
+  .ui-button{
+    border: none !important;
+  }
+  .ui-button:hover{
+    border: none !important;
+    color: #88a3ac !important;
+    background-color: #fff !important;
+  }
+  #notice_kind{
+    width: auto;
+    height: auto;
+    border: 1px solid #88a3ac;
+    color: #88a3ac;
+    text-align: center;
+    padding-bottom:5px;
+    margin-left: 10px;
+  }
+  #dialogBtn{
+    width:60px;
+    float:left;
+    background-color: #96b5c3;
+    border-radius: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #fff;
+    font-size: 0.9em;
+    font-weight: normal;
+    margin-right: 10px;
+  }
+
+  table {
+      border-collapse: collapse;
+  }
+  table, th,td{
+      border: 1px solid #88a3ac;
+  }
+  td{
+    padding: 0px;
+  }
+  .inputBorder{
+    border: 0px;
+    text-align: center;
+  }
+  #guideMessage{
+    margin-top: 20px;
+    font-size: 0.7em;
+    color: #88a3ac;
+  }
+
+  #userTitle{
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .btnCustom {
+    background-color: #b2b2b2;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+#plusBtn{
+  background-color: #96b5c3;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+}
+  </style>
+    <!-- dialog -->
+    <!-- jquery -->
+    <link href="js/jquery-ui.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script>
+      var http = getRequest();
+      function getRequest() {
+        try {
+          xhr = new XMLHttpRequest();
+        } catch (e) {
+          try {
+            var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+          } catch (e) {
+            try {
+              var xhr = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+              alert("Your Browser is not Supported");
+            }
+          }
+        }
+        return xhr;
+      }
+      function sendPush(notice_kind){
+      var url = "https://fcm.googleapis.com/fcm/send";
+        
+      http.open("POST", url, true);
+      http.setRequestHeader("Content-Type", "application/json");
+      http.setRequestHeader("Authorization", "key=AAAAA8w2Qw0:APA91bFTc5JU_02s3b3RbO3dqsExJo7iUy8Y357kJgK4IMwicndc_aWblxvu_3ghNW843L9UWQ-IkC-nkxo1by3eiRXvJKLiGHbUWxqejvQG6uRJSbknVOfNO10mc2ilEWKftW6uyGaU");
+        
+      // JSON.stringify 를 안써줄 경우 
+      http.send(JSON.stringify({
+        notification : {
+          // 알림 받을 기기에 보여줄 타이틀
+          title : "새로운 "+notice_kind+" 공지가 있습니다",
+          // 알림 받을 기기에 보여줄 바디
+          body : "앱을 열어 확인해주세요."
+        },
+        data : {
+          // 
+          id : "1"
+        },
+        to : "/topics/studentNotice"
+      }));
+        }
+    </script>
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+  
+    <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCR17c6uLZyAi4OZ89HX_tX3UncpFhzVC8",
+      authDomain: "ohdormitory-mirim.firebaseapp.com",
+      databaseURL: "https://ohdormitory-mirim.firebaseio.com",
+      projectId: "ohdormitory-mirim",
+      storageBucket: "ohdormitory-mirim.appspot.com",
+      messagingSenderId: "16311010061"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+    var isExistCleanNotice = false;
+    //파이어베이스에 추가하기
+    function addNotice() {
+      var notice_kind = document.getElementById('notice_kind').value;
+      var w_time = document.getElementById('w_time').value;
+      var d_time = document.getElementById('d_time').value;
+      var notice_title = document.getElementById('notice_title').value;
+      var content;
+      var clean_4 = new Array(7);
+      var clean_5 = new Array(7);
+      if (notice_kind == "공지사항") {
+        content = document.getElementById('notice_content').value;
+      } else if (notice_kind == "청소구역") {
+        if (isExistCleanNotice) {
+          alert("청소구역이 이미 공지되어 있습니다. 삭제 후 다시 공지하세요.");
+          return;
+        }
+        for (var i = 0; i < clean_4.length; i++) {
+          clean_4[i] = $('#4-clean-' + i).val();
+        }
+        for (var i = 0; i < clean_5.length; i++) {
+          clean_5[i] = $('#5-clean-' + i).val();
+        }
+      }
+      var check = checkNull(notice_kind, w_time, d_time, notice_title, content, clean_4, clean_5, $("#sleep_w_time").val(),  $("#sleep_d_time").val()); //널있는지 체크
+      if (check) {
+        var noticeListRef = database.ref("notice");
+        timestamp = Math.floor(new Date().getTime() / 1000) * -1;
+        if (notice_kind == "공지사항") {
+          var newNoticeRef = noticeListRef.child(timestamp).set({
+            "notice_kind": notice_kind,
+            "w_time": w_time,
+            "d_time": d_time,
+            "notice_title": notice_title,
+            "content": content
+          });
+        } else if (notice_kind == "외박일지") {
+          var newNoticeRef = noticeListRef.child(timestamp).set({
+            "notice_kind": notice_kind,
+            "w_time": w_time,
+            "d_time": d_time,
+            "notice_title": notice_title,
+            "sleep_w_time": $("#sleep_w_time").val(),
+            "sleep_d_time": $("#sleep_d_time").val()
+          });
+        } else {
+          var newNoticeRef = noticeListRef.child(timestamp).set({
+            "notice_kind": notice_kind,
+            "w_time": "0",
+            "d_time": "0",
+            "notice_title": notice_title,
+            "clean_4": clean_4,
+            "clean_5": clean_5
+          });
+        }
+        sendPush(notice_kind);
+
+      }
+      return check;
+    }
+    // 입력한게 null인지 체크하는 함수
+    function checkNull(notice_kind, w_time, d_time, notice_title, content, clean_4, clean_5, sleep_w_time, sleep_d_time) {
+      var w_time_object = new Date(w_time);
+      var d_time_object = new Date(d_time);
+
+      var now_time = new Date();
+      var dateCompare = (w_time_object.getFullYear() < now_time.getFullYear()||w_time_object.getMonth() < now_time.getMonth() || w_time_object.getDate()<now_time.getDate());
+      if((w_time_object.getTime() > d_time_object.getTime()) || dateCompare){
+        alert("게시 날짜가 잘못되었습니다."); 
+        return false;
+      }
+
+      if (notice_kind == "" || w_time == "" || d_time == "" || notice_title == "") {
+        alert("항목을 빠짐없이 입력해주세요");
+        return false;
+      }
+      if (notice_kind == "공지사항" && (content == null || content == "")) {
+        alert("항목을 빠짐없이 입력해주세요");
+        return false;
+      }
+      if (notice_kind == "외박일지" && (sleep_w_time == "" || sleep_d_time == "")) {
+        alert("항목을 빠짐없이 입력해주세요");
+        return false;
+      }
+
+      var sleep_w_time_object = new Date(sleep_w_time);
+      var sleep_d_time_object = new Date(sleep_d_time);
+
+
+      var sleepDateCompare = (sleep_w_time_object.getFullYear() < now_time.getFullYear()||sleep_w_time_object.getMonth() < now_time.getMonth() || sleep_w_time_object.getDate()<now_time.getDate());
+      
+      if(notice_kind == "외박일지" && ((sleep_w_time_object.getTime() > sleep_d_time_object.getTime())||sleepDateCompare)){
+        alert("외박 날짜가 잘못되었습니다."); 
+        return false;
+      }
+
+
+      if (notice_kind == "청소구역") {
+        for (var i = 0; i < clean_4.length; i++) {
+          if (clean_4[i] == "" || clean_4[i] == null) {
+            alert("항목을 빠짐없이 입력해주세요");
+            return false;
+          } else if (clean_4[i] < 401 || clean_4[i] > 418) {
+            alert("호수를 잘못 입력하셨습니다.");
+            return false;
+          }
+        }
+        for (var i = 0; i < clean_5.length; i++) {
+          if (clean_5[i] == "" || clean_5[i] == null) {
+            alert("항목을 빠짐없이 입력해주세요");
+            return false;
+          } else if (clean_5[i] < 501 || clean_5[i] > 519) {
+            alert("호수를 잘못 입력하셨습니다.");
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+    
+    function initializeInput() {
+      document.getElementById('notice_kind').value = "";
+      document.getElementById('w_time').value = "";
+      document.getElementById('d_time').value = "";
+      document.getElementById('notice_title').value = "";
+      document.getElementById('notice_content').value = "";
+      for (var i = 0; i < 7; i++) {
+        document.getElementById('clean' + i).value = "";
+      }
+      document.getElementById("select_notice").style.display = "none";
+      document.getElementById("select_clean").style.display = "none";
+    }
+    var limit_num = 3;
+  
+    function nextNotice() {
+      limit_num += 2;
+      getList(limit_num);
+    }
+    // 글 목록 가져오기
+    var noticeListRef;
+  
+    function getList(limit_num) {
+      // 기존 목록을 가져온 적이 있을 때는 연결 해제
+      if (noticeListRef != null) {
+        noticeListRef.off();
+      }
+      noticeListRef = database.ref("notice");
+      noticeListRef.on('value', function(snapshot) {
+        isExistCleanNotice = false;
+        document.getElementById('noticeList').innerHTML = null;
+        snapshot.forEach(function(noticeSnapshot) {
+          var notice_key = noticeSnapshot.key;
+          var notice = noticeSnapshot.val();
+          if (notice.notice_kind == "청소구역") {
+            isExistCleanNotice = true;
+          }
+
+          var date;
+          var obDate;
+          var nowDate;
+
+          if (notice.w_time == "0" && notice.d_time == "0"){
+            date = "항시공지";
+            nowDate = new Date();
+            obDate = new Date();
+          }
+          else{
+            date = notice.w_time + ' - ' + notice.d_time;
+            // notice.d_time
+            var splitDate = notice.d_time.split('.');
+            // alert(splitDate[0]+","+splitDate[1]);
+
+            obDate = new Date(splitDate[0], splitDate[1], splitDate[2], 0, 0, 0, 0);
+            nowDate = new Date();
+
+            nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth()+1, nowDate.getDate(), 0, 0, 0, 0);
+          }
+
+            
+          if(obDate.getTime() < nowDate.getTime()){
+              // deleteNotice();
+              removeNotice(notice_key);
+            }else{
+
+            var post = '<div class="noticeCard">' +
+                '<div style="width:7px;height:100px;background-color:#96b5c3;float:left;margin-right:25px;"></div>'+
+                '<div style="font-size:0.9em;">'+date +'</div>'+
+                '<div style="padding-top:20px;padding-bottom:20px;">'+notice.notice_title +'</div>'+
+                ' <a href="#" class="btnCustom" style="padding-left:10px; padding-right:10px; font-size:0.9em;float:right;" onClick="removeNotice(\'' +
+                  notice_key +
+                  '\')">삭제하기</a><br><br>' +
+                   '</div>';
+                document.getElementById('noticeList').innerHTML += post;
+            }
+                
+        });
+      });
+    }
+    //카드 지우기 --> 파이어베이스에서도 지워짐
+    function removeNotice(key) {
+      var noticeRef = database.ref("notice/" + key);
+      noticeRef.remove();
+    }
+    getList(3);
+    </script>
+  
+    <script>
+    //다이얼로그 창 띄우기
+    $(function() {
+      //$("#dialog").dialog();
+      $("#dialog").dialog({
+        autoOpen: false, //자동으로 열리지않게
+        //position:[100,200], //x,y  값을 지정
+        //"center", "left", "right", "top", "bottom"
+        modal: true, //모달대화상자
+        resizable: false, //크기 조절 못하게
+        draggable: false, //창 드래그 못하게
+        width: 520,
+        position: {
+          my: "center",
+          at: "center",
+          of: "body"
+        },
+        buttons: {
+          "제출": function() {
+            var check = addNotice(); //제출할때 파이어베이스에 넣는담
+            if (check) {
+              $("#dialog").dialog("close");
+              initializeInput();
+            }
+          },
+          "취소": function() {
+            $(this).dialog("close");
+          }
+        }
+      });
+      //창 열기 버튼을 클릭했을경우
+      $("#btn").on("click", function() {
+        $("#dialog").dialog("open"); //다이얼로그창 오픈
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+          dd = '0' + dd
+        }
+        if (mm < 10) {
+          mm = '0' + mm
+        }
+        today = yyyy + '-' + mm + '-' + dd;
+        var parsedDate = $.datepicker.parseDate('yy-mm-dd', today);
+        $("#w_time, #d_time").datepicker("setDate", parsedDate);
+      });
+    });
+    //체크옵션에 따라 세부사항
+    function changeNoticeKind() {
+      var select_notice = document.getElementById("select_notice");
+      var select_clean = document.getElementById("select_clean");
+      var select_sleep = document.getElementById("select_sleep");
+      var notice_kind = document.getElementById("notice_kind");
+      if (notice_kind.value == "공지사항") {
+        select_notice.style.display = "block";
+        select_clean.style.display = "none";
+        select_sleep.style.display = "none";
+        $("#notice_title").val("");
+        $("#notice_title").removeAttr('disabled');
+        $("#w_time, #d_time").datepicker("option", "disabled", false);
+      } else if (notice_kind.value == "청소구역") {
+        select_notice.style.display = "none";
+        select_clean.style.display = "block";
+        select_sleep.style.display = "none";
+        $("#notice_title").val("청소구역");
+        $("#notice_title").attr('disabled', 'disabled');
+        $("#w_time, #d_time").datepicker("option", "disabled", true);
+      } else {
+        select_notice.style.display = "none";
+        select_clean.style.display = "none";
+        select_sleep.style.display = "block";
+        $("#sleep_w_time, #sleep_d_time").datepicker();
+        $("#notice_title").val("외박일지 작성");
+        $("#notice_title").attr('disabled', 'disabled');
+        $("#w_time, #d_time").datepicker("option", "disabled", false);
+      }
+    }
+    //날짜선택
+    $.datepicker.setDefaults({
+      dateFormat: 'yy.mm.dd',
+      prevText: '이전 달',
+      nextText: '다음 달',
+      monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+      dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+      dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+      showMonthAfterYear: true,
+      yearSuffix: '년'
+    });
+    $(function() {
+      $("#w_time, #d_time").datepicker();
+    });
+  
+    </script>
+  
+  </head>
+  
+  <body>
+    <!-- 이거누르면 다이얼로그 뜹니당 -->
+    <div id="userTitle">
+        공지사항
+          <input type="button" id="btn" value="작성하기"  class="btnCustom" />
+      </div>
+  
+    <!-- 다이얼로그 -->
+    <div class="addCard" id="dialog" title="공지사항 작성" style="display:inline-block;">
+      <form><div id="dialogBtn">게시종류</div>
+        <div style="float:left;"><select name="게시종류" id="notice_kind" onclick="changeNoticeKind(); return false;">
+          <option value=""></option>
+          <option value="공지사항">공지사항</option>
+          <option value="청소구역">청소구역</option>
+          <option value="외박일지">외박일지</option>
+        </select></div>
+        <br>
+        <br><div id="dialogBtn">게시기간</div>
+        <div style="float:left;">
+          <input type="text" id="w_time"> -
+          <input type="text" id="d_time">
+        </div>
+        <br>
+        <br><div id="dialogBtn">게시제목</div>
+        <div style="float:left;">
+          <input type="text" id="notice_title" style="float:left;">
+        </div>
+        <br>
+        <br>
+        <!-- 여기 위까지가 공통 -->
+        <!-- 이거는 공지사항 세부사항 -->
+        <div id="select_notice" style="display:none">
+          <div id="dialogBtn">공지내용</div>
+          <textarea type="text" id="notice_content" style="width:300px;height:40px;"></textarea>
+          <br>
+          <br>
+        </div>
+        <!-- 이거는 공지사항 세부사항 -->
+        <div id="select_notice" style="display:none">
+          <div id="dialogBtn">공지내용</div>
+          <textarea type="text" id="notice_content" style="width:300px;height:40px;"></textarea>
+          <br>
+          <br>
+        </div>
+        <!-- 이거는 세탁 세부사항 -->
+        <div id="select_clean" style="display:none">
+          <div id="dialogBtn" style="margin-bottom:15px;">청소구역</div><br>
+          <table id="dialogTable">
+            <tr style="font-size:0.9em;color:#88a3ac;text-align:center;margin-top:15px;">
+              <td>세면실</td>
+              <td>세탁실/탈의실</td>
+              <td>샤워실</td>
+              <td>복도</td>
+              <td>휴게실</td>
+              <td>계단</td>
+              <td>화장실</td>
+            </tr>
+            <tr>
+              <td style="border:0px;padding:0px;!important;">
+                <input type="text" style="width: 60px" id="4-clean-0" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 100px" id="4-clean-1" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 60px" id="4-clean-2" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 60px" id="4-clean-3" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 60px" id="4-clean-4" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 60px" id="4-clean-5" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 60px" id="4-clean-6" class="inputBorder">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="text" style="width: 60px" id="5-clean-0" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 100px" id="5-clean-1" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 60px" id="5-clean-2" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 60px" id="5-clean-3" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 60px" id="5-clean-4" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 60px" id="5-clean-5" class="inputBorder">
+              </td>
+              <td>
+                <input type="text" style="width: 60px" id="5-clean-6" class="inputBorder">
+              </td>
+            </tr>
+          </table>
+  
+          <span id="guideMessage"></span>
+        </div>
+        <div id="select_sleep" style="display:none">
+          <input type="text" id="sleep_w_time"> -
+          <input type="text" id="sleep_d_time">
+        </div>
+      </form>
+    </div>
+    <!-- 공지사항 목록 -->
+    <div id="noticeList"> </div>
+    <div >
+        <input type="button" value="더보기" onClick="nextNotice()" style="width:100%;height:40px;" id="plusBtn">
+    </div>
+    
+    <script type="text/javascript">
+    for (var i = 1; i < 7; i++) {
+      $("#4-clean-" + i).attr('disabled', 'disabled');
+      $("#5-clean-" + i).attr('disabled', 'disabled');
+    }
+    $("#guideMessage").html("첫 번째 구역을 설정하시면 자동으로 계산됩니다.");
+    $("#4-clean-0").change(function() {
+      if ($("#4-clean-0").val() < 401 || $("#4-clean-0").val() > 418) {
+        alert("호수를 잘못 입력하셨습니다.");
+        return;
+      }
+      $("#guideMessage").html("");
+      var number = parseInt($("#4-clean-0").val());
+      for (var i = 1; i < 7; i++) {
+        number++;
+        if (number > 418)
+          number = 401;
+        $("#4-clean-" + i).removeAttr('disabled');
+        $("#4-clean-" + i).val(number);
+      }
+    });
+    $("#5-clean-0").change(function() {
+      if ($("#5-clean-0").val() < 501 || $("#5-clean-0").val() > 519) {
+        alert("호수를 잘못 입력하셨습니다.");
+        return;
+      }
+      $("#guideMessage").html("");
+      var number = parseInt($("#5-clean-0").val());
+      for (var i = 1; i < 7; i++) {
+        number++;
+        if (number > 519)
+          number = 501;
+        $("#5-clean-" + i).removeAttr('disabled');
+        $("#5-clean-" + i).val(number);
+      }
+    });
+  
+    </script>
+  </body>
+  
+  </html>
+  

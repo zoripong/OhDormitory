@@ -1,0 +1,370 @@
+<html>
+
+<head>
+    <title>washer-time</title>
+    <!-- css -->
+    <style>
+        .washer-table {
+            width: 100%;
+            height: auto;
+            border: 0.3px solid #88a3ac;
+            border-spacing: 0px 0px;
+            text-align: center;        }
+
+        tr,
+        td {
+            border: 0.3px solid #88a3ac;
+        }
+
+        @media(min-width:992px) {
+            #washParent {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 900px;
+                transform: translate(-50%, -50%);
+            }
+            #wash-4,
+            #wash-5 {
+                margin: auto;
+                width: 60%;
+            }
+        }
+
+        @media(max-width:992px) {
+            #washParent {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 90%;
+                transform: translate(-50%, -50%);
+                margin-top: 30px;
+            }
+        }
+
+        #userTitle {
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .content-wrapper {
+            padding: 20px;
+        }
+    </style>
+
+    <!-- jquery -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <!--  firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCR17c6uLZyAi4OZ89HX_tX3UncpFhzVC8",
+            authDomain: "ohdormitory-mirim.firebaseapp.com",
+            databaseURL: "https://ohdormitory-mirim.firebaseio.com",
+            projectId: "ohdormitory-mirim",
+            storageBucket: "ohdormitory-mirim.appspot.com",
+            messagingSenderId: "16311010061"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
+    </script>
+    <script>
+        // Get the current date at midnight.
+        // [시간 계산]
+        var now = new Date();
+        var year = now.getFullYear();
+        var month;
+        var date;
+
+        if (now.getMonth() + 1 < 10)
+            month = "0" + now.getMonth() + 1;
+        else month = now.getMonth() + 1;
+
+        if (now.getDate() < 10)
+            date = "0" + now.getDate();
+        else date = now.getDate();
+
+        var today = year + "-" + month + "-" + date;
+
+        var firstStartTime = new Date(year, month - 1, date, 6, 0, 0, 0);
+        var firstEndTime = new Date(year, month - 1, date, 9, 0, 0, 0);
+        var secondEndTime = new Date(year, month - 1, date, 12, 0, 0, 0);
+        var thirdStartTime = new Date(year, month - 1, date, 20, 0, 0, 0);
+        var thirdEndTime = new Date(year, month - 1, date, 23, 30, 0, 0);
+        //
+    </script>
+</head>
+
+<body>
+    <div id="userTitle">
+        세탁일지
+    </div>
+    <!-- /여기다가 복붙-->
+    <div id="wrapper">
+        <div id="washParent">
+            <div id="wash-4">
+                <table class="washer-table">
+                    <tr>
+                        <td>
+                        </td>
+                        <td id="first-time-4" style="color:#88a3ac;">
+                        </td>
+                        <td id="second-time-4" style="color:#88a3ac;">
+                        </td>
+                        <td id="third-time-4" style="color:#88a3ac;">
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td style="color:#88a3ac;">
+                            1번
+                        </td>
+                        <!-- id : 층 - 세탁기 번호 - 시간 -->
+                        <td id="4-0-0">
+                            <!-- 400 -->
+
+                        </td>
+                        <td id="4-0-1">
+                            <!-- 401 -->
+                        </td>
+                        <td id="4-0-2">
+                            <!-- 402 -->
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="color:#88a3ac;">
+                            2번
+                        </td>
+                        <td id="4-1-0">
+                            <!-- 410 -->
+                        </td>
+                        <td id="4-1-1">
+                            <!-- 411 -->
+                        </td>
+                        <td id="4-1-2">
+                            <!-- 412 -->
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="color:#88a3ac;">
+                            3번
+                        </td>
+                        <td id="4-2-0">
+                            <!-- 420 -->
+                        </td>
+                        <td id="4-2-1">
+                            <!-- 421 -->
+                        </td>
+                        <td id="4-2-2">
+                            <!-- 422 -->
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+            <div id="wash-5">
+                <table class="washer-table">
+                    <tr>
+                        <td>
+                        </td>
+                        <td id="first-time-5" style="color:#88a3ac;">
+                        </td>
+                        <td id="second-time-5" style="color:#88a3ac;">
+                        </td>
+                        <td id="third-time-5" style="color:#88a3ac;">
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td style="color:#88a3ac;">
+                            1번
+                        </td>
+                        <!-- id : 층 - 세탁기 번호 - 시간 -->
+                        <td id="5-0-0">
+                            <!-- 400 -->
+                        </td>
+                        <td id="5-0-1">
+                            <!-- 401 -->
+                        </td>
+                        <td id="5-0-2">
+                            <!-- 402 -->
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="color:#88a3ac;">
+                            2번
+                        </td>
+                        <td id="5-1-0">
+                            <!-- 410 -->
+                        </td>
+                        <td id="5-1-1">
+                            <!-- 411 -->
+                        </td>
+                        <td id="5-1-2">
+                            <!-- 412 -->
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="color:#88a3ac;">
+                            3번
+                        </td>
+                        <td id="5-2-0">
+                            <!-- 420 -->
+                        </td>
+                        <td id="5-2-1">
+                            <!-- 421 -->
+                        </td>
+                        <td id="5-2-2">
+                            <!-- 422 -->
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="guideMessage"></div>
+    <script>
+        var timeType; // 오전1, 오전 2, 오후 시간 타입
+        var isPossibleTime = true;
+        if (now > firstStartTime && now <= firstEndTime) {
+            timeType = 0;
+            $("#first-time-4").html("06:00~07:00");
+            $("#second-time-4").html("07:00~08:00");
+            $("#third-time-4").html("08:00~09:00");
+            $("#first-time-5").html("06:00~07:00");
+            $("#second-time-5").html("07:00~08:00");
+            $("#third-time-5").html("08:00~09:00");
+        } else if (now > firstEndTime && now <= secondEndTime) {
+            timeType = 1;
+            $("#first-time-4").html("09:00~10:00");
+            $("#second-time-4").html("10:00~11:00");
+            $("#third-time-4").html("11:00~12:00");
+            $("#first-time-5").html("09:00~10:00");
+            $("#second-time-5").html("10:00~11:00");
+            $("#third-time-5").html("11:00~12:00");
+        } else if (now > thirdStartTime && now <= thirdEndTime) {
+            timeType = 2;
+            isPossibleTime = false;
+            $("#first-time-4").html("20:00~21:00");
+            $("#second-time-4").html("21:00~22:00");
+            $("#third-time-4").html("22:00~23:30");
+            $("#first-time-5").html("20:00~21:00");
+            $("#second-time-5").html("21:00~22:00");
+            $("#third-time-5").html("22:00~23:30");
+        }
+        else {
+            timeType = -1;
+            isPossibleTime = false;
+            $("#first-time-4").html("20:00~21:00");
+            $("#second-time-4").html("21:00~22:00");
+            $("#third-time-4").html("22:00~23:30");
+            $("#first-time-5").html("20:00~21:00");
+            $("#second-time-5").html("21:00~22:00");
+            $("#third-time-5").html("22:00~23:30");
+
+        }
+        //TEST
+        timeType = 2;
+        isPossibleTime = true;
+        //end of TEST
+
+        var floor4Ref;
+
+        var washingRef;
+        var floorRef;
+        var typeRef;
+        var washerRef;
+        var timeRef;
+
+
+        function getWashList() {
+            if (floor4Ref != null) {
+                floor4Ref.off();
+            }
+
+            // database 구조
+            // wash-time / 날짜 / 4층 or 5층 / 오전1, 오전2, 오후 / 세탁기 번호 / 시간 타입
+            // wash-time / today / floor / type / washer / 0
+
+            washingRef = database.ref("wash-time/" + today);//테스트용 : "wash-time/" + "2017-10-19"
+            washingRef.on('value', function (snapshot) {
+                snapshot.forEach(function (washingSnapshot) {
+                    var floorKey = washingSnapshot.key;//floor_5
+                    // alert(floorKey);
+                    floorRef = database.ref("wash-time/" + today + "/" + floorKey);//테스트용 : "wash-time/2017-10-19/" + floorKey
+                    floorRef.on('value', function (floorSnapshot) {
+                        floorSnapshot.forEach(function (typeSnapshot) {//timeType
+                            var typeKey = typeSnapshot.key;//type_2
+                            if (typeKey == "type_" + timeType) {//테스트용 : 이 라인 주석으로
+
+                                typeRef = database.ref("wash-time/" + today + "/" + floorKey + "/" + typeKey); //테스트용 : "wash-time/2017-10-19/" + floorKey+"/"+typeKey
+                                typeRef.on('value', function (washerSnapshot) {
+                                    washerSnapshot.forEach(function (washSnapshot) {//washer type
+                                        var washerKey = washSnapshot.key;//washer_0
+                                        // alert(washerKey);
+
+                                        washerRef = database.ref("wash-time/" + today + "/" + floorKey + "/" + typeKey + "/" + washerKey);//테스트용 : wash-time/2017-10-19/" + floorKey+"/"+typeKey+"/"+washerKey
+                                        washerRef.on('value', function (timeTypeSnapshot) {
+                                            timeTypeSnapshot.forEach(function (timeSnapshot) {
+                                                var timeKey = timeSnapshot.key;//1
+                                                // alert(timeKey);
+
+                                                var washerUserData = timeSnapshot.val();
+                                                var user = washerUserData.name;
+                                                if (user == null)//개인이 아니라 방일 경우
+                                                    user = washerUserData.roomNumber;
+
+                                                var floor = floorKey.replace("floor_", "");
+                                                var waherNum = washerKey.replace("washer_", "");
+                                                $("#" + floor + "-" + waherNum + "-" + timeKey).html(user); //    층 - 세탁기 번호 - 시간
+
+                                                // alert(user);
+
+
+
+                                            });
+
+                                        });
+
+                                    });
+
+                                });
+
+                            }//테스트용 : 이 라인 주석으로
+
+                        });
+                    });
+
+
+                });
+
+            });
+        }
+
+        if (isPossibleTime) {//테스트용 : 이 라인 주석으로
+            getWashList();
+            $("#guideMessage").text("");
+        }//테스트용 : 이 라인 주석으로
+        else {
+            $("#wash-4").text("");
+            $("#wash-5").text("");
+            $("#guideMessage").text("세탁시간이 아닙니다.");
+        }
+    </script>
+</body>
+
+</html>

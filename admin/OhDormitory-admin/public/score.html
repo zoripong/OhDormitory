@@ -1,0 +1,342 @@
+
+<html>
+        
+        <head>
+            <style>
+                #inputCustom .date {
+                    width: 170px;
+                    height: auto;
+                    box-shadow: none;
+                    border-radius: 0!important;
+                    border-top: none;
+                    border-left: none;
+                    border-right: none;
+                    border-bottom: 1px solid #88a3ac;
+                    color: #88a3ac;
+                    text-align: center;
+                    margin-top: -10px;
+                    margin-left: 10px;
+                }
+        
+                #inputCustom .detail {
+                    width: 240px;
+                    height: auto;
+                    border: 1px solid #88a3ac;
+                    color: #88a3ac;
+                    text-align: center;
+                    padding-bottom:5px;
+                }
+                #inputCustom{
+                  margin-top: 10px;
+                  margin-bottom: 10px;
+                }
+                .score {
+                    width: 30px;
+                    height: 30px;
+                }
+        
+                .frame {
+                    border: 1px solid #cccccc;
+                    width: 400px;
+                    height: 250px;
+                    text-align: center;
+                    box-shadow: 0px 0px 10px #d9dadb;
+                    position:absolute;
+                    top:50%;
+                    left:50%;
+                    transform:translate(-50%, -50%);
+                }
+        
+                .addCard {
+                    border: 1px solid #cccccc;
+                    width: 500px;
+                    height: 260px;
+                    margin: 10px;
+                    padding: 10px;
+                }
+        
+                .dialog {
+                    border: 1px solid #242424;
+                }
+                #student_info{
+                  margin: 7px;
+                  background-color: #99b7c5;
+                  color: #fff;
+                  width:140px;
+                  border-radius: 30px;
+                  padding-left: 10px;
+                  padding-right: 10px;
+                  margin-top: 10px;
+                }
+                .date{
+                  margin-right: 10px;
+                }
+                .detail{
+                  margin-right: 10px;
+                }
+                .score{
+                  color: #88a3ac;
+                }
+                #score_list{
+                  font-size: 0.9em;
+                  padding-left: 20px;
+                }
+                #userTitle{
+                  padding: 10px;
+                  background-color: #e9ecef;
+                  border-radius: 5px;
+                  margin-bottom: 10px;
+                }
+                #formCustom{
+                  width: 140px;
+                  height: 90px;
+                  display: inline-block;
+                  margin:80px 0;
+                }
+                .btnCustom {
+                  background-color: #b2b2b2;
+                  border: none;
+                  color: white;
+                  text-align: center;
+                  text-decoration: none;
+                  display: inline-block;
+                  cursor: pointer;
+                  border-radius: 10px;
+                  margin-right: 10px;
+              }
+              .noticeInputCustom{
+                width:100px;border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: 1px solid #cccccc;
+                text-align:center;
+              }
+            </style>
+            <title>score</title>
+              <!-- 수정사항 style에 #userTitle   #formCustom .btnCustom .noticeInputCustom 추가
+              .frame에 width: 400px; height: 270px;text-align: center; box-shadow: 0px 0px 10px #d9dadb; position:absolute;
+              top:50%; left:50%; transform:translate(-50%, -50%);추가 -->
+            <!-- jquery -->
+            <link href="js/jquery-ui.min.css" rel="stylesheet">
+            <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+            <script src="js/jquery-ui.js"></script>
+            <!--  firebase -->
+            <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+            <script>
+                // Initialize Firebase
+                var config = {
+                    apiKey: "AIzaSyCR17c6uLZyAi4OZ89HX_tX3UncpFhzVC8",
+                    authDomain: "ohdormitory-mirim.firebaseapp.com",
+                    databaseURL: "https://ohdormitory-mirim.firebaseio.com",
+                    projectId: "ohdormitory-mirim",
+                    storageBucket: "ohdormitory-mirim.appspot.com",
+                    messagingSenderId: "16311010061"
+                };
+                firebase.initializeApp(config);
+                var database = firebase.database();
+            </script>
+            <script>
+                /*
+        var map = new Object(); // or var map = {};
+        map[myKey1] = myObj1;
+        map[myKey2] = myObj2;
+        
+        function get(k) {
+            return map[k];
+        }
+        
+        //map[myKey1] == get(myKey1);,        */
+            var detailMapType = [ "타호실 무단 취침", "취침시간 소란","무단외출", "무단입실", "무단외박", 
+            "외부인 무단 출입", "사감통제 불이행", "태도 불손 및 불량", "언어폭력 또는 따돌림", "무단지각",
+            "기숙사내 각종 소란 행위", "허가되지 않은 전열⸱전자기기 사용", "불건전 물품 반입", "시설물 고의 파손", 
+            "타호실 무단 출입", "당번 활동 불량", "외부 음식물 반입", "호실원에게 피해", "인사예절 불량", "선⸱후배 질서 문란", 
+            "복도 ⸱ 호실에서 쓰레기 투기", "창밖으로 쓰레기 투척", "개인쓰레기 공동구역에 무단 투기", "중앙통로 침입",
+            "점호 불참 및 점호 시 태도 불량", "취침시간 소등위반", "공동구역 사용시간 위반", "기숙사내 실내화 미착용",
+            "복장 및 두발 불량", "교문 밖 출입 시 용의 불량", "개인위생 불결", "개인 세탁물 및 소지품 관리 불량",
+            "호실 청소상태 불량", "외박증 미인증", "퇴실시간 위반", "아침점호 후 재입실", "공동구역 모범 청소", "호실청소", "기타 가산점", "층장 활동", "기숙사 행사 도움"];
+            var typeMappingScore = [-5, -5, -5, -5, -5,
+             -5, -5, -5, -5, -3,
+             -3, -3, -3, -3,
+             -2, -2, -2, -2, -2, -2,
+             -2, -2, -2, -2,
+             -1, -1, -1, -1,
+             -1, -1, -1, -1,
+             -1, -1, -1, -1, 0.5, 0.5, 0.5, 1, 1
+            ];
+                
+                var roomNumberMap = [401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519];
+                Object.size = function (obj) {
+                    var size = 0, key;
+                    for (key in obj) {
+                        if (obj.hasOwnProperty(key)) size++;
+                    }
+                    return size;
+                };
+        
+                $(function () {
+                    //$("#dialog").dialog();
+                    $("#dialog").dialog({
+                        autoOpen: false, //자동으로 열리지않게
+                        modal: true, //모달대화상자
+                        resizable: false, //크기 조절 못하게
+                        draggable: false, //창 드래그 못하게
+                        width: 500,
+                        position: {
+                            my: "center",
+                            at: "center",
+                            of: "body"
+                        }
+                    });
+        
+                    //창 열기 버튼을 클릭했을경우
+                    $("#btn").on("click", function () {
+                        if(checkedInput())
+                        getStudentInfo();
+                        else{
+                            alert("항목을 빠짐없이 입력해주세요");
+                            return;
+                        }
+                    });
+                });
+        
+                var userUid = null;
+                var userRef;
+                function getStudentInfo() {
+                    if (userRef != null) {
+                        userRef.off();
+                    }
+                    userRef = database.ref("user");
+        
+                    userRef.on('value', function (snapshot) {
+                        userUid = null;
+                        snapshot.forEach(function (userSnapshot) {
+                            var user = userSnapshot.val();
+                            // alert(user.name + user.roomNumber);
+                            if (user.name == $("#student_name").val() && roomNumberMap[user.roomNumber] == $("#room_number").val()) {
+                                userUid = user.uid;
+                                var today = new Date();
+                                var dd = today.getDate();
+                                var mm = today.getMonth() + 1; //January is 0!
+                                var yyyy = today.getFullYear();
+                                if (dd < 10) {
+                                    dd = '0' + dd
+                                }
+                                if (mm < 10) {
+                                    mm = '0' + mm
+                                }
+                                today = yyyy + '.' + mm + '.' + dd;
+                                var parsedDate = $.datepicker.parseDate('yy.mm.dd', today);
+                                $("#score_date").datepicker("setDate", parsedDate);
+        
+                                $("#dialog").dialog("open");
+                                $("#student_info").html($("#room_number").val() + "호 " + $("#student_name").val() + " 학생");
+                                getScoreList(userUid);
+                            }
+                        });
+                        if (userUid == null)
+                            alert("입력하신 데이터와 일치하는 학생이 존재하지 않습니다.");
+                    });
+                }
+        
+                var scoreRef;
+                var post;
+                function getScoreList(userUid) {
+                    if (scoreRef != null) {
+                        scoreRef.off();
+                    }
+                    scoreRef = database.ref("score/" + userUid);
+                    scoreRef.on('value', function (snapshot) {
+                        post = "";
+                        document.getElementById('score_list').innerHTML = "";
+                        snapshot.forEach(function (scoreSnapshot) {
+                            var date = scoreSnapshot.val().date;
+                            var studentScoreType = scoreSnapshot.val().score;
+                                document.getElementById('score_list').innerHTML += "<div><span class='date'>" + date + "</span><span class='detail'>"
+                                    + detailMapType[studentScoreType] + "</span><span class='score'>" + typeMappingScore[studentScoreType] + "</span></div>";
+                        });
+        
+                    });
+                }
+        
+                $.datepicker.setDefaults({
+                    dateFormat: 'yy.mm.dd',
+                    prevText: '이전 달',
+                    nextText: '다음 달',
+                    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+                    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+                    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                    showMonthAfterYear: true,
+                    yearSuffix: '년'
+                });
+                $(function () {
+                    $("#score_date").datepicker();
+                });
+        
+                function checkedInput(){
+                    var valid = true;
+                    if( $("#student_name").val() == ""|| $("#room_number").val() == "")
+                        valid =  false;
+                    return valid;
+                }
+            </script>
+        </head>
+        
+        <body>
+          <!-- 수정시작 -->
+          <div id="userTitle">
+            상벌점
+          </div>
+            <div class="frame">
+                <form id="formCustom">
+                  <div style="text-align:left;">
+                    <input type="text" id="room_number" class="noticeInputCustom"> 호
+                    <br/>
+                    <input type="text" id="student_name" class="noticeInputCustom" style="margin-top:5px;"> 학생
+                    <br/>
+                  </div>
+                    <!-- 수정끝 -->
+                    <input type="button" id="btn" value="조회하기" class="btnCustom" style="margin-top:25px;" />
+                </form>
+            </div>
+            <div class="dialog" id="dialog" title="공지사항">
+                <div id="student_info">
+                </div>
+                <div id="score_list">
+                </div>
+                <div id="inputCustom">
+                  <input type="text" class="date" id="score_date">
+                  <select name="게시종류" id="score_type" class="detail">
+                  </select>
+                  <img src="image/add.png" class="score" onclick="submit()" style="width:16px;height:16px;vertical-align: middle;">
+                </div>
+            </div>
+            <script>
+                var option = "<option value='-1'></option>";
+                for (var i = 0; i < detailMapType.length; i++) {
+                    option += "<option value='" + i + "'>" + detailMapType[i] + "</option>"
+                }
+                $("#score_type").html(option);
+        
+                function submit() {
+                    if($("#score_type").val() == "-1"){
+                        alert("항목을 체크 해주세요");
+                        return;
+                    }
+                    var date = $("#score_date").val();
+                    var type = $("#score_type").val();
+                    type = parseInt(type);
+                    var timestamp = Math.floor(new Date().getTime() / 1000) * -1;
+        
+                    var scoreRef = database.ref("score");
+                    var newNoticeRef = scoreRef.child(userUid+"/"+timestamp).set({
+                    "date": date,
+                    "score": type
+                    });
+                }
+            </script>
+        </body>
+        
+        </html>
+        

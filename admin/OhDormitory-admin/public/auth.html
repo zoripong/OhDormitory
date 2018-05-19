@@ -1,0 +1,334 @@
+<html>
+
+<head>
+  <title>auth </title>
+  <style>
+    #parents {
+      border: 1px solid #e9ecef;
+      padding-left: 20px;
+      padding-right: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    #userTitle {
+      padding: 10px;
+      background-color: #e9ecef;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .dialog {
+      border: 1px solid #242424;
+    }
+
+    .userlist {
+      margin: 30px;
+    }
+
+    .user {
+      width: 100%;
+      height: auto;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .user-value {
+      font-size: 15pt;
+      height: auto;
+      margin: 10px;
+      color: #5e5e5e;
+    }
+
+    .user-userListIndex {
+      color: black;
+      font-weight: bold;
+    }
+
+    .user-uid {
+      color: #acacac;
+      font-style: italic;
+    }
+
+    .btnCustom {
+      background-color: #b2b2b2;
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 10px;
+      margin-right: 10px;
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+  <link href="js/jquery-ui.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script type="text/javascript">
+    var roomNumbers = [
+      "401", "402", "403", "404", "405", "406", "407", "408", "409", "410", "411", "412", "413", "414", "415", "416", "417", "418", "501", "502", "503", "504", "505", "506", "507", "508", "509", "510", "511", "512", "513", "514", "515", "516", "517", "518", "519"
+    ];
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCR17c6uLZyAi4OZ89HX_tX3UncpFhzVC8",
+      authDomain: "ohdormitory-mirim.firebaseapp.com",
+      databaseURL: "https://ohdormitory-mirim.firebaseio.com",
+      projectId: "ohdormitory-mirim",
+      storageBucket: "ohdormitory-mirim.appspot.com",
+      messagingSenderId: "16311010061"
+    };
+    firebase.initializeApp(config);
+    //Get a reference to the database service
+    var database = firebase.database();
+    var userListRef;
+
+    function allow(userListIndex) {
+      // alert($("#account").html()+$("#roomNumber").html());
+      var key = $("#account-" + userListIndex).html();
+      var name = $("#name-" + userListIndex).html();
+      var roomNumber = $("#roomNumber-" + userListIndex).html();
+      var uid = $("#uid-" + userListIndex).html();
+      // alert(roomNumber);
+      // alert(roomNumbers.userListIndexOf(roomNumber.toString()));
+      // return false;
+      var userData = {
+        "allowCode": 1,
+        "name": name,
+        "roomNumber": roomNumbers.indexOf(roomNumber.toString()),
+        "uid": uid
+      };
+      var updates = {};
+      updates['/user/' + key] = userData;
+      return firebase.database().ref().update(updates);
+    }
+
+
+    function reject(userListIndex) {
+      var userListIndex = -1 * parseInt(userListIndex);
+      var key = $("#account-" + userListIndex).html();
+      var name = $("#name-" + userListIndex).html();
+      var roomNumber = $("#roomNumber-" + userListIndex).html();
+      var uid = $("#uid-" + userListIndex).html();
+      var userData = {
+        "allowCode": -2,
+        "name": name,
+        "roomNumber": roomNumbers.indexOf(roomNumber),
+        "uid": uid
+      };
+      var updates = {};
+      updates['/user/' + key] = userData;
+      return firebase.database().ref().update(updates);
+    }
+
+    function removeScore(uid) {
+      var scoreRef = firebase.database().ref("score/" + uid);
+      scoreRef.remove();
+    }
+
+    function removeAuth(userListIndex) {
+      var key = $("#account-" + userListIndex).html();
+      var name = $("#name-" + userListIndex).html();
+      var roomNumber = $("#roomNumber-" + userListIndex).html();
+      var uid = $("#uid-" + userListIndex).html();
+      var userData = {
+        "allowCode": -3
+      };
+      var updates = {};
+      updates['/user/' + key] = userData;
+      removeScore(uid);
+      return firebase.database().ref().update(updates);
+    }
+
+    var start_num = 0;
+
+    $(function () {
+      //$("#dialog").dialog();
+      $("#dialog").dialog({
+        autoOpen: false, //자동으로 열리지않게
+        modal: true, //모달대화상자
+        resizable: false, //크기 조절 못하게
+        draggable: false, //창 드래그 못하게
+        width: 700,
+        position: {
+          my: "center",
+          at: "top",
+          of: "body"
+        }
+      });
+      //창 열기 버튼을 클릭했을경우
+      $("#btn").on("click", function () {
+        start_num = 1;
+        getUserList(1, 5, true);
+        $("#dialog").dialog("open");
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+  <div id="userTitle">
+    회원등록
+    <input type="button" id="btn" value="조회하기" class="btnCustom" />
+
+  </div>
+  <div id="parents">
+    <div id="userlist">
+    </div>
+  </div>
+
+  <div class="dialog" id="dialog" title="학생조회">
+    <div id="student_info">
+
+    </div>
+    <div>
+      <input type="button" id="prevBtn" value="PREV" class="btnCustom" />
+      <input type="button" id="deleteAllBtn" value="전체삭제" class="btnCustom" />
+      <input type="button" id="nextBtn" value="NEXT" class="btnCustom" />
+    </div>
+  </div>
+
+  <!-- <div id="userTitle">
+        회원삭제
+      </div> -->
+
+  <script type="text/javascript">
+    var keyArray = [];
+    var uidArray = [];
+    function getUserList(start, end, isNext) {
+      keyArray = new Array();
+      uidArray = new Array();
+      if (userListRef != null) {
+        userListRef.off();
+      }
+      var userListIndex = 0;
+      userListRef = database.ref("user");
+      var content = "";
+      userListRef.on('value', function (snapshot) {
+        document.getElementById('userlist').innerHTML = null;
+        snapshot.forEach(function (userSnapshot) {
+          var allowCode = userSnapshot.val().allowCode;
+
+          if (allowCode == 1) {
+            userListIndex++;
+            keyArray.push(userSnapshot.key);
+            uidArray.push(userSnapshot.val().uid);
+
+            if (userListIndex >= start && userListIndex <= end) {
+
+
+              var key = userSnapshot.key;
+              var name = userSnapshot.val().name;
+              var roomNumber = userSnapshot.val().roomNumber;
+              var uid = userSnapshot.val().uid;
+
+              var post = "<div class='user'><span id='userListIndex-" + userListIndex + "' class='user-value user-userListIndex'  style='font-size:1em;'>" + userListIndex + "</span>" +
+                "<span id='account-" + userListIndex + "' class='user-value' style='font-size:1em;'>" + key + "</span>" +
+                "<span id='roomNumber-" + userListIndex + "' class='user-value' style='font-size:1em;'>" + roomNumbers[roomNumber] + "</span><span>호</span>" +
+                "<span id='name-" + userListIndex + "' class='user-value' style='font-size:1em;margin-right:20px;'>" + name + "</span>" +
+                "<input type='button' class='btnCustom' value='계정삭제' id='" + userListIndex + "' onclick='removeAuth(this.id)'>" +
+                "<span id='uid-" + userListIndex + "' class='user-value user-uid' style='color:white;'>" + uid + "</span>" +
+                "</div>";
+              content += post;
+            }
+
+          }
+
+        });
+
+
+        if (userListIndex - end <= 0)
+          content += "<div class='user'>마지막 페이지 입니다.</div>";
+
+        if (userListIndex == 0) {
+          alert("학생이 없습니다.");
+          $("#dialog").dialog("close");
+        }
+
+          if (start > userListIndex)
+            return;
+          else if (start < 0)
+            return;
+          else
+            document.getElementById('student_info').innerHTML = content;
+
+
+        
+      });
+    }
+
+    //todo
+    $("#nextBtn").on("click", function () {
+      start_num += 5;
+      getUserList(start_num, start_num + 4, true);
+    });
+
+    $("#prevBtn").on("click", function () {
+      start_num -= 5;
+      getUserList(start_num, start_num + 4, false);
+    });
+
+
+    $("#deleteAllBtn").on("click", function () {
+      removeAll();
+      $("#dialog").dialog("close");
+    });
+
+
+    function removeAll() {
+      var userData = {
+        "allowCode": -3
+      };
+      var updates = {};
+      for (var i = 0; i < keyArray.length; i++) {
+        updates['/user/' + keyArray[i]] = userData;
+        removeScore(uidArray[i]);
+      }
+
+      return firebase.database().ref().update(updates);
+    }
+
+
+    function getRegisterList() {
+      // 기존 목록을 가져온 적이 있을 때는 연결 해제
+      if (userListRef != null) {
+        userListRef.off();
+      }
+      userListRef = database.ref("user");
+      userListRef.on('value', function (snapshot) {
+        document.getElementById('userlist').innerHTML = null;
+        var index = 0;
+        snapshot.forEach(function (userSnapshot) {
+          var allowCode = userSnapshot.val().allowCode;
+          if (allowCode == 0) {
+            index++;
+            var key = userSnapshot.key;
+            var name = userSnapshot.val().name;
+            var roomNumber = userSnapshot.val().roomNumber;
+            var uid = userSnapshot.val().uid;
+            var post = "<div class='user'><span id='userListIndex-" + index + "' class='user-value user-userListIndex'  style='font-size:1em;'>" + index + "</span>" +
+              "<span id='account-" + index + "' class='user-value' style='font-size:1em;'>" + key + "</span>" +
+              "<span id='roomNumber-" + index + "' class='user-value' style='font-size:1em;'>" + roomNumbers[roomNumber] + "</span><span>호</span>" +
+              "<span id='name-" + index + "' class='user-value' style='font-size:1em;margin-right:20px;'>" + name + "</span>" +
+              "<input type='button' class='btnCustom' value='수락하기' id='" + index + "' onclick='allow(this.id)'>" +
+              "<input type='button' class='btnCustom' value='거절하기' id='-" + index + "' onclick='reject(this.id)'>" +
+              "<span id='uid-" + index + "' class='user-value user-uid' style='color:white;'>" + uid + "</span>" +
+              "</div>";
+            document.getElementById('userlist').innerHTML += post;
+          }
+        });
+        if (index == 0) {
+          document.getElementById('userlist').innerHTML = "신청한 학생이 없습니다.";
+        }
+      });
+    }
+    getRegisterList();
+  </script>
+</body>
+
+</html>

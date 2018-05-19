@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>오몇점 관리자모드</title>
+  <!-- Bootstrap core CSS-->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+</head>
+<style>
+  #loginBtn {
+   background: url('image/loginBtn.png') no-repeat;
+    width:170px;
+    background-size: 170px 45px;
+    color: #fff;
+  }
+  #loginBtn:hover{
+    background: url('image/loginBtnHover.png') no-repeat;
+     width:171px;
+     background-size: 171px 45px;
+     color: #fcd058;
+    }
+  #loginBtn{
+    height:45px;
+    border: none;
+    padding-bottom: 10px;
+     cursor: pointer;
+  }
+  .card-login{
+    border-radius: 30px;
+  }
+
+  .form-control{
+    height: auto;
+    box-shadow: none;
+    border-radius: 0!important;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #333;
+  }
+  .form-Align{
+    text-align:center;
+    vertical-align:middle;
+    align-items: center;
+    align:center;
+    align-content: center;
+  }
+  #mirimEmail{
+    width: 50%;
+  }
+  @media(max-width:410px){
+    #emailInput{
+      width:25%;float:left;
+    }
+  }
+  @media(min-width:410px){
+    #emailInput{
+      width:45%;float:left;
+    }
+  }
+  .container{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%)
+  }
+</style>
+<body class="bg-dark">
+  <div class="container">
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-body">
+        <form>
+          <div class="form-group" class="form-Align" style="text-align:center;margin-left:15%;margin-right:15%;">
+            <div style="display:inline-block;">
+              <div id="emailInput">
+                <input class="form-control" id="email" type="text" aria-describedby="emailHelp" required>
+              </div>
+              <div id="mirimEmail" style="float:left; margin-top:10px;width:130px;text-align:right">@e-mirim.hs.kr</div>
+            </div>
+          </div>
+          <div class="form-group" class="form-Align" style="margin-left:15%;margin-right:15%;align:center;">
+            <input class="form-control" id="password" type="password" placeholder="PW">
+          </div>
+          <div class="form-group" class="form-Align">
+            <div class="form-check" style="margin-left:15%;">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox"> Remember Password</label>
+            </div>
+          </div>
+          <div style="text-align:center;">
+          <input type="submit"  href="index.html" id="loginBtn" style="display:inline-block;" value="SIGN IN">
+        </div>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="#">Register an Account</a>
+          <a class="d-block small" href="#">Forgot Password?</a>
+        </div>
+      </div>
+    </div>
+</div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/popper/popper.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script>
+      $('#loginBtn').click(function () {
+        var id = $('#email').val();
+        var password = $('#password').val();
+  
+        if (id == "" || password == "")
+          return;
+  
+        if (id == "admin" && password == "admin") {
+          window.location.replace("https://ohdormitory-mirim.firebaseapp.com/administer.html");
+          return false;
+          }
+      });
+    </script>
+</body>
+
+</html>
