@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorAccent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="청소구역 안내"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:columnCount="1">
+                <Button android:text="청소구역"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/gridlayout_solid"/>
+                <Button android:text="세면실"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/gridlayout_solid"/>
+                <Button android:text="세탁실/탈의실"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/gridlayout_solid"/>
+                <Button android:text="샤워실"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/gridlayout_solid" />
+                <Button android:text="복도"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/gridlayout_solid"/>
+                <Button android:text="휴게실"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/gridlayout_solid"/>
+                <Button android:text="계단"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/gridlayout_solid"/>
+                <Button android:text="화장실"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/gridlayout_solid"/>
+            </GridLayout>
+
+            <GridLayout
+                android:id="@+id/fourth_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:columnCount="1">
+                <Button android:text="4층"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gridlayout_solid"/>
+                <!--<Button-->
+                    <!--android:id="@+id/clean_4_0"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_4_1"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_4_2"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_4_3"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_4_4"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_4_5"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_4_6"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid"/>-->
+            </GridLayout>
+            <GridLayout
+                android:id="@+id/fifth_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:columnCount="1">
+                <Button android:text="5층"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/gridlayout_solid2"/>
+                <!--<Button-->
+                    <!--android:id="@+id/clean_5_0"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid2"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_5_1"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid2"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_5_2"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid2"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_5_3"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid2"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_5_4"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid2"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_5_5"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid2"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/clean_5_6"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:background="@drawable/gridlayout_solid2"/>-->
+            </GridLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
