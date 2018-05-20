@@ -30,6 +30,7 @@ import java.util.Date;
 import kr.hs.emirim.uuuuri.ohdormitory.Adapter.NotificationAdapter;
 import kr.hs.emirim.uuuuri.ohdormitory.Model.Day;
 import kr.hs.emirim.uuuuri.ohdormitory.Model.User;
+import kr.hs.emirim.uuuuri.ohdormitory.Model.User2;
 import kr.hs.emirim.uuuuri.ohdormitory.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -60,12 +61,12 @@ public class WashTimeFragment extends Fragment implements Day{
     private DatabaseReference mInputRef;
     private DatabaseReference mCancelRef;
 
-    private User mUser;
+    private User2 mUser;
     private int mFloor;
     private int mRoomNumber[];
     private String nowDate;
 
-    private User washer[][] = {
+    private User2 washer[][] = {
             {null, null, null},
             {null, null, null},
             {null, null, null}
@@ -148,7 +149,7 @@ public class WashTimeFragment extends Fragment implements Day{
         SharedPreferences prefs = this.getActivity().getSharedPreferences(USER_INFO_PREF, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefs.getString(OBJECT_USER, "");
-        mUser = gson.fromJson(json, User.class);
+        mUser = gson.fromJson(json, User2.class);
         mFloor = mRoomNumber[mUser.getRoomNumber()]/100;
     }
 
@@ -262,38 +263,38 @@ public class WashTimeFragment extends Fragment implements Day{
         if(mFloor == 4){
             switch(week){
                 case MONDAY:
-                    timeTypeRef.child("washer_0").child("1").setValue(new User(401));
-                    timeTypeRef.child("washer_0").child("2").setValue(new User(404));
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(401));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(404));
 
-                    timeTypeRef.child("washer_1").child("1").setValue(new User(402));
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(402));
 
-                    timeTypeRef.child("washer_2").child("1").setValue(new User(403));
-                    timeTypeRef.child("washer_2").child("2").setValue(new User(414));
+                    timeTypeRef.child("washer_2").child("1").setValue(new User2(403));
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(414));
                     break;
                 case TUESDAY:
-                    timeTypeRef.child("washer_0").child("1").setValue(new User(405));
-                    timeTypeRef.child("washer_0").child("2").setValue(new User(408));
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(405));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(408));
 
-                    timeTypeRef.child("washer_1").child("1").setValue(new User(406));
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(406));
 
-                    timeTypeRef.child("washer_2").child("1").setValue(new User(407));
-                    timeTypeRef.child("washer_2").child("2").setValue(new User(415));
+                    timeTypeRef.child("washer_2").child("1").setValue(new User2(407));
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(415));
                     break;
                 case WEDNESDAY:
-                    timeTypeRef.child("washer_0").child("1").setValue(new User(409));
-                    timeTypeRef.child("washer_0").child("2").setValue(new User(412));
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(409));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(412));
 
-                    timeTypeRef.child("washer_1").child("1").setValue(new User(410));
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(410));
 
-                    timeTypeRef.child("washer_2").child("1").setValue(new User(411));
-                    timeTypeRef.child("washer_2").child("2").setValue(new User(416));
+                    timeTypeRef.child("washer_2").child("1").setValue(new User2(411));
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(416));
                     break;
                 case THURSDAY:
-                    timeTypeRef.child("washer_0").child("1").setValue(new User(413));
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(413));
 
-                    timeTypeRef.child("washer_1").child("2").setValue(new User(417));
+                    timeTypeRef.child("washer_1").child("2").setValue(new User2(417));
 
-                    timeTypeRef.child("washer_2").child("2").setValue(new User(418));
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(418));
 
                     break;
                 case SATURDAY:
@@ -305,39 +306,39 @@ public class WashTimeFragment extends Fragment implements Day{
         }else if(mFloor == 5){
             switch(week){
                 case MONDAY:
-                    timeTypeRef.child("washer_0").child("1").setValue(new User(508));
-                    timeTypeRef.child("washer_0").child("2").setValue(new User(501));
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(508));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(501));
 
-                    timeTypeRef.child("washer_1").child("1").setValue(new User(509));
-                    timeTypeRef.child("washer_1").child("2").setValue(new User(510));
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(509));
+                    timeTypeRef.child("washer_1").child("2").setValue(new User2(510));
 
-                    timeTypeRef.child("washer_2").child("2").setValue(new User(502));
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(502));
                     break;
                 case TUESDAY:
-                    timeTypeRef.child("washer_0").child("1").setValue(new User(511));
-                    timeTypeRef.child("washer_0").child("2").setValue(new User(503));
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(511));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(503));
 
-                    timeTypeRef.child("washer_1").child("1").setValue(new User(512));
-                    timeTypeRef.child("washer_1").child("2").setValue(new User(513));
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(512));
+                    timeTypeRef.child("washer_1").child("2").setValue(new User2(513));
 
-                    timeTypeRef.child("washer_2").child("2").setValue(new User(504));
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(504));
                     break;
                 case WEDNESDAY:
-                    timeTypeRef.child("washer_0").child("1").setValue(new User(514));
-                    timeTypeRef.child("washer_0").child("2").setValue(new User(505));
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(514));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(505));
 
-                    timeTypeRef.child("washer_1").child("1").setValue(new User(515));
-                    timeTypeRef.child("washer_1").child("2").setValue(new User(516));
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(515));
+                    timeTypeRef.child("washer_1").child("2").setValue(new User2(516));
 
-                    timeTypeRef.child("washer_2").child("2").setValue(new User(506));
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(506));
                     break;
                 case THURSDAY:
-                    timeTypeRef.child("washer_0").child("2").setValue(new User(507));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(507));
 
-                    timeTypeRef.child("washer_1").child("1").setValue(new User(517));
-                    timeTypeRef.child("washer_1").child("2").setValue(new User(518));
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(517));
+                    timeTypeRef.child("washer_1").child("2").setValue(new User2(518));
 
-                    timeTypeRef.child("washer_2").child("2").setValue(new User(519));
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(519));
                     break;
                 case FRIDAY:
                 case SATURDAY:
@@ -367,7 +368,7 @@ public class WashTimeFragment extends Fragment implements Day{
                             washerLinear[i][j].setLayoutParams(params);
                             washerLinear[i][j].setBackgroundColor(Color.parseColor("#757575"));
                         } else {
-                            washer[i][j] = timeType.child(childName + i).child(String.valueOf(j)).getValue(User.class);
+                            washer[i][j] = timeType.child(childName + i).child(String.valueOf(j)).getValue(User2.class);
                             if(washer[i][j].toString().equals(mUser.toString())&&isPossibleTime==true) {
                                 mApplyText.setText("취  소");
                             }

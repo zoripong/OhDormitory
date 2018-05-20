@@ -12,6 +12,7 @@ CREATE DATABASE ohdormitory;
 
 CREATE TABLE user (
   emirim_id VARCHAR(20) NOT NULL,
+  password VARCHAR(50) NOT NULL,
   name VARCHAR(10) NOT NULL,
   room_num INT(3) unsigned NOT NULL,
   parent_phone VARCHAR(12) NOT NULL,
@@ -19,4 +20,7 @@ CREATE TABLE user (
 );
 
 INSERT INTO user
-VALUES ('test', 'test', 519, '01086138458');
+VALUES ('test', 'test', 'test', 519, '01086138458');
+
+INSERT INTO user
+VALUES ('test2', 'test2', 'test2', 520, '01086188458');

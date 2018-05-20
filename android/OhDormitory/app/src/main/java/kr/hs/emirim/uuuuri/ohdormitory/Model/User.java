@@ -7,84 +7,49 @@ import java.io.Serializable;
  */
 
 public class User implements Serializable {
-    private boolean isNull;
-    private boolean isWeekDay;
-    private String uid;
+    private String emirim_id;
+    private String password;
     private String name;
-    private int allowCode;
-    private int roomNumber;
+    private int room_num;
+    private String parent_phone;
 
+    public User(String emirim_id, String password, String name, int room_num, String parent_phone) {
+        this.emirim_id = emirim_id;
+        this.password = password;
+        this.name = name;
+        this.room_num = room_num;
+        this.parent_phone = parent_phone;
+    }
+
+
+    public String getEmirim_id() {
+        return emirim_id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     public String getName() {
         return name;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public int getRoom_num() {
+        return room_num;
     }
 
-    public int getAllowCode() {
-        return allowCode;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public boolean isNull() {
-        return isNull;
-    }
-
-    public User() {
-        isNull = true;
-    }
-
-    public User(int roomNumber) {
-        isWeekDay = true;
-        this.roomNumber = roomNumber;
-    }
-
-    public User(String uid, String name, int allowCode, int roomNumber) {
-        isNull = false;
-        isWeekDay = false;
-        this.uid = uid;
-        this.name = name;
-        this.allowCode = allowCode;
-        this.roomNumber = roomNumber;
+    public String getParent_phone() {
+        return parent_phone;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "uid='" + uid + '\'' +
+                "emirim_id='" + emirim_id + '\'' +
+                ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", allowCode=" + allowCode +
-                ", roomNumber=" + roomNumber +
+                ", room_num=" + room_num +
+                ", parent_phone='" + parent_phone + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (isNull != user.isNull) return false;
-        if (allowCode != user.allowCode) return false;
-        if (roomNumber != user.roomNumber) return false;
-        if (uid != null ? !uid.equals(user.uid) : user.uid != null) return false;
-        return name != null ? name.equals(user.name) : user.name == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (isNull ? 1 : 0);
-        result = 31 * result + (uid != null ? uid.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + allowCode;
-        result = 31 * result + roomNumber;
-        return result;
     }
 }
