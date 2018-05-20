@@ -1,0 +1,22 @@
+create user 'admin'@'%' identified by 'admin@)!*';
+
+grant all privileges on *.* to 'admin'@'%';
+
+
+create user 'admin'@'localhost' identified by 'admin@)!*';
+
+grant all privileges on *.* to 'admin'@'localhost';
+
+CREATE DATABASE ohdormitory;
+
+
+CREATE TABLE user (
+  emirim_id VARCHAR(20) NOT NULL,
+  name VARCHAR(10) NOT NULL,
+  room_num INT(3) unsigned NOT NULL,
+  parent_phone VARCHAR(12) NOT NULL,
+  PRIMARY KEY (emirim_id)
+);
+
+INSERT INTO user
+VALUES ('test', 'test', 519, '01086138458');
