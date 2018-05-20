@@ -15,10 +15,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import kr.hs.emirim.uuuuri.ohdormitory.FCM.FirebaseInstanceIDService;
 import kr.hs.emirim.uuuuri.ohdormitory.Fragment.TabPagerAdapter;
 import kr.hs.emirim.uuuuri.ohdormitory.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -27,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("studentNotice");
+
+
+        FirebaseInstanceIDService f=new FirebaseInstanceIDService();
+        f.sendRegistrationToServer();
 
 
         // Adding Toolbar to the activity
@@ -102,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
     public void settings(View v){
         switch (v.getId()){
             case R.id.action_settings:
-                Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
+                Intent intent = new Intent(MainActivity2.this, UserInfoActivity.class);
                 startActivity(intent);
                 break;
         }

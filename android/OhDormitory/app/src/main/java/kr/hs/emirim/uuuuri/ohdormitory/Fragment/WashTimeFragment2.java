@@ -14,6 +14,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.text.ParseException;
@@ -36,7 +41,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 // TODO: 2017-10-07 시간 4개 점으로 표현하기,,
 
-public class WashTimeFragment extends Fragment implements Day{
+public class WashTimeFragment2 extends Fragment implements Day{
     private final String TAG = "WASH_TIME_FRAGMENT";
     private final String USER_INFO_PREF = "User info";
     private final String OBJECT_USER = "Object user";
@@ -51,6 +56,10 @@ public class WashTimeFragment extends Fragment implements Day{
     private TextView mApplyText;
 
     private NotificationAdapter notificationAdapter;
+
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mInputRef;
+    private DatabaseReference mCancelRef;
 
     private User2 mUser;
     private int mFloor;
@@ -82,6 +91,7 @@ public class WashTimeFragment extends Fragment implements Day{
         notificationAdapter = new NotificationAdapter(getActivity(), getContext());
         dateTimeFormat = new  SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.getDefault());
 
+        mDatabase = FirebaseDatabase.getInstance();
         mRoomNumber = new int[]{401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418,
                 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519};
 
@@ -244,227 +254,227 @@ public class WashTimeFragment extends Fragment implements Day{
 
     //주중 사용자 set
     private void setWeekDayUser() {
-//        Calendar cal = Calendar.getInstance();
-//        int week = cal.get(Calendar.DAY_OF_WEEK);
-//
-//        DatabaseReference timeTypeRef = mDatabase.getReference().child("wash-time").child(nowDate).child("floor_"+mFloor)
-//                .child("type_"+getTimeType());
-//
-//        if(mFloor == 4){
-//            switch(week){
-//                case MONDAY:
-//                    timeTypeRef.child("washer_0").child("1").setValue(new User2(401));
-//                    timeTypeRef.child("washer_0").child("2").setValue(new User2(404));
-//
-//                    timeTypeRef.child("washer_1").child("1").setValue(new User2(402));
-//
-//                    timeTypeRef.child("washer_2").child("1").setValue(new User2(403));
-//                    timeTypeRef.child("washer_2").child("2").setValue(new User2(414));
-//                    break;
-//                case TUESDAY:
-//                    timeTypeRef.child("washer_0").child("1").setValue(new User2(405));
-//                    timeTypeRef.child("washer_0").child("2").setValue(new User2(408));
-//
-//                    timeTypeRef.child("washer_1").child("1").setValue(new User2(406));
-//
-//                    timeTypeRef.child("washer_2").child("1").setValue(new User2(407));
-//                    timeTypeRef.child("washer_2").child("2").setValue(new User2(415));
-//                    break;
-//                case WEDNESDAY:
-//                    timeTypeRef.child("washer_0").child("1").setValue(new User2(409));
-//                    timeTypeRef.child("washer_0").child("2").setValue(new User2(412));
-//
-//                    timeTypeRef.child("washer_1").child("1").setValue(new User2(410));
-//
-//                    timeTypeRef.child("washer_2").child("1").setValue(new User2(411));
-//                    timeTypeRef.child("washer_2").child("2").setValue(new User2(416));
-//                    break;
-//                case THURSDAY:
-//                    timeTypeRef.child("washer_0").child("1").setValue(new User2(413));
-//
-//                    timeTypeRef.child("washer_1").child("2").setValue(new User2(417));
-//
-//                    timeTypeRef.child("washer_2").child("2").setValue(new User2(418));
-//
-//                    break;
-//                case SATURDAY:
-//                case SUNDAY:
-//                case FRIDAY:
-//                default:
-//                        break;
-//            }
-//        }else if(mFloor == 5){
-//            switch(week){
-//                case MONDAY:
-//                    timeTypeRef.child("washer_0").child("1").setValue(new User2(508));
-//                    timeTypeRef.child("washer_0").child("2").setValue(new User2(501));
-//
-//                    timeTypeRef.child("washer_1").child("1").setValue(new User2(509));
-//                    timeTypeRef.child("washer_1").child("2").setValue(new User2(510));
-//
-//                    timeTypeRef.child("washer_2").child("2").setValue(new User2(502));
-//                    break;
-//                case TUESDAY:
-//                    timeTypeRef.child("washer_0").child("1").setValue(new User2(511));
-//                    timeTypeRef.child("washer_0").child("2").setValue(new User2(503));
-//
-//                    timeTypeRef.child("washer_1").child("1").setValue(new User2(512));
-//                    timeTypeRef.child("washer_1").child("2").setValue(new User2(513));
-//
-//                    timeTypeRef.child("washer_2").child("2").setValue(new User2(504));
-//                    break;
-//                case WEDNESDAY:
-//                    timeTypeRef.child("washer_0").child("1").setValue(new User2(514));
-//                    timeTypeRef.child("washer_0").child("2").setValue(new User2(505));
-//
-//                    timeTypeRef.child("washer_1").child("1").setValue(new User2(515));
-//                    timeTypeRef.child("washer_1").child("2").setValue(new User2(516));
-//
-//                    timeTypeRef.child("washer_2").child("2").setValue(new User2(506));
-//                    break;
-//                case THURSDAY:
-//                    timeTypeRef.child("washer_0").child("2").setValue(new User2(507));
-//
-//                    timeTypeRef.child("washer_1").child("1").setValue(new User2(517));
-//                    timeTypeRef.child("washer_1").child("2").setValue(new User2(518));
-//
-//                    timeTypeRef.child("washer_2").child("2").setValue(new User2(519));
-//                    break;
-//                case FRIDAY:
-//                case SATURDAY:
-//                case SUNDAY:
-//                default:
-//                    break;
-//            }
-//        }
+        Calendar cal = Calendar.getInstance();
+        int week = cal.get(Calendar.DAY_OF_WEEK);
+
+        DatabaseReference timeTypeRef = mDatabase.getReference().child("wash-time").child(nowDate).child("floor_"+mFloor)
+                .child("type_"+getTimeType());
+
+        if(mFloor == 4){
+            switch(week){
+                case MONDAY:
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(401));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(404));
+
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(402));
+
+                    timeTypeRef.child("washer_2").child("1").setValue(new User2(403));
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(414));
+                    break;
+                case TUESDAY:
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(405));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(408));
+
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(406));
+
+                    timeTypeRef.child("washer_2").child("1").setValue(new User2(407));
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(415));
+                    break;
+                case WEDNESDAY:
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(409));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(412));
+
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(410));
+
+                    timeTypeRef.child("washer_2").child("1").setValue(new User2(411));
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(416));
+                    break;
+                case THURSDAY:
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(413));
+
+                    timeTypeRef.child("washer_1").child("2").setValue(new User2(417));
+
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(418));
+
+                    break;
+                case SATURDAY:
+                case SUNDAY:
+                case FRIDAY:
+                default:
+                        break;
+            }
+        }else if(mFloor == 5){
+            switch(week){
+                case MONDAY:
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(508));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(501));
+
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(509));
+                    timeTypeRef.child("washer_1").child("2").setValue(new User2(510));
+
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(502));
+                    break;
+                case TUESDAY:
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(511));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(503));
+
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(512));
+                    timeTypeRef.child("washer_1").child("2").setValue(new User2(513));
+
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(504));
+                    break;
+                case WEDNESDAY:
+                    timeTypeRef.child("washer_0").child("1").setValue(new User2(514));
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(505));
+
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(515));
+                    timeTypeRef.child("washer_1").child("2").setValue(new User2(516));
+
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(506));
+                    break;
+                case THURSDAY:
+                    timeTypeRef.child("washer_0").child("2").setValue(new User2(507));
+
+                    timeTypeRef.child("washer_1").child("1").setValue(new User2(517));
+                    timeTypeRef.child("washer_1").child("2").setValue(new User2(518));
+
+                    timeTypeRef.child("washer_2").child("2").setValue(new User2(519));
+                    break;
+                case FRIDAY:
+                case SATURDAY:
+                case SUNDAY:
+                default:
+                    break;
+            }
+        }
     }
 
     // 주중 사용자 외 사용자 set - firebase listener
     private void setWasherUser(){
-//        Log.e(TAG, "wash-time/"+nowDate+"/floor_"+mFloor+"/type_"+getTimeType());
-//        DatabaseReference mWasherRef = mDatabase.getReference("wash-time/" + nowDate + "/floor_" + mFloor + "/type_" + getTimeType());
-//        ValueEventListener washListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot timeType) {
-//                String childName = "washer_";
-//
-//                for(int i = 0; i<washer.length; i++)
-//                    for (int j = 0; j < washer[i].length; j++) {
-//                        if (timeType.child(childName + i).child(String.valueOf(j)).getValue(User.class) == null) {
-//                            Log.e(TAG, "NULL?");
-//                            washer[i][j] = null;
-//                            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) washerLinear[i][j].getLayoutParams();
-//                            params.height = dpToPx(3);
-//                            washerLinear[i][j].setLayoutParams(params);
-//                            washerLinear[i][j].setBackgroundColor(Color.parseColor("#757575"));
-//                        } else {
-//                            washer[i][j] = timeType.child(childName + i).child(String.valueOf(j)).getValue(User2.class);
-//                            if(washer[i][j].toString().equals(mUser.toString())&&isPossibleTime==true) {
-//                                mApplyText.setText("취  소");
-//                            }
-//                            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) washerLinear[i][j].getLayoutParams();
-//                            params.height = dpToPx(7);
-//                            washerLinear[i][j].setLayoutParams(params);
-//                            washerLinear[i][j].setBackgroundColor(Color.parseColor("#9eaec5"));
-//                        }
-//                    }
-//            }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//        };
-//
-//        mWasherRef.addValueEventListener(washListener);
+        Log.e(TAG, "wash-time/"+nowDate+"/floor_"+mFloor+"/type_"+getTimeType());
+        DatabaseReference mWasherRef = mDatabase.getReference("wash-time/" + nowDate + "/floor_" + mFloor + "/type_" + getTimeType());
+        ValueEventListener washListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot timeType) {
+                String childName = "washer_";
+
+                for(int i = 0; i<washer.length; i++)
+                    for (int j = 0; j < washer[i].length; j++) {
+                        if (timeType.child(childName + i).child(String.valueOf(j)).getValue(User.class) == null) {
+                            Log.e(TAG, "NULL?");
+                            washer[i][j] = null;
+                            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) washerLinear[i][j].getLayoutParams();
+                            params.height = dpToPx(3);
+                            washerLinear[i][j].setLayoutParams(params);
+                            washerLinear[i][j].setBackgroundColor(Color.parseColor("#757575"));
+                        } else {
+                            washer[i][j] = timeType.child(childName + i).child(String.valueOf(j)).getValue(User2.class);
+                            if(washer[i][j].toString().equals(mUser.toString())&&isPossibleTime==true) {
+                                mApplyText.setText("취  소");
+                            }
+                            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) washerLinear[i][j].getLayoutParams();
+                            params.height = dpToPx(7);
+                            washerLinear[i][j].setLayoutParams(params);
+                            washerLinear[i][j].setBackgroundColor(Color.parseColor("#9eaec5"));
+                        }
+                    }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+
+        mWasherRef.addValueEventListener(washListener);
     }
 
     // 신청 다이얼로그
     private void applyDialog() {
-//        final Dialog dialog = new Dialog(view.getContext(), R.style.MyDialog);
-//        if(isPossibleTime){
-//            String address = null;
-//            washTime = -1;
-//            washerType = -1;
-//
-//            searchPossibleWasher();
-//            if(washTime == -1 && washerType == -1){
-//                dialog.setContentView(R.layout.dialog_style2);
-//                ((TextView)dialog.findViewById(R.id.dialog_text)).setText("사용가능한 세탁기가 없습니다.");
-//                dialog.show();
-//                dialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//            }else if((address = checkApply())!=null){
-//                dialog.setContentView(R.layout.dialog_style3);
-//                ((TextView)dialog.findViewById(R.id.message)).setText("취소하시겠습니까?");
-//
-//                dialog.show();
-//
-//                final String finalAddress = address;
-//                dialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        mCancelRef = mDatabase.getReference(finalAddress);
-//                        mCancelRef.setValue(null);
-//                        mApplyText.setText("신  청");
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                dialog.findViewById(R.id.dialog_button_no).setOnClickListener(new View.OnClickListener(){
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//            }else{
-//                dialog.setContentView(R.layout.dialog_style3);
-//                ((TextView)dialog.findViewById(R.id.message)).setText((washerType+1)+"번 세탁기 "
-//                        +mTimes.get(washTime)+"\n"+mRoomNumber[mUser.getRoomNumber()]+"호 "+ mUser.getName()+"\n\n"
-//                        +"세탁을 예약하시겠습니까?");
-//                dialog.show();
-//
-//                final int finalWashTime = washTime;
-//                final int finalWasherType = washerType;
-//                dialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        washer[finalWashTime][finalWasherType] = mUser;
-//
-//                        mInputRef = mDatabase.getReference();
-//                        mInputRef.child("wash-time").child(nowDate).child("floor_"+mFloor)
-//                                .child("type_"+getTimeType()).child("washer_"+finalWasherType)
-//                                .child(String.valueOf(finalWashTime)).setValue(mUser);
-//
-//                        setAlarm();
-//                        dialog.dismiss();
-//
-//                    }
-//                });
-//
-//                dialog.findViewById(R.id.dialog_button_no).setOnClickListener(new View.OnClickListener(){
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//            }
-//        }else{
-//            dialog.setContentView(R.layout.dialog_style2);
-//            ((TextView)dialog.findViewById(R.id.dialog_text)).setText("세탁기 사용시간이 아닙니다.");
-//            dialog.show();
-//            dialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    dialog.dismiss();
-//                }
-//            });
-//        }
-//
+        final Dialog dialog = new Dialog(view.getContext(), R.style.MyDialog);
+        if(isPossibleTime){
+            String address = null;
+            washTime = -1;
+            washerType = -1;
+
+            searchPossibleWasher();
+            if(washTime == -1 && washerType == -1){
+                dialog.setContentView(R.layout.dialog_style2);
+                ((TextView)dialog.findViewById(R.id.dialog_text)).setText("사용가능한 세탁기가 없습니다.");
+                dialog.show();
+                dialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+            }else if((address = checkApply())!=null){
+                dialog.setContentView(R.layout.dialog_style3);
+                ((TextView)dialog.findViewById(R.id.message)).setText("취소하시겠습니까?");
+
+                dialog.show();
+
+                final String finalAddress = address;
+                dialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mCancelRef = mDatabase.getReference(finalAddress);
+                        mCancelRef.setValue(null);
+                        mApplyText.setText("신  청");
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.findViewById(R.id.dialog_button_no).setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+            }else{
+                dialog.setContentView(R.layout.dialog_style3);
+                ((TextView)dialog.findViewById(R.id.message)).setText((washerType+1)+"번 세탁기 "
+                        +mTimes.get(washTime)+"\n"+mRoomNumber[mUser.getRoomNumber()]+"호 "+ mUser.getName()+"\n\n"
+                        +"세탁을 예약하시겠습니까?");
+                dialog.show();
+
+                final int finalWashTime = washTime;
+                final int finalWasherType = washerType;
+                dialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        washer[finalWashTime][finalWasherType] = mUser;
+
+                        mInputRef = mDatabase.getReference();
+                        mInputRef.child("wash-time").child(nowDate).child("floor_"+mFloor)
+                                .child("type_"+getTimeType()).child("washer_"+finalWasherType)
+                                .child(String.valueOf(finalWashTime)).setValue(mUser);
+
+                        setAlarm();
+                        dialog.dismiss();
+
+                    }
+                });
+
+                dialog.findViewById(R.id.dialog_button_no).setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+        }else{
+            dialog.setContentView(R.layout.dialog_style2);
+            ((TextView)dialog.findViewById(R.id.dialog_text)).setText("세탁기 사용시간이 아닙니다.");
+            dialog.show();
+            dialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+        }
+
     }
 
     private void setAlarm() {
