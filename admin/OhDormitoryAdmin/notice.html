@@ -45,7 +45,6 @@
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
             left: 0;
             top: 0;
             width: 100%; /* Full width */
@@ -57,7 +56,7 @@
 
         /* Modal Content */
         .modal-content {
-            background-color: #fefefe;
+            background-color: #FFF;
             margin: auto;
             padding: 1.5em;
             width: 40em;
@@ -98,11 +97,15 @@
             width: 100%;
             text-align: right;
         }
-        #w_time, #d_time{
+        #w_time, #d_time,#sleep_w_time, #sleep_d_time{
             font-size: 0.9em;
             padding: 0.2em;
             width: 6em;
             text-align: center;
+        }
+        #select_sleep{
+            margin-bottom: 1em;
+            text-align: left;
         }
         #btn-div{
             width: 100%;
@@ -340,6 +343,7 @@
                 today = yyyy + '-' + mm + '-' + dd;
                 var parsedDate = $.datepicker.parseDate('yy-mm-dd', today);
                 $("#w_time, #d_time").datepicker("setDate", parsedDate);
+                $(".modal").css('display','flex'); //modal이 가운데 뜨게
             }
             
             // When the user clicks on <span> (x), close the modal

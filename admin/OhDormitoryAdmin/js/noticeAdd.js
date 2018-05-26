@@ -13,6 +13,8 @@
         $("#notice_title").css('border', '');
         $("#bookmark").css('background-image','url(image/notice-bookmark.svg)');
         $("#w_time, #d_time").datepicker("option", "disabled", false);
+
+        $("#w_time, #d_time").css('border', '');
       } else if (notice_kind.value == "청소구역") {
         select_notice.style.display = "none";
         select_clean.style.display = "block";
@@ -21,8 +23,12 @@
         $("#notice_title").attr('readonly', 'readonly');
         $("#notice_title").css('border', 'none');
         $("#bookmark").css('background-image','url(image/clean-bookmark.svg)');
-        $("#w_time").attr('readonly', 'readonly');
-        //$("#w_time, #d_time").datepicker("option", "disabled", false);
+        $("#w_time, #d_time").datepicker("option", "disabled", true);
+
+        //disable 스타일 변경
+        $("#w_time, #d_time").css('background-color', '#FFF');
+        $("#w_time, #d_time").css('border', 'none');
+
       } else if(notice_kind.value == "외박일지"){
         select_notice.style.display = "none";
         select_clean.style.display = "none";
@@ -32,7 +38,10 @@
         $("#notice_title").attr('readonly', 'readonly');
         $("#notice_title").css('border', 'none');
         $("#bookmark").css('background-image','url(image/out-bookmark.svg)');
-        $("#w_time, #d_time").attr('readonly', 'readonly');
-        //$("#w_time, #d_time").datepicker("option", "disabled", false);
+        $("#w_time, #d_time").datepicker("option", "disabled", false);
+
+        //disable 스타일 변경
+        $("#w_time, #d_time").css('background-color', '#FFF');
+        $("#w_time, #d_time").css('border', '');
       }
     }
