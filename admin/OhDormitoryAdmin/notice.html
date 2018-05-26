@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="css/jquery.datepicker.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="css/jquery-ui.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -16,16 +15,17 @@
     <style>
         html,body{
             margin: 0px;
-            height: 100%;
             width: 100%;
-            overflow: hidden;
+            min-height: 100%;
+            background-color: #f1f1f1;
+        }
+        #white-place{
+            width: 100%;
+            height: 75px;
+            background-color: #FFF;
         }
         #auth-body{
-            background-color: #f1f1f1;
-            margin-top: 75px;
-            height: 100%;
             width: 100%;
-            position: absolute;
         }
         #myBtn{
             float: right;
@@ -38,7 +38,6 @@
             font-size: 1em;
             outline: none;
             cursor: pointer;
-            margin-top: 7px;
         }
        /* The Modal (background) */
         .modal {
@@ -82,6 +81,12 @@
         #bookmark{
             width: 2.2em;
             height: 2.2em;
+            float: right;
+            background: url(image/notice-bookmark.svg);
+        }
+        #bookmarkAdd{
+            width: 2em;
+            height: 2em;
             float: right;
             background: url(image/notice-bookmark.svg);
         }
@@ -159,6 +164,16 @@
         #guideMessage{
             margin-top: -1em;
         }
+        #notice-add-div{
+            width: 58em;
+            margin: 0 auto;
+            padding-bottom: 1.5em;
+        }
+        #myBtn-box{
+            height: 2em;
+            margin-bottom: 1.2em;
+            margin-top: 1.2em;
+        }
     </style>
 </head>
 
@@ -169,10 +184,60 @@
          $("#header").load("header.html")    
       });
 </script>
+<script>
+    function addData(){
+        var kind = "공지사항 종류";
+        var title ="공지사항 제목";
+        var wDate = "2018.05.26";
+        var dDate = "2018.05.27";
+        
+         //아니 이거 왜 대체,,,,가장 처음 개체는 그대로임,,????? 포기 gggg
+         if (notice_kind.value == "공지사항") {
+            $("#bookmarkAdd").css('background-image','url(image/notice-bookmark.svg)');
+        }else if (notice_kind.value == "청소구역") {
+            $("#bookmarkAdd").css('background-image','url(image/clean-bookmark.svg)');
+        } else if(notice_kind.value == "외박일지"){
+            $("#bookmarkAdd").css('background-image','url(image/out-bookmark.svg)');
+        }
+
+        var e = $('<div>'+"<div style='font-size:1.1em;display:inline;'>"+kind+"</div>"
+        +"<div id='bookmarkAdd'></div>"
+        +"<div style='margin-left:1em;margin-top:0.5em;'>"+title+"</div>"
+        +"<div style='text-align:right; font-size:0.9em;'>"+wDate+" - "+dDate+"</div>"
+        +'</div>');
+        
+       
+
+
+        $("#notice-add").prepend(e);
+
+        //공지사항 div css
+        e.attr('class', 'outBox');
+        $('.outBox').css({
+            width: "55em",
+            padding: "1.5em",
+            backgroundColor: "#FFF",
+            borderRadius: "15px",
+            boxShadow: "0px 3px 11px rgba(0, 0, 0, 0.13)",
+            marginBottom: "1em"
+        });
+
+        
+
+    }
+</script>
 <body>
     <div id="header"></div>
+    <div id="white-place"></div>
     <div id="auth-body">
-            <button id="myBtn">추가하기</button>
+            
+            <!--공지사항 추가됨-->
+            <div id='notice-add-div'>
+                <div id="myBtn-box"><button id="myBtn">추가하기</button></div>
+
+                <div id='notice-add' >
+                </div>
+            </div>  
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
@@ -270,7 +335,7 @@
                                 <input type="text" id="d_time">
                             </div>
                             <div id="btn-div">
-                                <input type="submit" value="등록" id="add-btn">
+                                <input type="button" value="등록" id="add-btn" onclick="addData()">
                                 <input type="button" class="close" value="취소" id="cancle-btn">
                             </div>
                         </div>
@@ -349,13 +414,6 @@
             // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
                 modal.style.display = "none";
-            }
-            
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
             }
     </script>
 </body>

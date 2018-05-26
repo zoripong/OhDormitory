@@ -1,34 +1,24 @@
 <html>
  <head>
   <title> new document </title>
-<script>
-function SetValue()
-{
- var fm = document.MyForm;
- alert(fm.getVal.options[fm.getVal.selectedIndex].value);
- alert(fm.getVal.options[fm.getVal.selectedIndex].text);
-}
-</script>
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
  </head>
+ <script src="//code.jquery.com/jquery.min.js"></script>
+        <script>
+          $(function() {
+            $('#button-add-div').click(function() {
+              $("<div>", {
+                css: {
+                  width: "200px",
+                  height: "50px",
+                  backgroundColor: "skyblue",
+                  border: "1px solid royalblue"
+                },
+              }).appendTo("body");
+            });
+          });
+        </script>
  <body>
-<form name='MyForm'>
-
-<select name='pointInput'>
-        <optgroup label="벌점">
-                <option value="-5">타호실 무단 취침</option>
-                <option value="-5">취침시간 소란</option>
-                <option value="-5">무단외출</option>
-                <option value="-5">무단입실</option>
-            </optgroup>
-            <optgroup label="상점">
-                <option value="0.5">공동구역 모범 청소</option>
-                <option value="0.5">호실청소</option>
-            </optgroup>
-</select>
-
-<br>
-<br>
-<input type='button' value='값체크' onclick='javascript:SetValue();'>
-</form>
+     <button id='button-add-div'>추가</button>
  </body>
 </html>
