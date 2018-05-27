@@ -1,24 +1,22 @@
-<html>
- <head>
-  <title> new document </title>
-  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
- </head>
- <script src="//code.jquery.com/jquery.min.js"></script>
-        <script>
-          $(function() {
-            $('#button-add-div').click(function() {
-              $("<div>", {
-                css: {
-                  width: "200px",
-                  height: "50px",
-                  backgroundColor: "skyblue",
-                  border: "1px solid royalblue"
-                },
-              }).appendTo("body");
-            });
-          });
-        </script>
- <body>
-     <button id='button-add-div'>추가</button>
- </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+  <!-- jquery 1.6.2 필요 -->
+ <script type="text/javascript">
+  function calcStrWidth() { $("#spanStrWidth").text($("#xstr").val());
+   alert($("#spanStrWidth").outerWidth()); } </script>
+    <span id="spanStrWidth" style="visibility:hidden; position:absolute; top:-10000; font-size:9pt;"></span>
+     <input id="xstr" style="width:200px; font-size:9pt; border:solid 1px #aaa" type="text"> 
+     <input onclick="calcStrWidth()" value="문자열 width 구하기" style="font-size:9pt; border:solid 1px #aaa" type="button">
+
+
+</body>
 </html>
