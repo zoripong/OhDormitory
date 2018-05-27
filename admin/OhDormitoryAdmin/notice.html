@@ -60,7 +60,7 @@
             marginBottom: "1em"
         });
 
-        
+        sendPush(notice_kind.value);
 
     }
 </script>
@@ -254,6 +254,106 @@
                 modal.style.display = "none";
             }
     </script>
+
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+<script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyBeOIYhLda3c_vlbjZ6Lm-5mJV5nTYWabo",
+          authDomain: "ohdormitory-mirim222.firebaseapp.com",
+          databaseURL: "https://ohdormitory-mirim222.firebaseio.com",
+          projectId: "ohdormitory-mirim222",
+          storageBucket: "ohdormitory-mirim222.appspot.com",
+          messagingSenderId: "356871550536"
+        };
+        firebase.initializeApp(config);
+</script>
+<script>
+    var http = getRequest();
+      function getRequest() {
+        try {
+          xhr = new XMLHttpRequest();
+        } catch (e) {
+          try {
+            var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+          } catch (e) {
+            try {
+              var xhr = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+              alert("Your Browser is not Supported");
+            }
+          }
+        }
+        return xhr;
+      }
+function sendPush(notice_kind){
+      var url = "https://fcm.googleapis.com/fcm/send";
+        
+      http.open("POST", url, true);
+      http.setRequestHeader("Content-Type", "application/json");
+      http.setRequestHeader("Authorization", "key=AAAAUxcztkg:APA91bFw9sAW3Oz4Y5IzVeuwmkyxhuyj9-Zoe42DyWfTjvHcPf4JYWNYVyrIpnStGv_--Rhk4uMxGHaieVB6YqQ6GSk-K_jUCTr_nIEF0yQzGaOCCioB0aFDQMEiApyXGZj21EpqSVtR");
+        
+      // JSON.stringify 를 안써줄 경우 
+      http.send(JSON.stringify({
+        notification : {
+          // 알림 받을 기기에 보여줄 타이틀
+          title : "새로운 "+notice_kind+" 공지가 있습니다",
+          // 알림 받을 기기에 보여줄 바디
+          body : "앱을 열어 확인해주세요."
+        },
+        data : {
+          // 
+          id : "1"
+        },
+        to : "/topics/studentNotice"
+      }));
+}
+    
+
+
+
+
+ function getWashList() {
+        $.ajax({
+            type: "post"
+            , async: true
+            , url: "http://54.203.113.95/getWashList.php"
+            , dataType: "json"
+            //, data: "name=그렇구먼&type=이렇구먼"
+            , success: function (response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var wash_existing_users = JSON.parse(JSON.stringify(response.wash_existing_user));
+                for (var i = 0; i < wash_existing_users.length; i++) {
+                    wash_existing_user = wash_existing_users[i];
+
+                    var washer_num = wash_existing_user.washer_num.replace(/\"/gi,"");
+                    var wash_time = wash_existing_user.wash_time.replace(/\"/gi,"")%3;
+                    var using_room = wash_existing_user.using_room.replace(/\"/gi,"");
+                    
+                    washSelected(washer_num+"-"+wash_time, using_room);
+                }
+                var wash_applying_users = JSON.parse(JSON.stringify(response.wash_applying_user));
+                for (var i = 0; i < wash_applying_users.length; i++) {
+                    alert("");
+                    wash_applying_user = wash_applying_users[i];
+
+                    var washer_num = wash_applying_user.washer_num.replace(/\"/gi,"");
+                    var wash_time = wash_applying_user.wash_time.replace(/\"/gi,"")%3;
+                    var emirim_id = wash_applying_user.emirim_id.replace(/\"/gi,"");
+                    
+                    washSelected(washer_num+"-"+wash_time, emirim_id);
+                }
+
+               
+            }
+        });
+
+
+    }
+
+
+</script>
+
 </body>
 
 </html>
