@@ -139,8 +139,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#header").load("header.html")
+        checkTimeType();
         getWashList(); // washlist가져오기
-
     });
 
 </script>
@@ -154,13 +154,13 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <div id="wash-time">20:00 ~ 21:00</div>
+                        <div id="wash-time-0">20:00 ~ 21:00</div>
                     </td>
                     <td>
-                        <div id="wash-time">21:00 ~ 22:00</div>
+                        <div id="wash-time-1">21:00 ~ 22:00</div>
                     </td>
                     <td>
-                        <div id="wash-time">22:00 ~ 23:30</div>
+                        <div id="wash-time-2">22:00 ~ 23:30</div>
                     </td>
                 </tr>
                 <tr>
@@ -321,9 +321,48 @@
 </body>
 <script>
     window.onload = function () {
-   //     washSelected("4-0-0", "405");
+        
+
+    //    washSelected("0-0", "405");
     //    washSelected("4-0-1", "409");
     //    washSelected("4-0-2", "410");
+    }
+    var timeList = ["06:00 ~ 07:00","07:00 ~ 08:00","08:00 ~ 09:00",
+    "09:00 ~ 10:00","10:00 ~ 11:00","11:00 ~ 12:00", "20:00 ~ 21:30",
+    "21:30 ~ 22:30","22:30 ~ 23:30"];
+    var timeTypeIndex=6;
+
+    function checkTimeType(){
+        var timeText0 = document.getElementById("wash-time-0");
+        var timeText1 = document.getElementById("wash-time-1");
+        var timeText2 = document.getElementById("wash-time-2");
+        var today = new Date();
+        //today.setHours(12,20,0); ==> test code
+        var day = today.getDay();
+
+        if(day == 0 || day == 6){
+            
+            var time0 = new Date();
+            time0.setHours(9,0,0);
+            var time1 = new Date();
+            time1.setHours(12,0,0);
+
+            var gap0 =  today.getTime() - time0.getTime();
+            var gap1 =  today.getTime() - time1.getTime();
+            
+            if(gap0<=0)  timeTypeIndex=0;
+            else if (gap1<=0)   timeTypeIndex=3;
+            else    timeTypeIndex=6;
+            
+            timeText0.innerHTML = timeList[timeTypeIndex];
+            timeText1.innerHTML = timeList[timeTypeIndex+1];
+            timeText2.innerHTML = timeList[timeTypeIndex+2];
+           
+        }else{
+            return;
+        }
+
+
     }
     function washSelected(location, room) { //매개변수로 바뀌어야 할 위치를 가져옴 ex)4-0-0
         var chText = document.getElementById(location);
@@ -372,21 +411,25 @@
                     wash_existing_user = wash_existing_users[i];
 
                     var washer_num = wash_existing_user.washer_num.replace(/\"/gi,"");
-                    var wash_time = wash_existing_user.wash_time.replace(/\"/gi,"")%3;
+                    var wash_time = wash_existing_user.wash_time.replace(/\"/gi,"");
                     var using_room = wash_existing_user.using_room.replace(/\"/gi,"");
-                    
-                    washSelected(washer_num+"-"+wash_time, using_room);
+                    if(wash_time>=timeTypeIndex && wash_time <=timeTypeIndex+2){
+                        wash_time=wash_time%3;
+                        washSelected(washer_num+"-"+wash_time, using_room);
+                    }
+
                 }
                 var wash_applying_users = JSON.parse(JSON.stringify(response.wash_applying_user));
                 for (var i = 0; i < wash_applying_users.length; i++) {
-                    alert("");
                     wash_applying_user = wash_applying_users[i];
 
                     var washer_num = wash_applying_user.washer_num.replace(/\"/gi,"");
-                    var wash_time = wash_applying_user.wash_time.replace(/\"/gi,"")%3;
+                    var wash_time = wash_applying_user.wash_time.replace(/\"/gi,"");
                     var emirim_id = wash_applying_user.emirim_id.replace(/\"/gi,"");
-                    
-                    washSelected(washer_num+"-"+wash_time, emirim_id);
+                    if(wash_time>=timeTypeIndex && wash_time <=timeTypeIndex+2){
+                        wash_time=wash_time%3;
+                        washSelected(washer_num+"-"+wash_time, emirim_id);
+                    }
                 }
 
                
