@@ -1,0 +1,51 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    getWashList();
+
+});
+
+
+function getWashList(){
+    $.ajax ({
+	type: "post"
+	, async: true
+	, url: "http://54.203.113.95/getWashList.php"
+	, dataType: "json"
+	//, data: "name=그렇구먼&type=이렇구먼"
+	, success: function (response, status, result) {
+        var response = JSON.parse(JSON.stringify(response));
+        var wash_existing_users = JSON.parse(JSON.stringify(response.wash_existing_user));
+        for(var i=0;i<wash_existing_users.length;i++) {
+            wash_existing_user=wash_existing_users[i];
+            alert(JSON.stringify(wash_existing_user.wash_day));
+
+        }
+       // var obj = JSON.parse(response);
+	//	alert (obj);
+	}
+});
+
+
+}
+</script>
+
+
+
+</body>
+
+
+
+
+
+</html>
+
