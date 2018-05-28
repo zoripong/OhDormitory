@@ -318,30 +318,7 @@
 
     }
 
-    // 상벌점 삭제
-    function deleteScore(id) {
-        alert(id);
 
-        $.ajax({
-            type: "POST",
-            async: true,
-            url: "http://54.203.113.95/deleteScore.php",
-            dataType: "text",
-            data: {
-                'id': id
-            },
-            success: function(response, status, result) {
-                alert("상벌점 삭제에 성공하였습니다.");
-                $("#insertUl").html("");
-                getUserScore();
-            },
-            error: function(xhr, status, error) {
-                var errorMessage = xhr.status + ': ' + xhr.statusText
-                alert('Error - ' + errorMessage);
-            }
-        });
-
-    }
 
     // 계정에 부여된 상벌점 내역 불러옴
     function getUserScore() {
@@ -396,6 +373,31 @@
                 alert('Error - ' + errorMessage);
             }
         });
+    }
+
+    // 상벌점 삭제
+    function deleteScore(id) {
+        alert(id);
+
+        $.ajax({
+            type: "POST",
+            async: true,
+            url: "http://54.203.113.95/deleteScore.php",
+            dataType: "text",
+            data: {
+                'id': id
+            },
+            success: function(response, status, result) {
+                alert("상벌점 삭제에 성공하였습니다.");
+                $("#insertUl").html("");
+                getUserScore();
+            },
+            error: function(xhr, status, error) {
+                var errorMessage = xhr.status + ': ' + xhr.statusText
+                alert('Error - ' + errorMessage);
+            }
+        });
+
     }
 </script>
 
