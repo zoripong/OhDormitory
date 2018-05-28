@@ -245,6 +245,7 @@
             $("input[name='phone']").css("border", "1px solid #BBBBBB");
             check = true;
         } else { //저장 버튼을 누른 경우
+            checkChange();
             changeBtn.value = "정보수정";
             changeBtn.style.width = "15%";
             $("input[name='email']").attr("readonly", true);
@@ -253,6 +254,12 @@
             $("input[name='phone']").css("border", "none");
             check = false;
         }
+    }
+
+    function checkChange() {
+
+
+
     }
 
     function getUserData(student_name) {
@@ -334,10 +341,10 @@
                     var user_scores = JSON.parse(JSON.stringify(user_list[student.emirim_id]));
                     var total_point = 0;
                     for (var i = 0; i < user_scores.length; i++) {
-                        $("#insertUl").append("<li><div style='display:inline-block;width: 20%;height: 2em;'>" +
+                        $("#insertUl").append("<li onclick='deleteScore(" + user_scores[i].id + ")'><div style='display:inline-block;width: 20%;height: 2em;'>" +
                             user_scores[i].date + "</div><div style='display:inline-block;width: 57%;margin-left: 7%;margin-right: 5%;'>" +
                             score_array.map(a => a.detail)[user_scores[i].score_id] + "</div><div style='display:inline-block;width: 9%;text-align:center;'>" +
-                            score_array.map(a => a.score)[user_scores[i].score_id] + "<img id='delete_score' src='image/ic_delete.svg' onclick='deleteScore(" + user_scores[i].id + ")'/></div></li>");
+                            score_array.map(a => a.score)[user_scores[i].score_id] + "</div></li>");
                         total_point += parseFloat(score_array.map(a => a.score)[user_scores[i].score_id]);
                     }
 
@@ -415,9 +422,11 @@
             <div id="student-detail">
                 <div id="box">
                     <div id="student-info">
-                        <p>이유리 401호</p>
+
                         <!--form에서 검색한 데이터로 교체-->
                         <form id="student-form">
+                            <p>이유리 401호</p>
+                            <input type="text" id="name" name="name" value="이유리" readonly="readonly">
                             <div class="label-text">이메일</div>
                             <input type="email" id="email" name="email" value="wwhhoo0011@e-mirim.hs.kr" readonly="readonly"><br>
                             <div>

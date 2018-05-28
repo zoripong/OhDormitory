@@ -320,9 +320,8 @@
             type: "post",
             async: true,
             url: "http://54.203.113.95/getWashList.php",
-            dataType: "json"
-                //, data: "name=그렇구먼&type=이렇구먼"
-                ,
+            dataType: "json",
+            //, data: "name=그렇구먼&type=이렇구먼"
             success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
                 var wash_existing_users = JSON.parse(JSON.stringify(response.wash_existing_user));
