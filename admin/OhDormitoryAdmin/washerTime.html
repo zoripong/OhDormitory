@@ -12,12 +12,11 @@
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#header").load("header.html")
         checkTimeType();
         getWashList(); // washlist가져오기
     });
-
 </script>
 
 <body>
@@ -186,7 +185,7 @@
                         </div>
                         <div id="4-1" style="position: relative; top: -0.6em;"></div>
                     </td>
-                    <td >
+                    <td>
                         <div id="tdBox-4-2" style="position: relative; ">
                             <div class="border1" id="b1-4-2"></div>
                             <div class="border2" id="b2-4-2"></div>
@@ -231,19 +230,20 @@
     </div>
 </body>
 <script>
-    window.onload = function () {
-        
+    window.onload = function() {
 
-    //    washSelected("0-0", "405");
-    //    washSelected("4-0-1", "409");
-    //    washSelected("4-0-2", "410");
+
+        //    washSelected("0-0", "405");
+        //    washSelected("4-0-1", "409");
+        //    washSelected("4-0-2", "410");
     }
-    var timeList = ["06:00 ~ 07:00","07:00 ~ 08:00","08:00 ~ 09:00",
-    "09:00 ~ 10:00","10:00 ~ 11:00","11:00 ~ 12:00", "20:00 ~ 21:30",
-    "21:30 ~ 22:30","22:30 ~ 23:30"];
-    var timeTypeIndex=6;
+    var timeList = ["06:00 ~ 07:00", "07:00 ~ 08:00", "08:00 ~ 09:00",
+        "09:00 ~ 10:00", "10:00 ~ 11:00", "11:00 ~ 12:00", "20:00 ~ 21:30",
+        "21:30 ~ 22:30", "22:30 ~ 23:30"
+    ];
+    var timeTypeIndex = 6;
 
-    function checkTimeType(){
+    function checkTimeType() {
         var timeText0 = document.getElementById("wash-time-0");
         var timeText1 = document.getElementById("wash-time-1");
         var timeText2 = document.getElementById("wash-time-2");
@@ -251,30 +251,31 @@
         //today.setHours(12,20,0); ==> test code
         var day = today.getDay();
 
-        if(day == 0 || day == 6){
-            
-            var time0 = new Date();
-            time0.setHours(9,0,0);
-            var time1 = new Date();
-            time1.setHours(12,0,0);
+        if (day == 0 || day == 6) {
 
-            var gap0 =  today.getTime() - time0.getTime();
-            var gap1 =  today.getTime() - time1.getTime();
-            
-            if(gap0<=0)  timeTypeIndex=0;
-            else if (gap1<=0)   timeTypeIndex=3;
-            else    timeTypeIndex=6;
-            
+            var time0 = new Date();
+            time0.setHours(9, 0, 0);
+            var time1 = new Date();
+            time1.setHours(12, 0, 0);
+
+            var gap0 = today.getTime() - time0.getTime();
+            var gap1 = today.getTime() - time1.getTime();
+
+            if (gap0 <= 0) timeTypeIndex = 0;
+            else if (gap1 <= 0) timeTypeIndex = 3;
+            else timeTypeIndex = 6;
+
             timeText0.innerHTML = timeList[timeTypeIndex];
-            timeText1.innerHTML = timeList[timeTypeIndex+1];
-            timeText2.innerHTML = timeList[timeTypeIndex+2];
-           
-        }else{
+            timeText1.innerHTML = timeList[timeTypeIndex + 1];
+            timeText2.innerHTML = timeList[timeTypeIndex + 2];
+
+        } else {
             return;
         }
 
 
     }
+
     function washSelected(location, room) { //매개변수로 바뀌어야 할 위치를 가져옴 ex)4-0-0
         var chText = document.getElementById(location);
         chText.innerHTML = room; //사용한 호수의 값을 넣어줌
@@ -282,15 +283,15 @@
         var chb1 = document.getElementById("b1-" + location); //선택된 위치의 border스타일 변경
         var chb2 = document.getElementById("b2-" + location);
 
-        chText.style.textAlign="center";
-        chText.style.display="inline";
-        chText.style.paddingLeft="0.5em";
-        chText.style.paddingRight="0.5em";
-        chText.style.backgroundColor="#FFF";
+        chText.style.textAlign = "center";
+        chText.style.display = "inline";
+        chText.style.paddingLeft = "0.5em";
+        chText.style.paddingRight = "0.5em";
+        chText.style.backgroundColor = "#FFF";
         chb1.style.backgroundColor = "#96B5C3";
         chb2.style.backgroundColor = "#96B5C3";
-        
-        var  tdBox = document.getElementById('tdBox-'+location);
+
+        var tdBox = document.getElementById('tdBox-' + location);
         tdBox.style.top = "0.65em";
 
         if (window.matchMedia("(min-width: 640px)").matches) {
@@ -304,11 +305,12 @@
             chb2.style.width = "52%";
         }
     }
-    function calcStrWidth(location) { 
-    //$("#spanStrWidth").text($("#xstr").val());
-   alert("location id : "+location+$(location).outerWidth());
-   
-   
+
+    function calcStrWidth(location) {
+        //$("#spanStrWidth").text($("#xstr").val());
+        alert("location id : " + location + $(location).outerWidth());
+
+
     }
 </script>
 
@@ -316,23 +318,23 @@
 <script>
     function getWashList() {
         $.ajax({
-            type: "post"
-            , async: true
-            , url: "http://54.203.113.95/getWashList.php"
-            , dataType: "json"
+            type: "post",
+            async: true,
+            url: "http://54.203.113.95/getWashList.php",
+            dataType: "json",
             //, data: "name=그렇구먼&type=이렇구먼"
-            , success: function (response, status, result) {
+            success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
                 var wash_existing_users = JSON.parse(JSON.stringify(response.wash_existing_user));
                 for (var i = 0; i < wash_existing_users.length; i++) {
                     wash_existing_user = wash_existing_users[i];
 
-                    var washer_num = wash_existing_user.washer_num.replace(/\"/gi,"");
-                    var wash_time = wash_existing_user.wash_time.replace(/\"/gi,"");
-                    var using_room = wash_existing_user.using_room.replace(/\"/gi,"");
-                    if(wash_time>=timeTypeIndex && wash_time <=timeTypeIndex+2){
-                        wash_time=wash_time%3;
-                        washSelected(washer_num+"-"+wash_time, using_room);
+                    var washer_num = wash_existing_user.washer_num.replace(/\"/gi, "");
+                    var wash_time = wash_existing_user.wash_time.replace(/\"/gi, "");
+                    var using_room = wash_existing_user.using_room.replace(/\"/gi, "");
+                    if (wash_time >= timeTypeIndex && wash_time <= timeTypeIndex + 2) {
+                        wash_time = wash_time % 3;
+                        washSelected(washer_num + "-" + wash_time, using_room);
                     }
 
                 }
@@ -340,20 +342,18 @@
                 for (var i = 0; i < wash_applying_users.length; i++) {
                     wash_applying_user = wash_applying_users[i];
 
-                    var washer_num = wash_applying_user.washer_num.replace(/\"/gi,"");
-                    var wash_time = wash_applying_user.wash_time.replace(/\"/gi,"");
-                    var emirim_id = wash_applying_user.emirim_id.replace(/\"/gi,"");
-                    if(wash_time>=timeTypeIndex && wash_time <=timeTypeIndex+2){
-                        wash_time=wash_time%3;
-                        washSelected(washer_num+"-"+wash_time, emirim_id);
+                    var washer_num = wash_applying_user.washer_num.replace(/\"/gi, "");
+                    var wash_time = wash_applying_user.wash_time.replace(/\"/gi, "");
+                    var emirim_id = wash_applying_user.emirim_id.replace(/\"/gi, "");
+                    if (wash_time >= timeTypeIndex && wash_time <= timeTypeIndex + 2) {
+                        wash_time = wash_time % 3;
+                        washSelected(washer_num + "-" + wash_time, emirim_id);
                     }
                 }
 
-               
+
             }
         });
-
-
     }
 </script>
 
