@@ -12,16 +12,12 @@
 <script type="text/javascript">
     $(document).ready(function(){
        $("#header").load("header.html")    
+       getSleepoutList();
     });
 </script>
 <script>
-        function addData(){
+        function addData(room,name,wDate,dDate){
             //////버튼클릭하는거로 일단 헀움
-            var room = "401"+"호";
-            var name ="이유리";
-            var wDate = "2018.05.26";
-            var dDate = "2018.05.27";
-            
 
             var e = $("<div style='text-align:center; display:flex;'>"+"<span style='t width:100%; font-size:1.1em'>"+room+"</span>"
            +"<div style='width:100%; margin-top:0.5em; margin-bottom:2em; '>"+name+"</div>"
@@ -72,9 +68,9 @@
                     <option value="11">11월</option>
                     <option value="12">12월</option>
                 </select>
-                <button id="search-btn" onclick="addData()">조회하기</button>
+                <button id="search-btn" onclick="getSleepoutList()">조회하기</button>
             </div>
-            <button id="qrCode-btn">외박신청 QR코드 전송</button>
+            <button id="qrCode-btn" onClick="sendQR()">외박신청 QR코드 전송</button>
             
         </div>
         
@@ -85,4 +81,53 @@
         </div> 
     </div>
 </body>
+<script>
+    function sendQR(){
+        $.ajax({
+            type: "post",
+            async: true,
+            url: "http://54.203.113.95/updateQRSend.php",
+            dataType: "json",
+            success: function(response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var return_code = JSON.parse(JSON.stringify(response.return_code));
+                alert(return_code[0].return_message);
+              
+            }
+        });
+    }
+
+
+    function getSleepoutList() {
+
+        document.getElementById("score-add").innerHTML="";
+        $.ajax({
+            type: "post",
+            async: true,
+            url: "http://54.203.113.95/getSleepoutList.php",
+            dataType: "json",
+            //, data: "name=그렇구먼&type=이렇구먼"
+            success: function(response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var code = JSON.parse(JSON.stringify(response.return_code));
+                if(code[0].return_code == 0 || code[0].return_code == 1){
+                    alert(code[0].return_message);
+                }else{
+                    var notice = JSON.parse(JSON.stringify(response.notice));
+                    var record = JSON.parse(JSON.stringify(response.record));
+                    var wDate = notice[0].sleep_w_time.replace(/-/gi, ".");
+                    var dDate = notice[0].sleep_d_time.replace(/-/gi, ".");
+                    
+                    for (var i = 0; i < record.length; i++) {
+                        addData(record[i].room_num,record[i].name,wDate,dDate);
+
+                    }
+                }
+                
+
+
+            }
+        });
+    }
+</script>
 </html>
