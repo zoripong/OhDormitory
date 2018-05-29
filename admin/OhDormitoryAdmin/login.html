@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/login.css" rel="stylesheet">
+    <title>관리자 페이지 로그인</title>
+</head>
+<body>
+    <div id="login-box">
+        <img id="logo" src="image/logo.svg" alt="web Icon" height="72" width="72">
+        <div id="login-div">
+            <div id="text-group">
+                <form>
+                    <div class="group" >      
+                        <input type="text" required id="admin-id" name="id">
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>ID</label>
+                    </div>
+                    <div class="group" id="pw-group">      
+                        <input type="password" required id="admin-pw" name="pw">
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>PW</label>
+                    </div>
+                    <input type="button" onclick="check()" id="login-btn" value="LOG IN">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function check(){
+            //관리자 ID와 PW가 맞는지 확인
+            location.href = "auth.html";
+        }
+    </script>
+</body>
+</html>

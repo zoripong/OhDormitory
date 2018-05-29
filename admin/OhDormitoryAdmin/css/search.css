@@ -8,10 +8,12 @@
 }
 #search-div{
     margin-top: 4em;
+    position: relative;
 }
 .search-container input[type=text] {
     margin-left: 1em;
     outline:none;
+    width: 86%;
 }
 input[type=text] {
     padding: 6px;
@@ -30,10 +32,17 @@ input[type=text] {
     border: none;
     cursor: pointer;
     margin-top:0.4em; 
+    position: absolute;
 }
 
 @media screen and (max-width: 45em) {
     .search-container {
     width: 90%;
      }
+     .search-container input[type=text] {
+        width: 85%;
+    }
+    .search-container button {
+        right: 5%;
+    }
 }
