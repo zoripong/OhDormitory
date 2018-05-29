@@ -109,9 +109,9 @@
             $("#bookmarkAdd").css('background-image', 'url(image/out-bookmark.svg)');
         }
 
-        var e = $('<div>' + "<div style='font-size:1.1em;display:inline;'>" + typeStr[type] + "</div>" +
+        var e = $('<div>' + "<div style='display:inline;'>" + typeStr[type] + "</div>" +
             "<div id='bookmarkAdd'></div>" +
-            "<div style='margin-left:1em;margin-top:0.5em;'>" + title + "</div>" +
+            "<div style='margin-left:1em;margin-top:0.5em;font-size:1.1em;'>" + title + "</div>" +
             "<div style='text-align:right; font-size:0.9em;'>" + wDate + " - " + dDate + "</div>" +
             '</div>');
 
@@ -120,7 +120,8 @@
         //공지사항 div css
         e.attr('class', 'outBox');
         $('.outBox').css({
-            width: "55em",
+            width: "90%",
+            margin:"0 auto",
             padding: "1.5em",
             backgroundColor: "#FFF",
             borderRadius: "15px",
