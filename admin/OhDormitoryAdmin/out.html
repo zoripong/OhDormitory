@@ -16,13 +16,14 @@
     });
 </script>
 <script>
-        function addData(room,name,wDate,dDate){
+        function addData(room,name,wDate,dDate,recognize,notice_id,emirim_id){
             //////버튼클릭하는거로 일단 헀움
 
             var e = $("<div style='text-align:center; display:flex;'>"+"<span style='t width:100%; font-size:1.1em'>"+room+"</span>"
+            +"<input id='notice_id' type='hidden' value='"+notice_id+"'><input id='emirim_id' type='hidden' value='"+emirim_id+"'>"
            +"<div style='width:100%; margin-top:0.5em; margin-bottom:2em; '>"+name+"</div>"
             +"<div style='font-size:0.9em; margin-bottom:1.5em;'>"+wDate+" - "+dDate+"</div>"
-            +"<button id='certification-btn'>인증</button>"+"<button id='del-btn' >삭제</button>"
+            +"<button id='certification-btn'>"+recognize+"</button>"+"<button id='del-btn' onclick=\"deleteRecord(this,'"+notice_id+"','"+emirim_id+"')\" >삭제</button>"
             +'</div>');
 
             $("#score-add").append(e);
@@ -41,10 +42,28 @@
                 marginRight: "1em"
             });
     
-            $("#score-add").on("click", "#del-btn", function() {
-                //이거 왜 마지막만 삭제됨,,,>?퓨퓨퓨퓨픂픂 특정 노드만 삭제되게 하고픈뎅퓨ㅜㅍ
-		$(this).parent().remove();
-	});
+        //     $("#score-add").on("click", "#del-btn", function() {
+
+        //         //이거 왜 마지막만 삭제됨,,,>?퓨퓨퓨퓨픂픂 특정 노드만 삭제되게 하고픈뎅퓨ㅜㅍ
+		//   //     alert($(this).parent().$("#notice_id"));
+        //         //$(this).parent().remove();
+
+                
+
+
+	    //     });
+        }
+
+        function deleteRecord(del_btn,notice_id,emirim_id){
+          //  del_btn.delete();
+            var ok = confirm("정말로 삭제하시겠습니까?");
+            if (ok == true) {
+                deleteSleepoutRecord(notice_id,emirim_id);
+                del_btn.parentElement.remove();
+
+            }
+
+          
         }
     </script>
 <body>
@@ -54,7 +73,7 @@
     <div id="auth-body">
         <div id="score-header">
             <div style="display: inline-block; margin-left: 12.5em;">
-                <select name="month" id="month">
+                <!-- <select name="month" id="month">
                     <option value="1">1월</option>
                     <option value="2">2월</option>
                     <option value="3">3월</option>
@@ -67,8 +86,8 @@
                     <option value="10">10월</option>
                     <option value="11">11월</option>
                     <option value="12">12월</option>
-                </select>
-                <button id="search-btn" onclick="getSleepoutList()">조회하기</button>
+                </select> -->
+                <button id="search-btn" onclick="getSleepoutList()">갱신하기</button>
             </div>
             <button id="qrCode-btn" onClick="sendQR()">외박신청 QR코드 전송</button>
             
@@ -97,6 +116,23 @@
         });
     }
 
+     function deleteSleepoutRecord(notice_id,emirim_id){
+         var querydata ="notice_id="+notice_id+"&emirim_id="+emirim_id;
+        $.ajax({
+            type: "get",
+            async: true,
+            url: "http://54.203.113.95/deleteSleepoutRecord.php",
+            dataType: "json",
+            data: querydata,
+            success: function(response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var return_code = JSON.parse(JSON.stringify(response.return_code));
+                alert(return_code[0].return_message);
+              
+            }
+        });
+     }
+
 
     function getSleepoutList() {
 
@@ -115,11 +151,14 @@
                 }else{
                     var notice = JSON.parse(JSON.stringify(response.notice));
                     var record = JSON.parse(JSON.stringify(response.record));
+                    var notice_id = notice[0].notice_id;
                     var wDate = notice[0].sleep_w_time.replace(/-/gi, ".");
                     var dDate = notice[0].sleep_d_time.replace(/-/gi, ".");
-                    
                     for (var i = 0; i < record.length; i++) {
-                        addData(record[i].room_num,record[i].name,wDate,dDate);
+                        var recognize = (record[i].recognize == 1)? "인증" : "미인증";
+                        var emirim_id = record[i].emirim_id;
+                    //    alert(notice_id+" "+recognize+" "+emirim_id);
+                        addData(record[i].room_num,record[i].name,wDate,dDate,recognize,notice_id,emirim_id);
 
                     }
                 }
