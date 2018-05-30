@@ -16,6 +16,9 @@
     });
 </script>
 <script>
+var total = 0;
+var recognizecount = 0;
+
         function addData(room,name,wDate,dDate,recognize,notice_id,emirim_id){
             //////버튼클릭하는거로 일단 헀움
 
@@ -88,6 +91,8 @@
                     <option value="12">12월</option>
                 </select> -->
                 <button id="search-btn" onclick="getSleepoutList()">갱신하기</button>
+                <div id="recognizeContent">총 0명 신청 / 0명 인증</div>
+
             </div>
             <button id="qrCode-btn" onClick="sendQR()">외박신청 QR코드 전송</button>
             
@@ -149,19 +154,31 @@
                 if(code[0].return_code == 0 || code[0].return_code == 1){
                     alert(code[0].return_message);
                 }else{
+                    total = 0;
+                    recognizecount = 0;
                     var notice = JSON.parse(JSON.stringify(response.notice));
                     var record = JSON.parse(JSON.stringify(response.record));
                     var notice_id = notice[0].notice_id;
                     var wDate = notice[0].sleep_w_time.replace(/-/gi, ".");
                     var dDate = notice[0].sleep_d_time.replace(/-/gi, ".");
                     for (var i = 0; i < record.length; i++) {
-                        var recognize = (record[i].recognize == 1)? "인증" : "미인증";
+                        var recognize;
+                        if(record[i].recognize == 1){
+                            recognizecount++;
+                            recognize = "인증";
+                        }else{
+                            recognize = "미인증";
+
+                        }
+                       
                         var emirim_id = record[i].emirim_id;
                     //    alert(notice_id+" "+recognize+" "+emirim_id);
                         addData(record[i].room_num,record[i].name,wDate,dDate,recognize,notice_id,emirim_id);
+                        total++;
 
                     }
                 }
+                document.getElementById("recognizeContent").innerHTML = "총 "+total+"명 신청 / "+recognizecount+"명 인증";
                 
 
 
