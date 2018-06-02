@@ -205,32 +205,36 @@ public class SleepOutFragment extends Fragment {
                     JSONArray noticeJson = jsonObject.getJSONArray(TAG_JSON_N);
                     JSONObject noticeItem = noticeJson.getJSONObject(0);
 
-                    JSONArray recordJson = jsonObject.getJSONArray(TAG_JSON_R);
-                    JSONObject recordItem = recordJson.getJSONObject(0);
-                    Log.e(TAG,"recognize : "+recordItem.getString("recognize"));
+                    if(noticeItem.getInt("send")==1) {
 
-                    mTextDate.setText(noticeItem.getString("sleep_w_time") + " ~ " + noticeItem.getString("sleep_d_time"));
+                        JSONArray recordJson = jsonObject.getJSONArray(TAG_JSON_R);
+                        JSONObject recordItem = recordJson.getJSONObject(0);
+                        Log.e(TAG, "recognize : " + recordItem.getString("recognize"));
 
-                    mTextMessage.setText("인증 연락처 : ");
-                    mTextParentCall.setText(mUser.getParent_phone());
+                        mTextDate.setText(noticeItem.getString("sleep_w_time") + " ~ " + noticeItem.getString("sleep_d_time"));
 
-                    if(recordItem.getString("recognize").equals("0")) {//아직 인증 안받음
+                        mTextMessage.setText("인증 연락처 : ");
+                        mTextParentCall.setText(mUser.getParent_phone());
 
-                        mTextRecognize.setText("미인증");
-                        mCameraBtn.setVisibility(View.VISIBLE);
-                        mCameraBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(view.getContext(), QRCamActivity.class);
-                                startActivity(intent);
-                            }
-                        });
-                    }else{
-                        mTextRecognize.setText("이미 인증받았습니다.");
-                        mCameraBtn.setVisibility(View.GONE);
+                        if (recordItem.getString("recognize").equals("0")) {//아직 인증 안받음
+
+                            mTextRecognize.setText("미인증");
+                            mCameraBtn.setVisibility(View.VISIBLE);
+                            mCameraBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(view.getContext(), QRCamActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        } else {
+                            mTextRecognize.setText("이미 인증받았습니다.");
+                            mCameraBtn.setVisibility(View.GONE);
 
 
+                        }
                     }
+
 
                 }else {//외박증 인증 필요 x
                     Log.e(TAG,"인증 받을 필요 없다.");
