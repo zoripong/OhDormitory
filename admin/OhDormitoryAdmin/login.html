@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/login.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <title>관리자 페이지 로그인</title>
 </head>
 <body>
@@ -32,9 +33,34 @@
     </div>
     <script>
         function check(){
-            //관리자 ID와 PW가 맞는지 확인
-            location.href = "auth.html";
+            var admin_id = document.getElementById("admin-id").value;
+            var admin_pw = document.getElementById("admin-pw").value;
+
+            checkAdminAccount(admin_id,admin_pw);
         }
+
+
+        function checkAdminAccount(admin_id,admin_pw){
+        $.ajax({
+            type: "post",
+            async: true,
+            url: "http://54.203.113.95/checkAdminAccount.php",
+            dataType: "json",
+            data: {
+                "admin_id":admin_id,
+                "admin_pw":admin_pw
+            },
+            success: function(response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var return_code = JSON.parse(JSON.stringify(response.return_code));
+                if(return_code[0].return_code == 0 )
+                    location.href = "auth.html";
+                else
+                    alert(return_code[0].return_message);
+              
+            }
+        });
+     }
     </script>
 </body>
 </html>
