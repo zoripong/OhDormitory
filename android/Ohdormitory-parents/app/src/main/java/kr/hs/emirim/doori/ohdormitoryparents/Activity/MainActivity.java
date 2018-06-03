@@ -152,7 +152,7 @@ public class MainActivity extends BaseActivity {
                 Log.e("내 전화번호", myNumber);
 
             //push 알람 토큰  database에
-            FirebaseMessaging.getInstance().subscribeToTopic("studentNotice");
+            FirebaseMessaging.getInstance().subscribeToTopic("parentNotice");
             FirebaseInstanceIDService f=new FirebaseInstanceIDService(myNumber);
             f.sendRegistrationToServer();
 
@@ -173,83 +173,6 @@ public class MainActivity extends BaseActivity {
 
 
 
-
-
-//    public void getSleepOutInfo(final String myNumber){
-//
-//        mDatabase = FirebaseDatabase.getInstance();
-//
-//        final DatabaseReference sleepOutRef = mDatabase.getReference("sleep-out");
-//
-//        showProgressDialog();
-//        ValueEventListener sleepOutListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot sleepOutData) {
-//                Iterator<DataSnapshot> sleepOutIterator = sleepOutData.getChildren().iterator();
-//                //users의 모든 자식들의 key값과 value 값들을 iterator로 참조
-//                //TODO :외박날짜 최근꺼 가져와서..
-//                while(sleepOutIterator.hasNext()) {
-//                    DataSnapshot sleepOut = sleepOutIterator.next();
-//                    String sleepOutDate = sleepOut.getKey();
-//                    checkDate(sleepOutDate);
-//                }
-//
-//                String send = sleepOutData.child(maxFBdate).child("send").getValue(String.class);
-//                    if(send==null) send="false";
-//
-//                    Iterator<DataSnapshot> sleepOutStudentIterator = sleepOutData.child(maxFBdate).getChildren().iterator();
-//                    String qrcodeContent=null;
-//                    while (sleepOutStudentIterator.hasNext()) {
-//                        DataSnapshot sleepOutStudent = sleepOutStudentIterator.next();
-//                        String studentKey = sleepOutStudent.getKey();
-//
-//                        if(!studentKey.equals("send") && send.equals("true")) {
-//                            String parentNumber = sleepOutStudent.child("parentNumber").getValue(String.class);
-//                            String  recognize= sleepOutStudent.child("recognize").getValue(String.class);
-//                            parentNumber = parentNumber.replace("-", "");
-//
-//                                Log.e("부모님 번호", parentNumber);
-//                                if (myNumber.equals(parentNumber)) {//기기 번호와 부모번호가 같으면
-//                                    Log.e("기기번호와 부모번호가 같으면", "큐얼코드 생성");
-//                                    if (recognize.equals("true")) {
-//                                        Log.e("qr", "이미 인증하셨습니다");
-//                                        textView.setVisibility(View.VISIBLE);
-//                                        qrImage.setVisibility(View.GONE);
-//                                        textView.setText("이미 인증하셨습니다.");
-//                                        alreadyRecognize=true;
-//                                    } else {
-//
-//                                        qrcodeContent = maxFBdate + "/" + studentKey;
-//
-//
-//                                        qrImage.setVisibility(View.VISIBLE);
-//                                        textView.setVisibility(View.GONE);
-//                                        Log.e("qr", qrcodeContent);
-//                                        generateQRCode(qrcodeContent);
-//
-//                                        String[] dates = maxFBdate.split("-");
-//                                        ((TextView) findViewById(R.id.guideText)).setText(dates[0] + "." + dates[1] + "." + dates[2] + ". - " + dates[3] + "." + dates[4] + "." + dates[5] + "\n\n외박인증 큐알코드입니다.");
-//                                    }
-//                                }
-//                            }
-//
-//                    }
-//                    if(qrcodeContent==null && !alreadyRecognize){
-//                        Log.e("TAG", "HERE >3<");
-//                        textView.setVisibility(View.VISIBLE);
-//                        textView.setText("자녀의 외박 신청이 없습니다.");
-//                        qrImage.setVisibility(View.GONE);
-//                        ((TextView)findViewById(R.id.guideText)).setText("");
-//                    }
-//
-//                hideProgressDialog();
-//            }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//        };
-//        sleepOutRef.addValueEventListener(sleepOutListener);
-//    }
 
     private class GetData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
