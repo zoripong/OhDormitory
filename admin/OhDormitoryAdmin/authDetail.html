@@ -105,6 +105,7 @@
             $("input[name='student_phone']").css("border", "none");
             $("input[name='parent_phone']").css("border", "none");
             check = false;
+
         }
     }
 
@@ -115,8 +116,7 @@
                updateUser(before_emirim_id);
 
             }else{
-
-                //TODO: 취소할 겨웅 before로 대체
+                setBeforeData();
                 alert("취소되었습니다.");
             }
 
@@ -125,10 +125,23 @@
             if(isOK){
                updateUser(before_emirim_id);
             }else{
+                setBeforeData();
                 alert("취소되었습니다.");
             }
         }
          
+    }
+    function setBeforeData(){
+        // before_emirim_id = $("#email").val();
+        // before_room_num = $("#room_num").val();
+        // before_name = $("#name").val();
+        // before_student_phone = $("#student_phone").val();
+        // before_parent_phone = $("#parent_phone").val();
+        $("#email").val(before_emirim_id);
+        $("#room_num").val(before_room_num);
+        $("#name").val(before_name);
+        $("#student_phone").val(before_student_phone);
+        $("#parent_phone").val(before_parent_phone);
     }
     function Export(){
         var conf = confirm("회원정보 파일을 다운받겠습니까?");
@@ -172,6 +185,7 @@
     function editCancle(){
         check=true;
         infoChange();
+        setBeforeData();
     }
 
     function getUserData(student_name) {
@@ -184,25 +198,27 @@
             success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
                 var user_list = JSON.parse(JSON.stringify(response.user));
-                //TODO: 한명도 없는 경우 다시 auth.html
-                //FIXME: 주석 풀어랑
-                /*
-                    if (user_list.length >= 2) {
-                        // TODO: 동명이인이 있을 경우
-                    }
-                */
+                if (user_list.length <= 0) {
+                    // 한명도 없는 경우
+                    alert("해당 이름의 학생은 존재하지 않습니다.");
+                    location.href="auth.html";
 
-                student = new User(user_list[0].emirim_id, user_list[0].password, user_list[0].name, user_list[0].room_num, user_list[0].student_phone, user_list[0].parent_phone);
-                
-                // set the html value
-                $("#room_num").val(student.room_num);
-                $("#name").val(student.name);
-                $("#email").val(student.emirim_id);
-                $("#student_phone").val(student.student_phone);
-                $("#parent_phone").val(student.parent_phone);
+                }else if(user_list.length >= 2){
+                    //TODO: 동명이인이 있을 경우
+                }else{
+                    student = new User(user_list[0].emirim_id, user_list[0].password, user_list[0].name, user_list[0].room_num, user_list[0].student_phone, user_list[0].parent_phone);
+                    
+                    // set the html value
+                    $("#room_num").val(student.room_num);
+                    $("#name").val(student.name);
+                    $("#email").val(student.emirim_id);
+                    $("#student_phone").val(student.student_phone);
+                    $("#parent_phone").val(student.parent_phone);
 
+                    
+                    getScoreList();
+                }
                 
-                getScoreList();
             }
         });
     }
