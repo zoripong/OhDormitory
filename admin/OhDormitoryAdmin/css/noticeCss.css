@@ -55,7 +55,7 @@ html,body{
     padding: 0.2em;
     margin-bottom: 1em;
 }
-#notice_kind{
+#notice_kind,#modify_notice_kind{
     font-size: 1.05em;
     padding: 0.2em;
     margin-bottom: 1em;
@@ -65,7 +65,7 @@ html,body{
     padding: 0.2em;
     margin-bottom: 1em;
 }
-#notice_title{
+#notice_title,#modify_notice_title{
     display: block;
     width: 97.8%;
     margin-bottom: 0.7em;
@@ -94,7 +94,7 @@ html,body{
     float: right;
     background: url(../image/notice-bookmark.svg);
 }
-#notice_content{
+#notice_content,#modify_notice_content{
     width: 98.9%;
     margin-bottom: 1em;
     padding: 0.2em;
@@ -106,13 +106,14 @@ html,body{
     width: 100%;
     text-align: right;
 }
-#w_time, #d_time,#sleep_w_time, #sleep_d_time{
+#w_time, #d_time,#sleep_w_time, #sleep_d_time, 
+#modify_w_time,#modify_d_time,#modify_sleep_w_time,#modify_sleep_d_time{
     font-size: 0.9em;
     padding: 0.2em;
     width: 9.1em;
     text-align: right;
 }
-#select_sleep{
+#select_sleep,#modify_select_sleep{
     margin-bottom: 1em;
     text-align: left;
 }
@@ -143,7 +144,7 @@ html,body{
     outline: none;
     cursor: pointer;
 }
-#dialogTable{
+#dialogTable,#modify_dialogTable{
     width: 100%;
     text-align: center;
     border-collapse: collapse;
@@ -155,10 +156,10 @@ html,body{
 .td-border-left{
     border-left: 1px solid #707070;
 }
-#dialogTable td{
+#dialogTable td,#modify_dialogTable td{
     height: 2em;
 }
-#dialogTable input[type='text']{
+#dialogTable input[type='text'],#modify_dialogTable input[type='text']{
     width: 100%;
     border: none;
     height: 100%;
