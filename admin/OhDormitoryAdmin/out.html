@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/outCss.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+   
+    <title>상벌점</title>
+</head>
+<script type="text/javascript">
+    $(document).ready(function(){
+       $("#header").load("header.html")    
+       getSleepoutList();
+    });
+</script>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+
+<script>
+    var http = getRequest();
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBeOIYhLda3c_vlbjZ6Lm-5mJV5nTYWabo",
+        authDomain: "ohdormitory-mirim222.firebaseapp.com",
+        databaseURL: "https://ohdormitory-mirim222.firebaseio.com",
+        projectId: "ohdormitory-mirim222",
+        storageBucket: "ohdormitory-mirim222.appspot.com",
+        messagingSenderId: "356871550536"
+    };
+    firebase.initializeApp(config);
+
+    function getRequest() {
+        try {
+            xhr = new XMLHttpRequest();
+        } catch (e) {
+            try {
+                var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                try {
+                    var xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    alert("Your Browser is not Supported");
+                }
+            }
+        }
+        return xhr;
+    }
+
+   function sendPush(token, title, body) {//푸시 알림 보내는 함수
+    alert("푸시 되긴해?");
+            var url = "https://fcm.googleapis.com/fcm/send";
+
+            http.open("POST", url, true);
+            http.setRequestHeader("Content-Type", "application/json");
+            http.setRequestHeader("Authorization", "key=AAAAUxcztkg:APA91bFw9sAW3Oz4Y5IzVeuwmkyxhuyj9-Zoe42DyWfTjvHcPf4JYWNYVyrIpnStGv_--Rhk4uMxGHaieVB6YqQ6GSk-K_jUCTr_nIEF0yQzGaOCCioB0aFDQMEiApyXGZj21EpqSVtR");
+
+            // JSON.stringify 를 안써줄 경우 
+            http.send(JSON.stringify({
+                notification: {
+                    // 알림 받을 기기에 보여줄 타이틀
+                    title: title,
+                    // 알림 받을 기기에 보여줄 바디
+                    body: body
+                },
+                data: {
+                    // 
+                    id: "1"
+                },
+                to: token
+            }));
+
+        }
+        
+// sendPush(parentToken, "자녀의 외박인증 QRcode가 전송되었습니다.", "자녀의 QRcode인증을 도와주세요.");
+// sendPush(token, "외박인증 QRcode가 전송되었습니다.", "부모님 핸드폰의 앱에 전송된 QRcode로 인증해주세요.");
+
+</script>
+
+</script>
+
+
+
+<script>
+var total = 0;
+var recognizecount = 0;
+
+        function addData(room,name,wDate,dDate,recognize,notice_id,emirim_id){
+            //////버튼클릭하는거로 일단 헀움
+
+            var e = $("<div style='text-align:center; display:flex;'>"+"<span style='t width:100%; font-size:1.1em'>"+room+"</span>"
+            +"<input id='notice_id' type='hidden' value='"+notice_id+"'><input id='emirim_id' type='hidden' value='"+emirim_id+"'>"
+           +"<div style='width:100%; margin-top:0.5em; margin-bottom:2em; '>"+name+"</div>"
+            +"<div style='font-size:0.9em; margin-bottom:1.5em;'>"+wDate+" - "+dDate+"</div>"
+            +"<button id='certification-btn'>"+recognize+"</button>"+"<button id='del-btn' onclick=\"deleteRecord(this,'"+notice_id+"','"+emirim_id+"')\" >삭제</button>"
+            +'</div>');
+
+            $("#score-add").append(e);
+    
+            //상벌점 div css
+            e.attr('class', 'outBox');
+            $('.outBox').css({
+                width: "10.5em",
+                display: "block",
+                float: "left",
+                padding: "2em",
+                backgroundColor: "#FFF",
+                borderRadius: "15px",
+                boxShadow: "0px 3px 11px rgba(0, 0, 0, 0.13)",
+                marginBottom: "1em",
+                marginRight: "1em"
+            });
+    
+        //     $("#score-add").on("click", "#del-btn", function() {
+
+        //         //이거 왜 마지막만 삭제됨,,,>?퓨퓨퓨퓨픂픂 특정 노드만 삭제되게 하고픈뎅퓨ㅜㅍ
+		//   //     alert($(this).parent().$("#notice_id"));
+        //         //$(this).parent().remove();
+
+                
+
+
+	    //     });
+        }
+
+        function deleteRecord(del_btn,notice_id,emirim_id){
+          //  del_btn.delete();
+            var ok = confirm("정말로 삭제하시겠습니까?");
+            if (ok == true) {
+                deleteSleepoutRecord(notice_id,emirim_id);
+                del_btn.parentElement.remove();
+
+            }
+
+          
+        }
+    </script>
+<body>
+    
+    <div id="header"></div>
+    <div id="white-place"></div>
+    <div id="auth-body">
+        <div id="score-header">
+            <div style="display: inline-block; margin-left: 12.5em;">
+                <!-- <select name="month" id="month">
+                    <option value="1">1월</option>
+                    <option value="2">2월</option>
+                    <option value="3">3월</option>
+                    <option value="4">4월</option>
+                    <option value="5">5월</option>
+                    <option value="6">6월</option>
+                    <option value="7">7월</option>
+                    <option value="8">8월</option>
+                    <option value="9">9월</option>
+                    <option value="10">10월</option>
+                    <option value="11">11월</option>
+                    <option value="12">12월</option>
+                </select> -->
+                <button id="search-btn" onclick="getSleepoutList()">갱신하기</button>
+                <div id="recognizeContent">총 0명 신청 / 0명 인증</div>
+
+            </div>
+            <button id="qrCode-btn" onClick="sendQR()">외박신청 QR코드 전송</button>
+            
+        </div>
+        
+        <div id='score-add-div'>
+            
+
+            <div id='score-add' ></div>
+        </div> 
+    </div>
+</body>
+<script>
+    function sendQR(){
+        $.ajax({
+            type: "post",
+            async: true,
+            url: "http://54.203.113.95/updateQRSend.php",
+            dataType: "json",
+            success: function(response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var return_data = JSON.parse(JSON.stringify(response.return_code));
+                var notice_data = JSON.parse(JSON.stringify(response.notice));
+                
+                alert(return_data[0].return_message);
+                console.log(return_data[0].return_code);
+                
+                if(return_data[0].return_code == 2)
+                    getPushToken(notice_data[0].notice_id);
+              
+            }
+        });
+    }
+
+     function deleteSleepoutRecord(notice_id,emirim_id){
+         var querydata ="notice_id="+notice_id+"&emirim_id="+emirim_id;
+        $.ajax({
+            type: "get",
+            async: true,
+            url: "http://54.203.113.95/deleteSleepoutRecord.php",
+            dataType: "json",
+            data: querydata,
+            success: function(response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var return_code = JSON.parse(JSON.stringify(response.return_code));
+                alert(return_code[0].return_message);
+              
+            }
+        });
+     }
+
+
+    function getSleepoutList() {
+
+        document.getElementById("score-add").innerHTML="";
+        $.ajax({
+            type: "post",
+            async: true,
+            url: "http://54.203.113.95/getSleepoutList.php",
+            dataType: "json",
+            //, data: "name=그렇구먼&type=이렇구먼"
+            success: function(response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var code = JSON.parse(JSON.stringify(response.return_code));
+                if(code[0].return_code == 0 || code[0].return_code == 1){
+                    alert(code[0].return_message);
+                }else{
+                    total = 0;
+                    recognizecount = 0;
+                    var notice = JSON.parse(JSON.stringify(response.notice));
+                    var record = JSON.parse(JSON.stringify(response.record));
+                    var notice_id = notice[0].notice_id;
+                    var wDate = notice[0].sleep_w_time.replace(/-/gi, ".");
+                    var dDate = notice[0].sleep_d_time.replace(/-/gi, ".");
+                    for (var i = 0; i < record.length; i++) {
+                        var recognize;
+                        if(record[i].recognize == 1){
+                            recognizecount++;
+                            recognize = "인증";
+                        }else{
+                            recognize = "미인증";
+
+                        }
+                       
+                        var emirim_id = record[i].emirim_id;
+                    //    alert(notice_id+" "+recognize+" "+emirim_id);
+                        addData(record[i].room_num,record[i].name,wDate,dDate,recognize,notice_id,emirim_id);
+                        total++;
+
+                    }
+                }
+                document.getElementById("recognizeContent").innerHTML = "총 "+total+"명 신청 / "+recognizecount+"명 인증";
+                
+
+
+            }
+        });
+    }
+
+
+    function getPushToken(notice_id){
+        var querydata ="notice_id="+notice_id;
+
+        $.ajax({
+            type: "get",
+            async: true,
+            url: "http://54.203.113.95/getToken.php",
+            dataType: "json",
+            data: querydata,
+            success: function(response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var return_data = JSON.parse(JSON.stringify(response.return_code));
+                var parent_data = JSON.parse(JSON.stringify(response.parent));
+                var user_data = JSON.parse(JSON.stringify(response.user));
+
+                
+                console.log("외박 푸시 알림 : "+return_data[0].return_message);
+                
+                for(var i=0;i<parent_data.length;i++){
+                    alert("부모님께 전송");
+                    sendPush(parent_data[i].token, "자녀의 외박인증 QRcode가 전송되었습니다.", "자녀의 QRcode인증을 도와주세요.");
+                }
+                for(var i=0;i<user_data.length;i++){
+                    alert("학생에게전송");
+                    sendPush(user_data[i].token, "외박인증 QRcode가 전송되었습니다.", "부모님 핸드폰의 앱에 전송된 QRcode로 인증해주세요.");
+                }
+            }
+        });
+
+    }
+</script>
+</html>

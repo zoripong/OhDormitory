@@ -150,7 +150,7 @@ html,body{
     margin-top: -1em;
 }
 #notice-add-div{
-    width: 58em;
+    width: 55em;
     margin: 0 auto;
     padding-bottom: 1.5em;
 }
@@ -158,4 +158,14 @@ html,body{
     height: 2em;
     margin-bottom: 1.2em;
     margin-top: 1.2em;
+}
+
+/*반응형*/
+@media screen and (max-width: 57em) {
+    #notice-add-div{
+        width: 90%;
+    }
+    #myBtn-box{
+        width: 100%;
+    }
 }

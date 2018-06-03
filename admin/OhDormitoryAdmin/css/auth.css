@@ -1,0 +1,42 @@
+html,body {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+#auth-body {
+    background-color: #f1f1f1;
+    margin-top: 75px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+#add-file {
+    width: 10em;
+    height: 11em;
+    background-color: #fff;
+    border-radius: 1em;
+    box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.13);
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+#add-file div p {
+    margin-top: -5px;
+}
+
+#add-file:hover {
+    box-shadow: 0px 3px 16px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+}
+
+#fileIcon {
+    margin-top: 0.5em;
+}

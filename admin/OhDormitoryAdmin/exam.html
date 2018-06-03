@@ -11,8 +11,12 @@
 <body>
   <!-- jquery 1.6.2 필요 -->
  <script type="text/javascript">
-  function calcStrWidth() { $("#spanStrWidth").text($("#xstr").val());
-   alert($("#spanStrWidth").outerWidth()); } </script>
+  function calcStrWidth() { 
+    //$("#spanStrWidth").text($("#xstr").val());
+   alert($("#spanStrWidth").outerWidth());
+   
+   
+    } </script>
     <span id="spanStrWidth" style="visibility:hidden; position:absolute; top:-10000; font-size:9pt;"></span>
      <input id="xstr" style="width:200px; font-size:9pt; border:solid 1px #aaa" type="text"> 
      <input onclick="calcStrWidth()" value="문자열 width 구하기" style="font-size:9pt; border:solid 1px #aaa" type="button">

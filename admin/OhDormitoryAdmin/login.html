@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/login.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <title>관리자 페이지 로그인</title>
+</head>
+<body>
+    <div id="login-box">
+        <img id="logo" src="image/logo.svg" alt="web Icon" height="72" width="72">
+        <div id="login-div">
+            <div id="text-group">
+                <form>
+                    <div class="group" >      
+                        <input type="text" required id="admin-id" name="id">
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>ID</label>
+                    </div>
+                    <div class="group" id="pw-group">      
+                        <input type="password" required id="admin-pw" name="pw">
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>PW</label>
+                    </div>
+                    <input type="button" onclick="check()" id="login-btn" value="LOG IN">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function check(){
+            var admin_id = document.getElementById("admin-id").value;
+            var admin_pw = document.getElementById("admin-pw").value;
+
+            checkAdminAccount(admin_id,admin_pw);
+        }
+
+
+        function checkAdminAccount(admin_id,admin_pw){
+        $.ajax({
+            type: "post",
+            async: true,
+            url: "http://54.203.113.95/checkAdminAccount.php",
+            dataType: "json",
+            data: {
+                "admin_id":admin_id,
+                "admin_pw":admin_pw
+            },
+            success: function(response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var return_code = JSON.parse(JSON.stringify(response.return_code));
+                if(return_code[0].return_code == 0 )
+                    location.href = "auth.html";
+                else
+                    alert(return_code[0].return_message);
+              
+            }
+        });
+     }
+    </script>
+</body>
+</html>

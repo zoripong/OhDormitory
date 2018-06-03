@@ -50,21 +50,22 @@ CREATE TABLE notice(
 	title VARCHAR(30) NOT NULL,
 	type TINYINT(1) NOT NULL,
 	w_time date NOT NULL,
+	d_time date NOT NULL,	
 	PRIMARY KEY (notice_id)
 );
 
 # type (0 : basic_notice / 1 : clean_notice / 2 : sleepout_notice )
 
 INSERT INTO notice
-VALUES (NULL,'전원외박 안내', '0', '2018-05-15');
+VALUES (NULL,'전원외박 안내', '0', '2018-05-15', '2018-05-15');
 INSERT INTO notice
-VALUES (NULL,'청소구역', '1', '2018-05-15');
+VALUES (NULL,'청소구역', '1', '2018-05-15', '2018-05-15');
 INSERT INTO notice
-VALUES (NULL,'외박신청', '2', '2018-05-15');
+VALUES (NULL,'외박신청', '2', '2018-05-15', '2018-05-15');
 INSERT INTO notice
-VALUES (NULL,'호실 변경 안내', '0', '2018-05-15');
+VALUES (NULL,'호실 변경 안내', '0', '2018-05-15','2018-05-15');
 INSERT INTO notice
-VALUES (NULL,'외박신청2', '2', '2018-05-15');
+VALUES (NULL,'외박신청2', '2', '2018-05-15', '2018-05-15');
 
 
 CREATE TABLE basic_notice(

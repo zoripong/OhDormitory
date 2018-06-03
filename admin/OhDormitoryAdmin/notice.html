@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,44 +16,112 @@
     <title>공지사항</title>
 </head>
 
-
-
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
 <script type="text/javascript">
-      $(document).ready(function(){
-         $("#header").load("header.html")    
-      });
-</script>
-<script>
-    function addData(){
-        var kind = "공지사항 종류";
-        var title ="공지사항 제목";
-        var wDate = "2018.05.26";
-        var dDate = "2018.05.27";
-        
-         //아니 이거 왜 대체,,,,가장 처음 개체는 그대로임,,????? 포기 gggg
-         if (notice_kind.value == "공지사항") {
-            $("#bookmarkAdd").css('background-image','url(image/notice-bookmark.svg)');
-        }else if (notice_kind.value == "청소구역") {
-            $("#bookmarkAdd").css('background-image','url(image/clean-bookmark.svg)');
-        } else if(notice_kind.value == "외박일지"){
-            $("#bookmarkAdd").css('background-image','url(image/out-bookmark.svg)');
+    /*-------------------GlobalVar-------------------*/
+    var http = getRequest();
+    // Get the modal
+    // var modal = document.getElementById('myModal');
+    // // Get the button that opens the modal
+    // var btn = document.getElementById("myBtn");
+    // // Get the <span> element that closes the modal
+    // var span = document.getElementsByClassName("close")[0];
+    /*----------------------------------------------*/
+
+    $(document).ready(function() {
+        $("#header").load("header.html")
+
+        // register btn event
+        $("#myBtn").click(function() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "block";
+            //날짜 오늘 날짜로
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            today = yyyy + '-' + mm + '-' + dd;
+            var parsedDate = $.datepicker.parseDate('yy-mm-dd', today);
+            $("#w_time, #d_time").datepicker("setDate", parsedDate);
+            $(".modal").css('display', 'flex'); //modal이 가운데 뜨게
+        });
+
+        $("#cancle-btn").click(function() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        });
+
+
+        loadNotice();
+    });
+
+    // 게시판 목록 불러오기
+    function loadNotice() {
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "http://54.203.113.95/getNotice.php",
+            dataType: "json",
+            success: function(response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var notice_list = JSON.parse(JSON.stringify(response.notice));
+
+                index = 1;
+                while (true) {
+                    if (!notice_list.hasOwnProperty(index)) {
+                        // alert("end" + index);
+                        break;
+                    }
+                    // alert(notice_list[index].notice_id);
+                    makeListItem(notice_list[index].type, notice_list[index].title, notice_list[index].w_time, notice_list[index].d_time);
+                    index++;
+                }
+            }
+        });
+    }
+
+
+    function addItem() {
+        //TODO:ajax로 db등록
+        sendPush(notice_kind.value);
+        $("#notice-add").empty();
+        loadNotice();
+
+        var modal = document.getElementById('myModal');
+        modal.style.display = "none";
+    }
+
+    function makeListItem(type, title, wDate, dDate) {
+
+        //아니 이거 왜 대체,,,,가장 처음 개체는 그대로임,,????? 포기 gggg
+        var typeStr = ['공지사항', '청소구역', '외박일지'];
+        if (type == 0) {
+            $("#bookmarkAdd").css('background-image', 'url(image/notice-bookmark.svg)');
+        } else if (type == 1) {
+            $("#bookmarkAdd").css('background-image', 'url(image/clean-bookmark.svg)');
+        } else if (type == 2) {
+            $("#bookmarkAdd").css('background-image', 'url(image/out-bookmark.svg)');
         }
 
-        var e = $('<div>'+"<div style='font-size:1.1em;display:inline;'>"+kind+"</div>"
-        +"<div id='bookmarkAdd'></div>"
-        +"<div style='margin-left:1em;margin-top:0.5em;'>"+title+"</div>"
-        +"<div style='text-align:right; font-size:0.9em;'>"+wDate+" - "+dDate+"</div>"
-        +'</div>');
-        
-       
-
+        var e = $('<div>' + "<div style='display:inline;'>" + typeStr[type] + "</div>" +
+            "<div id='bookmarkAdd'></div>" +
+            "<div style='margin-left:1em;margin-top:0.5em;font-size:1.1em;'>" + title + "</div>" +
+            "<div style='text-align:right; font-size:0.9em;'>" + wDate + " - " + dDate + "</div>" +
+            '</div>');
 
         $("#notice-add").prepend(e);
 
         //공지사항 div css
         e.attr('class', 'outBox');
         $('.outBox').css({
-            width: "55em",
+            width: "90%",
+            margin:"0 auto",
             padding: "1.5em",
             backgroundColor: "#FFF",
             borderRadius: "15px",
@@ -60,200 +129,205 @@
             marginBottom: "1em"
         });
 
-        sendPush(notice_kind.value);
+
 
     }
+
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBeOIYhLda3c_vlbjZ6Lm-5mJV5nTYWabo",
+        authDomain: "ohdormitory-mirim222.firebaseapp.com",
+        databaseURL: "https://ohdormitory-mirim222.firebaseio.com",
+        projectId: "ohdormitory-mirim222",
+        storageBucket: "ohdormitory-mirim222.appspot.com",
+        messagingSenderId: "356871550536"
+    };
+    firebase.initializeApp(config);
+
+    function getRequest() {
+        try {
+            xhr = new XMLHttpRequest();
+        } catch (e) {
+            try {
+                var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                try {
+                    var xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    alert("Your Browser is not Supported");
+                }
+            }
+        }
+        return xhr;
+    }
+
+    function sendPush(notice_kind) {
+        var url = "https://fcm.googleapis.com/fcm/send";
+
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-Type", "application/json");
+        http.setRequestHeader("Authorization", "key=AAAAUxcztkg:APA91bFw9sAW3Oz4Y5IzVeuwmkyxhuyj9-Zoe42DyWfTjvHcPf4JYWNYVyrIpnStGv_--Rhk4uMxGHaieVB6YqQ6GSk-K_jUCTr_nIEF0yQzGaOCCioB0aFDQMEiApyXGZj21EpqSVtR");
+
+        // JSON.stringify 를 안써줄 경우 
+        http.send(JSON.stringify({
+            notification: {
+                // 알림 받을 기기에 보여줄 타이틀
+                title: "새로운 " + notice_kind + " 공지가 있습니다",
+                // 알림 받을 기기에 보여줄 바디
+                body: "앱을 열어 확인해주세요."
+            },
+            data: {
+                // 
+                id: "1"
+            },
+            to: "/topics/studentNotice"
+        }));
+    }
 </script>
+
 <body>
     <div id="header"></div>
     <div id="white-place"></div>
     <div id="auth-body">
-            
-            <!--공지사항 추가됨-->
-            <div id='notice-add-div'>
-                <div id="myBtn-box"><button id="myBtn">추가하기</button></div>
 
-                <div id='notice-add' >
-                </div>
-            </div>  
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <form>
-                        <select name="게시종류" id="notice_kind" onclick="changeNoticeKind(); return false;">
+        <!--공지사항 추가됨-->
+        <div id='notice-add-div'>
+            <div id="myBtn-box"><button id="myBtn">추가하기</button></div>
+
+            <div id='notice-add'>
+            </div>
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <form>
+                    <select name="게시종류" id="notice_kind" onclick="changeNoticeKind(); return false;">
                             <option value="공지사항">공지사항</option>
                             <option value="청소구역">청소구역</option>
                             <option value="외박일지">외박일지</option>
                         </select>
-                        <div id="bookmark"></div>
-                        <div id="notice-box">
-                            <div>
-                                <input type="text" id="notice_title" style="float:left;" placeholder="제목을 입력해주세요">
-                            </div>
-
-                                <!-- 공지사항-->
-                            <div id="select_notice" style="display:block">
-                                <textarea type="text" id="notice_content"></textarea>
-                                <br>
-                            </div>
-                                <!--청소구역-->
-                            <div id="select_clean" style="display:none">
-                                <table id="dialogTable" border="0">
-                                    <tr>
-                                        <td id="td-border" style="width: 40px; "></td>
-                                        <td id="td-border" class="td-border-left" style="width: 60px; ">세면실</td>
-                                        <td id="td-border" class="td-border-left" style="width: 100px; ">세탁실/탈의실</td>
-                                        <td id="td-border" class="td-border-left" style="width: 60px; ">샤워실</td>
-                                        <td id="td-border" class="td-border-left" style="width: 60px; ">복도</td>
-                                        <td id="td-border" class="td-border-left" style="width: 60px; ">휴게실</td>
-                                        <td id="td-border" class="td-border-left" style="width: 60px; ">계단</td>
-                                        <td id="td-border" class="td-border-left" style="width: 60px; ">화장실</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="td-border">4층</td>
-                                        <td id="td-border" class="td-border-left">
-                                        <input type="text"  id="4-clean-0" class="inputBorder">
-                                        </td>
-                                        <td id="td-border" class="td-border-left">
-                                        <input type="text"  id="4-clean-1" class="inputBorder">
-                                        </td>
-                                        <td id="td-border" class="td-border-left">
-                                        <input type="text"  id="4-clean-2" class="inputBorder">
-                                        </td>
-                                        <td id="td-border" class="td-border-left">
-                                        <input type="text"  id="4-clean-3" class="inputBorder">
-                                        </td>
-                                        <td id="td-border" class="td-border-left">
-                                        <input type="text"  id="4-clean-4" class="inputBorder">
-                                        </td>
-                                        <td id="td-border" class="td-border-left">
-                                        <input type="text" id="4-clean-5" class="inputBorder">
-                                        </td>
-                                        <td id="td-border" class="td-border-left">
-                                        <input type="text" id="4-clean-6" class="inputBorder">
-                                        </td id="td-border">
-                                    </tr>
-                                    <tr>
-                                        <td>5층</td>
-                                        <td class="td-border-left">
-                                        <input type="text" id="5-clean-0" class="inputBorder">
-                                        </td>
-                                        <td class="td-border-left">
-                                        <input type="text"  id="5-clean-1" class="inputBorder">
-                                        </td>
-                                        <td class="td-border-left">
-                                        <input type="text" id="5-clean-2" class="inputBorder">
-                                        </td>
-                                        <td class="td-border-left">
-                                        <input type="text"  id="5-clean-3" class="inputBorder">
-                                        </td>
-                                        <td class="td-border-left">
-                                        <input type="text"  id="5-clean-4" class="inputBorder">
-                                        </td>
-                                        <td class="td-border-left">
-                                        <input type="text" id="5-clean-5" class="inputBorder">
-                                        </td>
-                                        <td class="td-border-left">
-                                        <input type="text"  id="5-clean-6" class="inputBorder">
-                                        </td>
-                                    </tr>
-                                </table>
-                            
-                                <span id="guideMessage"></span>
-                                </div>
-                                <!--외박일지-->
-                            <div id="select_sleep" style="display:none">
-                                <input type="text" id="sleep_w_time"> -
-                                <input type="text" id="sleep_d_time">
-                            </div>
-
-                            <div id="date-div">
-                                <input type="text" id="w_time"> -
-                                <input type="text" id="d_time">
-                            </div>
-                            <div id="btn-div">
-                                <input type="button" value="등록" id="add-btn" onclick="addData()">
-                                <input type="button" class="close" value="취소" id="cancle-btn">
-                            </div>
+                    <div id="bookmark"></div>
+                    <div id="notice-box">
+                        <div>
+                            <input type="text" id="notice_title" style="float:left;" placeholder="제목을 입력해주세요" required>
                         </div>
-                    </form>
-                </div>
+
+                        <!-- 공지사항-->
+                        <div id="select_notice" style="display:block">
+                            <textarea type="text" id="notice_content"></textarea>
+                            <br>
+                        </div>
+                        <!--청소구역-->
+                        <div id="select_clean" style="display:none">
+                            <table id="dialogTable" border="0">
+                                <tr>
+                                    <td id="td-border" style="width: 40px; "></td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">세면실</td>
+                                    <td id="td-border" class="td-border-left" style="width: 100px; ">세탁실/탈의실</td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">샤워실</td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">복도</td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">휴게실</td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">계단</td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">화장실</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-border">4층</td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-0" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-1" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-2" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-3" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-4" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-5" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-6" class="inputBorder" required>
+                                    </td id="td-border">
+                                </tr>
+                                <tr>
+                                    <td>5층</td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-0" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-1" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-2" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-3" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-4" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-5" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-6" class="inputBorder" required>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <span id="guideMessage"></span>
+                        </div>
+                        <!--외박일지-->
+                        <div id="select_sleep" style="display:none">
+                            <input type="text" id="sleep_w_time" required> -
+                            <input type="text" id="sleep_d_time" required>
+                        </div>
+
+                        <div id="date-div">
+                            <input type="text" id="w_time" required> -
+                            <input type="text" id="d_time" required>
+                        </div>
+                        <div id="btn-div">
+                            <input type="button" value="등록" id="add-btn" onclick="addItem()">
+                            <input type="button" class="close" value="취소" id="cancle-btn">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        for (var i = 1; i < 7; i++) {
-          $("#4-clean-" + i).attr('disabled', 'disabled');
-          $("#5-clean-" + i).attr('disabled', 'disabled');
-        }
-        $("#guideMessage").html("첫 번째 구역을 설정하시면 자동으로 계산됩니다.");
-        $("#guideMessage").css('font-size','0.65em');
-        $("#4-clean-0").change(function() {
-          if ($("#4-clean-0").val() < 401 || $("#4-clean-0").val() > 418) {
-            alert("호수를 잘못 입력하셨습니다.");
-            return;
-          }
-          $("#guideMessage").html("");
-          var number = parseInt($("#4-clean-0").val());
-          for (var i = 1; i < 7; i++) {
-            number++;
-            if (number > 418)
-              number = 401;
-            $("#4-clean-" + i).removeAttr('disabled');
-            $("#4-clean-" + i).val(number);
-          }
-        });
-        $("#5-clean-0").change(function() {
-          if ($("#5-clean-0").val() < 501 || $("#5-clean-0").val() > 519) {
-            alert("호수를 잘못 입력하셨습니다.");
-            return;
-          }
-          $("#guideMessage").html("");
-          var number = parseInt($("#5-clean-0").val());
-          for (var i = 1; i < 7; i++) {
-            number++;
-            if (number > 519)
-              number = 501;
-            $("#5-clean-" + i).removeAttr('disabled');
-            $("#5-clean-" + i).val(number);
-          }
-        });
-      
-        </script>
+    </div>
     <script>
-            // Get the modal
-            var modal = document.getElementById('myModal');
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-            
-            // 창 띄우기
-            btn.onclick = function() {
-                modal.style.display = "block";
-                //날짜 오늘 날짜로
-                var today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth() + 1; //January is 0!
-                var yyyy = today.getFullYear();
-                if (dd < 10) {
-                dd = '0' + dd
-                }
-                if (mm < 10) {
-                mm = '0' + mm
-                }
-                today = yyyy + '-' + mm + '-' + dd;
-                var parsedDate = $.datepicker.parseDate('yy-mm-dd', today);
-                $("#w_time, #d_time").datepicker("setDate", parsedDate);
-                $(".modal").css('display','flex'); //modal이 가운데 뜨게
+        for (var i = 1; i < 7; i++) {
+            $("#4-clean-" + i).attr('disabled', 'disabled');
+            $("#5-clean-" + i).attr('disabled', 'disabled');
+        }
+
+        $("#guideMessage").html("첫 번째 구역을 설정하시면 자동으로 계산됩니다.");
+        $("#guideMessage").css('font-size', '0.65em');
+
+        $("#4-clean-0").change(function() {
+            if ($("#4-clean-0").val() < 401 || $("#4-clean-0").val() > 418) {
+                alert("호수를 잘못 입력하셨습니다.");
+                return;
             }
-            
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
+            $("#guideMessage").html("");
+            var number = parseInt($("#4-clean-0").val());
+            for (var i = 1; i < 7; i++) {
+                number++;
+                if (number > 418)
+                    number = 401;
+                $("#4-clean-" + i).removeAttr('disabled');
+                $("#4-clean-" + i).val(number);
             }
-    </script>
+        });
 
 <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
 <script>
@@ -347,15 +421,22 @@ function sendPush(notice_kind){
                 }
 
                
+        $("#5-clean-0").change(function() {
+            if ($("#5-clean-0").val() < 501 || $("#5-clean-0").val() > 519) {
+                alert("호수를 잘못 입력하셨습니다.");
+                return;
+            }
+            $("#guideMessage").html("");
+            var number = parseInt($("#5-clean-0").val());
+            for (var i = 1; i < 7; i++) {
+                number++;
+                if (number > 519)
+                    number = 501;
+                $("#5-clean-" + i).removeAttr('disabled');
+                $("#5-clean-" + i).val(number);
             }
         });
-
-
-    }
-
-
-</script>
-
+    </script>
 </body>
 
 </html>

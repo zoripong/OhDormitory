@@ -1,0 +1,174 @@
+html,
+        body {
+            margin: 0px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        #box {
+            margin: 50px;
+            max-height: 70%;
+        }
+        
+        #auth-body {
+            background-color: #f1f1f1;
+            margin-top: 75px;
+            height: 100%;
+            width: 100%;
+            overflow: scroll;
+            position: absolute;
+        }
+        
+        #student-detail {
+            background-color: #fff;
+            width: 49em;
+            margin: 0 auto;
+            border-radius: 15px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.13);
+            max-height: 30em;
+        }
+        
+        #student-form {
+            width: 90%;
+            margin: 0 auto;
+        }
+        
+        #info-change {
+            float: right;
+            width: 15%;
+            background-color: #FCD465;
+            border: #FCD465;
+            height: 2em;
+            border-radius: 15px;
+            color: #fff;
+            font-size: 1em;
+            outline: none;
+            cursor: pointer;
+            margin-top: 7px;
+        }
+        
+        #addPoint {
+            width: 90%;
+            height: 30%;
+            margin: 0 auto;
+        }
+        
+        #insertUl {
+            max-height: 9em;
+            overflow: auto;
+            padding-left: 7px;
+        }
+        
+        #pointDate {
+            width: 20%;
+            height: 2em;
+            font-size: 1em;
+            padding: 1px;
+            outline: none;
+            font-family: Times, serif, "Times New Roman", ;
+        }
+        
+        #point-select {
+            width: 100%;
+            height: 2em;
+            font-size: 1em;
+            outline: none;
+            margin-bottom: 0;
+        }
+        
+        #selcet-div {
+            text-align: center;
+            display: inline-block;
+            width: 53%;
+            margin-left: 5%;
+            margin-right: 5%;
+            background-color: aquamarine;
+        }
+        
+        #addBtn {
+            background-color: #FCD465;
+            border: #FCD465;
+            width: 11%;
+            height: 2em;
+            border-radius: 15px;
+            color: #fff;
+            font-size: 1em;
+            float: right;
+            outline: none;
+            cursor: pointer;
+        }
+        
+        #pointStr {
+            padding-left: 10px;
+        }
+        
+        #point-calculation {
+            width: 4.5em;
+            text-align: center;
+            float: right;
+            margin-right: 4%;
+            height: 1em;
+            margin-top: 0px;
+        }
+        
+        #email,
+        #phone {
+            margin-left: 6%;
+            margin-right: 5%;
+            height: 2em;
+            font-size: 1em;
+            padding: 0px;
+            padding-left: 5px;
+            border-style: none;
+        }
+        
+        #email {
+            width: 50.9%;
+        }
+        
+        #phone {
+            padding-left: 7px;
+            width: 50.6%;
+        }
+        
+        .label-text {
+            width: 20%;
+            height: 1em;
+            font-size: 1em;
+            display: inline-block;
+            padding-left: 5px;
+            padding-bottom: 5px;
+        }
+        
+        #student-info>p,
+        #student-point>p {
+            font-size: 1.1em;
+        }
+        
+        @media screen and (max-width: 600px) {
+            #student-detail {
+                width: 90%;
+            }
+            #pointDate {
+                width: 90%;
+            }
+            #point-select {
+                width: 90%;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+            #student-point {
+                text-align: center;
+            }
+        }
+        
+        #delete_score {
+            width: 30px;
+            height: 30px;
+        }
