@@ -25,8 +25,6 @@
         var STUDENT_NAME = parameter.split("=")[1];
         getUserData(STUDENT_NAME);
 
-
-
     });
 
 
@@ -64,19 +62,31 @@
         if (check == false) { //정보 수정 버튼을 누른 경우
             changeBtn.value = "저장";
             changeBtn.style.width = "11%";
+            $("input[name='room_num']").attr("readonly", false);
+            $("input[name='name']").attr("readonly", false);
             $("input[name='email']").attr("readonly", false);
-            $("input[name='phone']").attr("readonly", false);
+            $("input[name='student_phone']").attr("readonly", false);
+            $("input[name='parent_phone']").attr("readonly", false);
+            $("input[name='room_num']").css("border", "1px solid #BBBBBB");
+            $("input[name='name']").css("border", "1px solid #BBBBBB");
             $("input[name='email']").css("border", "1px solid #BBBBBB");
-            $("input[name='phone']").css("border", "1px solid #BBBBBB");
+            $("input[name='student_phone']").css("border", "1px solid #BBBBBB");
+            $("input[name='parent_phone']").css("border", "1px solid #BBBBBB");
             check = true;
         } else { //저장 버튼을 누른 경우
             checkChange();
             changeBtn.value = "정보수정";
             changeBtn.style.width = "15%";
+            $("input[name='room_num']").attr("readonly", true);
+            $("input[name='name']").attr("readonly", true);
             $("input[name='email']").attr("readonly", true);
-            $("input[name='phone']").attr("readonly", true);
+            $("input[name='student_phone']").attr("readonly", true);
+            $("input[name='parent_phone']").attr("readonly", true);
+            $("input[name='room_num']").css("border", "none");
+            $("input[name='name']").css("border", "none");
             $("input[name='email']").css("border", "none");
-            $("input[name='phone']").css("border", "none");
+            $("input[name='student_phone']").css("border", "none");
+            $("input[name='parent_phone']").css("border", "none");
             check = false;
         }
     }
@@ -105,7 +115,16 @@
                     }
                 */
 
-                student = new User(user_list[0].emirim_id, user_list[0].password, user_list[0].name, user_list[0].room_num, user_list[0].parent_phone);
+                student = new User(user_list[0].emirim_id, user_list[0].password, user_list[0].name, user_list[0].room_num, user_list[0].student_phone, user_list[0].parent_phone);
+                
+                // set the html value
+                $("#room_num").val(student.room_num);
+                $("#name").val(student.name);
+                $("#email").val(student.emirim_id);
+                $("#student_phone").val(student.student_phone);
+                $("#parent_phone").val(student.parent_phone);
+
+                
                 getScoreList();
             }
         });
@@ -250,13 +269,16 @@
 
                         <!--form에서 검색한 데이터로 교체-->
                         <form id="student-form">
-                            <p>이유리 401호</p>
-                            <input type="text" id="name" name="name" value="이유리" readonly="readonly">
+                            <input type="text" id="room_num" name="room_num" value="401" readonly="readonly">호
+                            <input type="text" id="name" name="name" value="이유리" readonly="readonly"><br/>
                             <div class="label-text">이메일</div>
-                            <input type="email" id="email" name="email" value="wwhhoo0011@e-mirim.hs.kr" readonly="readonly"><br>
+                            <input type="email" id="email" name="email" value="wwhhoo0011@e-mirim.hs.kr" readonly="readonly">@e-mirim.hs.kr
+                            <div class="label-text">학생 연락처</div>
+                            <input type="text" id="student_phone" name="student_phone" value="01033909696" readonly="readonly">
+                            <br>
                             <div>
                                 <div class="label-text">학부모 연락처</div>
-                                <input type="text" id="phone" name="phone" value="01033909696" readonly="readonly">
+                                <input type="text" id="parent_phone" name="parent_phone" value="01033909696" readonly="readonly">
                                 <input type="button" id="info-change" value="정보수정" onclick="infoChange()">
                             </div>
                         </form>
@@ -300,8 +322,6 @@
         [?]
         1. 정보 수정 가능하게 할지 여부 정하기
 
-    -->
-       
         
         1. 정보 수정 가능 -> 수정시 엑셀 다운로드
         5. 상벌점 삭제

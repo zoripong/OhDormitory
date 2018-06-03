@@ -11,16 +11,21 @@ public class User implements Serializable {
     private String password;
     private String name;
     private int room_num;
+    private String student_phone;
     private String parent_phone;
 
-    public User(String emirim_id, String password, String name, int room_num, String parent_phone) {
+    public User(String emirim_id, String password, String name, int room_num, String student_phone, String parent_phone) {
         this.emirim_id = emirim_id;
         this.password = password;
         this.name = name;
         this.room_num = room_num;
+        this.student_phone = student_phone;
         this.parent_phone = parent_phone;
     }
 
+    public String getStudent_phone() {
+        return student_phone;
+    }
 
     public String getEmirim_id() {
         return emirim_id;

@@ -195,7 +195,7 @@ public class SignInActivity extends BaseActivity{
 
                 for ( int i = 0; i < results.length(); ++i ) {
                     JSONObject temp = results.getJSONObject(i);
-                    users.add(new User(temp.getString("emirim_id"), temp.getString("password"), temp.getString("name"), temp.getInt("room_num"), temp.getString("parent_phone")));
+                    users.add(new User(temp.getString("emirim_id"), temp.getString("password"), temp.getString("name"), temp.getInt("room_num"), temp.getString("student_phone"), temp.getString("parent_phone")));
                 }
 
                 Log.e(TAG, "콩앙"+users.toString());
