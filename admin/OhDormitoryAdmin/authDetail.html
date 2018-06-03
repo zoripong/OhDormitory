@@ -57,9 +57,21 @@
 
 
     //정보수정 버튼을 누른 경우
+    var before_emirim_id = "";
+    var before_room_num = "";
+    var before_name = "";
+    var before_student_phone = "";
+    var before_parent_phone = "";
     function infoChange() {
+       
         var changeBtn = document.getElementById("info-change");
         if (check == false) { //정보 수정 버튼을 누른 경우
+            before_emirim_id = $("#email").val();
+            before_room_num = $("#room_num").val();
+            before_name = $("#name").val();
+            before_student_phone = $("#student_phone").val();
+            before_parent_phone = $("#parent_phone").val();
+
             changeBtn.value = "저장";
             changeBtn.style.width = "11%";
             $("input[name='room_num']").attr("readonly", false);
@@ -74,7 +86,9 @@
             $("input[name='parent_phone']").css("border", "1px solid #BBBBBB");
             check = true;
         } else { //저장 버튼을 누른 경우
-            checkChange();
+            if(before_emirim_id != $("#email").val() || before_room_num != $("#room_num").val() || before_name != $("#name").val() || before_student_phone != $("#student_phone").val() || before_parent_phone != $("#parent_phone").val())
+                saveBtn(before_emirim_id);
+            
             changeBtn.value = "정보수정";
             changeBtn.style.width = "15%";
             $("input[name='room_num']").attr("readonly", true);
@@ -91,12 +105,52 @@
         }
     }
 
-    function checkChange() {
+    function saveBtn(before_emirim_id) {
+        // TODO: confrim dialog
+        if(before_emirim_id != $("#email").val()){
+            var isOK = confirm("계정이 수정되어 기존 데이터가 모두 초기화 됩니다. 그래도 수정하시겠습니까?");
+            if(isOK){
+               updateUser(before_emirim_id);
+            }else{
+                alert("취소되었습니다.");
+            }
 
-
-
+        }else{
+            var isOK = confirm("회원정보를 수정하시겠습니까?");
+            if(isOK){
+               updateUser(before_emirim_id);
+            }else{
+                alert("취소되었습니다.");
+            }
+        }
+         
     }
 
+    function updateUser(before_emirim_id){
+         $.ajax({
+                    type: "POST",
+                    /* FIXME: POST -> PUT */
+                    async: true,
+                    url: "http://54.203.113.95/updateUser.php",
+                    dataType: "text",
+                    data: {
+                        'before_emirim_id' : before_emirim_id,
+                        'room_num' : $("#room_num").val(),
+                        'name' : $("#name").val(),
+                        'emirim_id' : $("#email").val(),
+                        'student_phone' : $("#student_phone").val(),
+                        'parent_phone' : $("#parent_phone").val()     
+                    },
+                    success: function(response, status, result) {
+                        alert("학생 정보 수정을 성공하였습니다.");
+                        location.href="auth.html";
+                    },
+                    error: function(xhr, status, error) {
+                        var errorMessage = xhr.status + ': ' + xhr.statusText
+                        alert('Error - ' + errorMessage);
+                    }
+                });   
+    }
     function getUserData(student_name) {
 
         $.ajax({
@@ -250,6 +304,8 @@
         });
 
     }
+    
+  
 </script>
 
 
