@@ -55,7 +55,11 @@
             var modal = document.getElementById('myModal');
             modal.style.display = "none";
         });
-
+        //수정 modal에서 취소 누르기
+        $("#modifie-cancle-btn").click(function() {
+            var modifieModal = document.getElementById('modifieModal');
+            modifieModal.style.display = "none";
+        });
 
         loadNotice();
     });
@@ -85,6 +89,7 @@
         });
     }
     
+    var typeStr = ['공지사항', '청소구역', '외박일지'];
 
     function addItem() {
         // alert("add~"+$("#notice_kind").val());
@@ -150,7 +155,8 @@
             },
             success: function(response, status, result) {
                 alert("게시글 등록에 성공하였습니다." + response);
-                sendPush(notice_kind.value);
+
+                sendPush(typeStr[notice_kind.value]);
                 
                 loadNotice();
                 var modal = document.getElementById('myModal');
@@ -167,8 +173,7 @@
 
     function makeListItem(id, type, title, wDate, dDate) {
 
-        //아니 이거 왜 대체,,,,가장 처음 개체는 그대로임,,????? 포기 gggg
-        var typeStr = ['공지사항', '청소구역', '외박일지'];
+        
         if (type == 0) {
             $("#bookmarkAdd").css('background-image', 'url(image/notice-bookmark.svg)');
         } else if (type == 1) {
@@ -202,6 +207,48 @@
 
     }
     function showDetail(id, type){
+        var modifieModal = document.getElementById('modifieModal');
+        modifieModal.style.display = "block";
+        $(".modifieModal").css('display', 'flex'); //modal이 가운데 뜨게
+
+      $("#notice-text").attr('readonly', 'readonly');
+        $("#notice-text").css('border', 'none');
+        $("#modifie-notice-box>#date-div>#w_time, #modifie-notice-box>#date-div>#d_time").css('border', '');
+        //이거 안 하면 아이디가 같아서 추가하기에서 청소구역을 선택하고 창을 닫아버리면 게시글을 클릭한 곳에서도
+        //border가 없어진당 
+        if (type == 0) {
+            $("#notice-text").val("공지사항");
+            $("#modifie-notice-box>#select_notice").css('display', 'block'); 
+            $("#modifie-notice-box>#select_clean").css('display', 'none');
+            $("#modifie-notice-box>#select_sleep").css('display', 'none');
+            
+            //modal  제목
+            $("#modifie-notice-box>div>#notice_title").val("");
+            $("#modifie-notice-box>div>#notice_title").removeAttr('readonly');
+            $("#modifie-notice-box>div>#notice_title").css('border', '');
+            
+        
+        } else if (type == 1) {
+            $("#notice-text").val("청소구역");
+            $("#modifie-notice-box>#select_notice").css('display', 'none');
+            $("#modifie-notice-box>#select_clean").css('display', 'block');
+            $("#modifie-notice-box>#select_sleep").css('display', 'none');
+
+            $("#modifie-notice-box>div>#notice_title").val("청소구역");
+            $("#modifie-notice-box>div>#notice_title").attr('readonly', 'readonly');
+            $("#modifie-notice-box>div>#notice_title").css('border', 'none');
+
+        } else if (type == 2) {
+            $("#notice-text").val("외박일지");
+            $("#modifie-notice-box>#select_notice").css('display', 'none');
+            $("#modifie-notice-box>#select_clean").css('display', 'none');
+            $("#modifie-notice-box>#select_sleep").css('display', 'block');
+
+            $("#modifie-notice-box>div>#notice_title").val("외박일지 작성");
+            $("#modifie-notice-box>div>#notice_title").attr('readonly', 'readonly');
+            $("#modifie-notice-box>div>#notice_title").css('border', 'none');
+        }
+
         // $.ajax({
         //     type: "GET",
         //     async: true,
@@ -417,6 +464,109 @@
                 </form>
             </div>
         </div>
+
+        <!--게시글 누르면 보여지는 modal-->
+        <div id="modifieModal" class="modifieModal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <form>
+                    <input type="text" id="notice-text">
+                    <div id="trashCan"></div>
+                    <div id="modifie-notice-box">
+                        <div>
+                            <input type="text" id="notice_title" style="float:left;" placeholder="제목을 입력해주세요" required>
+                        </div>
+
+                        <!-- 공지사항-->
+                        <div id="select_notice" style="display:block">
+                            <textarea type="text" id="notice_content"></textarea>
+                            <br>
+                        </div>
+                        <!--청소구역-->
+                        <div id="select_clean" style="display:none">
+                            <table id="dialogTable" border="0">
+                                <tr>
+                                    <td id="td-border" style="width: 40px; "></td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">세면실</td>
+                                    <td id="td-border" class="td-border-left" style="width: 100px; ">세탁실/탈의실</td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">샤워실</td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">복도</td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">휴게실</td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">계단</td>
+                                    <td id="td-border" class="td-border-left" style="width: 60px; ">화장실</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-border">4층</td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-0" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-1" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-2" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-3" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-4" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-5" class="inputBorder" required>
+                                    </td>
+                                    <td id="td-border" class="td-border-left">
+                                        <input type="text" id="4-clean-6" class="inputBorder" required>
+                                    </td id="td-border">
+                                </tr>
+                                <tr>
+                                    <td>5층</td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-0" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-1" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-2" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-3" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-4" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-5" class="inputBorder" required>
+                                    </td>
+                                    <td class="td-border-left">
+                                        <input type="text" id="5-clean-6" class="inputBorder" required>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <span id="guideMessage"></span>
+                        </div>
+                        <!--외박일지-->
+                        <div id="select_sleep" style="display:none">
+                            <input type="date" id="sleep_w_time" required> -
+                            <input type="date" id="sleep_d_time" required>
+                        </div>
+
+                        <div id="date-div">
+                            <input type="date" id="w_time" required> -
+                            <input type="date" id="d_time" required>
+                        </div>
+                        <div id="btn-div">
+                            <input type="button" value="저장" id="save-btn" onclick="">
+                            <input type="button" class="close" value="취소" id="modifie-cancle-btn">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--modal end-->
+
     </div>
     </div>
     <script>
@@ -461,62 +611,6 @@
         });
     </script>
 
-    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-          apiKey: "AIzaSyBeOIYhLda3c_vlbjZ6Lm-5mJV5nTYWabo",
-          authDomain: "ohdormitory-mirim222.firebaseapp.com",
-          databaseURL: "https://ohdormitory-mirim222.firebaseio.com",
-          projectId: "ohdormitory-mirim222",
-          storageBucket: "ohdormitory-mirim222.appspot.com",
-          messagingSenderId: "356871550536"
-        };
-        firebase.initializeApp(config);
-
-    
-    var http = getRequest();
-      function getRequest() {
-        try {
-          xhr = new XMLHttpRequest();
-        } catch (e) {
-          try {
-            var xhr = new ActiveXObject("Microsoft.XMLHTTP");
-          } catch (e) {
-            try {
-              var xhr = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-              alert("Your Browser is not Supported");
-            }
-          }
-        }
-        return xhr;
-      }
-
-function sendPush(notice_kind){
-      var url = "https://fcm.googleapis.com/fcm/send";
-        
-      http.open("POST", url, true);
-      http.setRequestHeader("Content-Type", "application/json");
-      http.setRequestHeader("Authorization", "key=AAAAUxcztkg:APA91bFw9sAW3Oz4Y5IzVeuwmkyxhuyj9-Zoe42DyWfTjvHcPf4JYWNYVyrIpnStGv_--Rhk4uMxGHaieVB6YqQ6GSk-K_jUCTr_nIEF0yQzGaOCCioB0aFDQMEiApyXGZj21EpqSVtR");
-        
-      // JSON.stringify 를 안써줄 경우 
-      http.send(JSON.stringify({
-        notification : {
-          // 알림 받을 기기에 보여줄 타이틀
-          title : "새로운 "+notice_kind+" 공지가 있습니다",
-          // 알림 받을 기기에 보여줄 바디
-          body : "앱을 열어 확인해주세요."
-        },
-        data : {
-          // 
-          id : "1"
-        },
-        to : "/topics/studentNotice"
-      }));
-}
-    
-    </script>
 </body>
 
 </html>

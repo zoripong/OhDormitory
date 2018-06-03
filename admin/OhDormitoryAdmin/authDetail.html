@@ -65,6 +65,7 @@
     function infoChange() {
        
         var changeBtn = document.getElementById("info-change");
+        var cancleBtn = document.getElementById("cancle-btn");
         if (check == false) { //정보 수정 버튼을 누른 경우
             before_emirim_id = $("#email").val();
             before_room_num = $("#room_num").val();
@@ -74,6 +75,7 @@
 
             changeBtn.value = "저장";
             changeBtn.style.width = "11%";
+            cancleBtn.style.display="block";
             $("input[name='room_num']").attr("readonly", false);
             $("input[name='name']").attr("readonly", false);
             $("input[name='email']").attr("readonly", false);
@@ -91,6 +93,7 @@
             
             changeBtn.value = "정보수정";
             changeBtn.style.width = "15%";
+            cancleBtn.style.display="none";
             $("input[name='room_num']").attr("readonly", true);
             $("input[name='name']").attr("readonly", true);
             $("input[name='email']").attr("readonly", true);
@@ -105,6 +108,7 @@
         }
     }
 
+<<<<<<< HEAD
     function saveBtn(before_emirim_id) {
         // TODO: confrim dialog
         if(before_emirim_id != $("#email").val()){
@@ -150,6 +154,14 @@
                         alert('Error - ' + errorMessage);
                     }
                 });   
+=======
+    function checkChange() {
+    }
+
+    function editCancle(){
+        check=true;
+        infoChange();
+>>>>>>> 283606fb4f6ad75807671118eab62f74bdf59378
     }
     function getUserData(student_name) {
 
@@ -325,16 +337,21 @@
 
                         <!--form에서 검색한 데이터로 교체-->
                         <form id="student-form">
-                            <input type="text" id="room_num" name="room_num" value="401" readonly="readonly">호
+                            <input type="text" id="room_num" name="room_num" value="401" readonly="readonly">
+                            <div id="ho">호</div>
                             <input type="text" id="name" name="name" value="이유리" readonly="readonly"><br/>
-                            <div class="label-text">이메일</div>
-                            <input type="email" id="email" name="email" value="wwhhoo0011@e-mirim.hs.kr" readonly="readonly">@e-mirim.hs.kr
+                            <div id="email-box">
+                                <div class="label-text">이메일</div>
+                                <input type="email" id="email" name="email" value="wwhhoo0011" readonly="readonly">
+                                <div id="mirim">@e-mirim.hs.kr</div>
+                            </div>
                             <div class="label-text">학생 연락처</div>
                             <input type="text" id="student_phone" name="student_phone" value="01033909696" readonly="readonly">
                             <br>
                             <div>
                                 <div class="label-text">학부모 연락처</div>
                                 <input type="text" id="parent_phone" name="parent_phone" value="01033909696" readonly="readonly">
+                                <input type="button" id="cancle-btn" value="취소" onclick="editCancle()" style="display: none;">
                                 <input type="button" id="info-change" value="정보수정" onclick="infoChange()">
                             </div>
                         </form>

@@ -25,7 +25,7 @@ html,body{
     cursor: pointer;
 }
 /* The Modal (background) */
-.modal {
+.modal, .modifieModal  {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -47,7 +47,20 @@ html,body{
     border-radius: 15px;
     box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.13);
 }
+#modifie-notice-box{
+    padding:0px 0.9em;
+}
+#modifie_title{
+    font-size: 1.05em;
+    padding: 0.2em;
+    margin-bottom: 1em;
+}
 #notice_kind{
+    font-size: 1.05em;
+    padding: 0.2em;
+    margin-bottom: 1em;
+}
+#notice-text{
     font-size: 1.05em;
     padding: 0.2em;
     margin-bottom: 1em;
@@ -68,6 +81,12 @@ html,body{
     height: 2.2em;
     float: right;
     background: url(../image/notice-bookmark.svg);
+}
+#trashCan{
+    width: 2.2em;
+    height: 2em;
+    float: right;
+    background: url(../image/trashCan.svg);
 }
 #bookmarkAdd{
     width: 2em;
@@ -90,8 +109,8 @@ html,body{
 #w_time, #d_time,#sleep_w_time, #sleep_d_time{
     font-size: 0.9em;
     padding: 0.2em;
-    width: 6em;
-    text-align: center;
+    width: 9.1em;
+    text-align: right;
 }
 #select_sleep{
     margin-bottom: 1em;
@@ -101,7 +120,7 @@ html,body{
     width: 100%;
     text-align: right;
 }
-#add-btn{
+#add-btn,#save-btn{
     width: 5em;
     background-color: #FCD465;
     border: #FCD465;
@@ -113,7 +132,7 @@ html,body{
     cursor: pointer;
     margin-right: 0.5em;
 }
-#cancle-btn{
+#cancle-btn,#modifie-cancle-btn{
     width: 5em;
     background-color: #FFF;
     border: 1px solid #FCD465;
