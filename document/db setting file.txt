@@ -15,15 +15,16 @@ CREATE TABLE user (
   password VARCHAR(50) NOT NULL,
   name VARCHAR(10) NOT NULL,
   room_num INT(3) unsigned NOT NULL,
+  student_phone VARCHAR(12) NOT NULL,
   parent_phone VARCHAR(12) NOT NULL,
   PRIMARY KEY (emirim_id)
 );
 
 INSERT INTO user
-VALUES ('test', 'test', 'test', 519, '01086138458');
+VALUES ('test', 'test', 'test', 519, '01086158458', '01086138458');
 
 INSERT INTO user
-VALUES ('test2', 'test2', 'test2', 520, '01086188458');
+VALUES ('test2', 'test2', 'test2', 501, '01086158458', '01086188458');
 
 CREATE TABLE sleepout_notice(
 	notice_id BIGINT(20) unsigned NOT NULL auto_increment,
@@ -54,18 +55,26 @@ CREATE TABLE notice(
 	PRIMARY KEY (notice_id)
 );
 
+#오늘 날짜보다 전인 게시글 삭제
+select notice_id from notice where date(d_time) < '2018-06-03';
+delete from notice where notice_id = 
+delete from basic_notice where notice_id = 
+delete from clean_notice where notice_id = 
+delete from sleepout_notice where notice_id = 
+
+
 # type (0 : basic_notice / 1 : clean_notice / 2 : sleepout_notice )
 
 INSERT INTO notice
-VALUES (NULL,'전원외박 안내', '0', '2018-05-15', '2018-05-15');
+VALUES (1,'전원외박 안내', '0', '2018-05-15', '2018-05-15');
 INSERT INTO notice
-VALUES (NULL,'청소구역', '1', '2018-05-15', '2018-05-15');
+VALUES (2,'청소구역', '1', '2018-05-15', '2018-05-15');
 INSERT INTO notice
-VALUES (NULL,'외박신청', '2', '2018-05-15', '2018-05-15');
+VALUES (3,'외박신청', '2', '2018-05-15', '2018-05-15');
 INSERT INTO notice
-VALUES (NULL,'호실 변경 안내', '0', '2018-05-15','2018-05-15');
+VALUES (4,'호실 변경 안내', '0', '2018-05-15','2018-05-15');
 INSERT INTO notice
-VALUES (NULL,'외박신청2', '2', '2018-05-15', '2018-05-15');
+VALUES (5,'외박신청2', '2', '2018-05-15', '2018-05-15');
 
 
 CREATE TABLE basic_notice(
@@ -74,8 +83,7 @@ CREATE TABLE basic_notice(
 	PRIMARY KEY (notice_id)
 );
 
-INSERT INTO basic_notice
-VALUES (1,'여러분 전부 나가세요..');
+INSERT INTO basic_notice VALUES (1,'여러분 전부 나가세요..');
 
 INSERT INTO basic_notice
 VALUES (4,'519호랑 518호랑 전부 바꾸세요.');

@@ -13,7 +13,18 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $("#header").load("header.html")
-    });
+    
+        $('#fileUploadImg').click(function(){
+            $('#fileUpload').trigger('click');
+        });
+
+        $('#fileDownloadImg').click(function(){
+            alert("파일을 다운로드 받고 있습니다..");
+        });
+    }); 
+
+    
+   
 </script>
 
 <body>
@@ -26,12 +37,20 @@
                     <button type="submit"><img id="searchIcon" src="image/searchIcon.svg" alt="web Icon" height="32" width="32"></button>
                 </form>
             </div>
-            <div id="add-file">
+            <div id="div-fileUpload" class="add-file">
                 <div>
-                    <img id="fileIcon" src="image/fileIcon.svg" alt="web Icon" height="132" width="132">
+                    <input type="file" id="fileUpload" style="display:none"  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>                     
+                    <img id="fileUploadImg" class="fileIcon" src="image/fileIcon.svg" alt="web Icon" height="132" width="132">
                     <p>파일 올리기</p>
                 </div>
             </div>
+            <div id="div-fileDownload" class="add-file">
+                <div>              
+                    <img id="fileDownloadImg" class="fileIcon" src="image/fileIcon.svg" alt="web Icon" height="132" width="132">
+                    <p>파일 내려받기</p>
+                </div>
+            </div>  
+            
         </div>
 
     </div>
