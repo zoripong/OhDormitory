@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $("#upload_file_exec").click(function(){
+                alert($("#fileUpload").val());
+                //https://stackoverflow.com/questions/11432511/save-csv-files-into-mysql-database/11432767
+            });
+
+        }); 
+    </script>
+</head>
+<body>
+
+
+    <!-- <form enctype="multipart/form-data" method="post" action="http://54.203.113.95/uploadUserCSV.php">
+    <table border="1">
+        <tr>
+            <td colspan="2" align="center"><strong>Import CSV file</strong></td>
+        </tr>
+        <tr>
+            <td align="center">CSV File:</td>
+            <td><input type="file" id="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input name="submit" type="submit" value="submit" id="submit"></td>
+        </tr>
+    </table>
+    </form> -->
+
+<form enctype="multipart/form-data" method="post" action="http://54.203.113.95/uploadUserCSV.php">
+    <table border="1">
+        <tr >
+        <td colspan="2" align="center"><strong>Import CSV file</strong></td>
+        </tr>
+        <tr>
+        <td align="center">CSV File:</td><td><input type="file" name="file" id="file"></td></tr>
+        <tr >
+        <td colspan="2" align="center"><input name="submit" type="submit" value="submit"></td>
+        </tr>
+    </table>
+</form>
+    <!-- <form>
+        <input type="file" id="fileUpload" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>                     
+        <button id="upload_file_exec">파일 올리기</button>
+    </form> -->
+</body>
+</html>
