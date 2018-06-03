@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="4826 487.571 149.429 149.429">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fcd465;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="그룹_61" data-name="그룹 61" transform="translate(3870 -20)">
+    <g id="그룹_62" data-name="그룹 62" transform="translate(200 22)">
+      <g id="baseline-insert_drive_file-24px" transform="translate(756 485.571)">
+        <path id="패스_12" data-name="패스 12" class="cls-1" d="M16.452,2A12.436,12.436,0,0,0,4.062,14.452L4,114.072a12.436,12.436,0,0,0,12.39,12.452H91.167a12.489,12.489,0,0,0,12.452-12.452V39.357L66.262,2ZM60.036,45.584V11.339L94.28,45.584Z" transform="translate(20.905 10.452)"/>
+        <path id="패스_13" data-name="패스 13" class="cls-2" d="M0,0H149.429V149.429H0Z"/>
+      </g>
+      <g id="upload-button" transform="translate(754.053 571.84)">
+        <g id="file-upload" transform="translate(38.25 0.565)">
+          <path id="패스_26" data-name="패스 26" class="cls-3" d="M47.71,0H61.9V14.19h9.46L54.805,30.746,38.25,14.19h9.46Z" transform="translate(-38.25 -1)"/>
+          <rect id="사각형_44" data-name="사각형 44" class="cls-3" width="33.111" height="4.73" transform="translate(0 34.865)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
