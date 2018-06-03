@@ -12,7 +12,7 @@ CREATE DATABASE ohdormitory;
 
 CREATE TABLE user (
   emirim_id VARCHAR(20) NOT NULL,
-  password VARCHAR(50) NOT NULL,
+  password VARCHAR(50) NOT NULL,	
   name VARCHAR(10) NOT NULL,
   room_num INT(3) unsigned NOT NULL,
   student_phone VARCHAR(12) NOT NULL,

@@ -113,7 +113,10 @@
             var isOK = confirm("계정이 수정되어 기존 데이터가 모두 초기화 됩니다. 그래도 수정하시겠습니까?");
             if(isOK){
                updateUser(before_emirim_id);
+
             }else{
+
+                //TODO: 취소할 겨웅 before로 대체
                 alert("취소되었습니다.");
             }
 
@@ -126,6 +129,13 @@
             }
         }
          
+    }
+    function Export(){
+        var conf = confirm("회원정보 파일을 다운받겠습니까?");
+        if(conf == true)
+        {
+            window.open("http://54.203.113.95/downloadUserCSV.php", '_blank');
+        }
     }
 
     function updateUser(before_emirim_id){
@@ -145,7 +155,8 @@
             },
             success: function(response, status, result) {
                 alert("학생 정보 수정을 성공하였습니다.");
-                location.href="auth.html";
+                Export();
+                
             },
             error: function(xhr, status, error) {
                 var errorMessage = xhr.status + ': ' + xhr.statusText
@@ -162,6 +173,7 @@
         check=true;
         infoChange();
     }
+
     function getUserData(student_name) {
 
         $.ajax({
@@ -172,7 +184,7 @@
             success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
                 var user_list = JSON.parse(JSON.stringify(response.user));
-
+                //TODO: 한명도 없는 경우 다시 auth.html
                 //FIXME: 주석 풀어랑
                 /*
                     if (user_list.length >= 2) {

@@ -202,31 +202,72 @@
             boxShadow: "0px 3px 11px rgba(0, 0, 0, 0.13)",
             marginBottom: "1em"
         });
-
-
-
     }
+    
+    var detail_title = "";
+    var detail_w_time = "";
+    var detail_d_time = "";
+    var detail = new Array();
+
+
     function showDetail(id, type){
         var modifieModal = document.getElementById('modifieModal');
         modifieModal.style.display = "block";
         $(".modifieModal").css('display', 'flex'); //modal이 가운데 뜨게
 
-      $("#notice-text").attr('readonly', 'readonly');
+        $("#notice-text").attr('readonly', 'readonly');
         $("#notice-text").css('border', 'none');
         $("#modifie-notice-box>#date-div>#w_time, #modifie-notice-box>#date-div>#d_time").css('border', '');
         //이거 안 하면 아이디가 같아서 추가하기에서 청소구역을 선택하고 창을 닫아버리면 게시글을 클릭한 곳에서도
+        
+       
+        alert(id);
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "http://54.203.113.95/getNotice.php",
+            dataType: "json",
+            success: function(response, status, result) {
+                var response = JSON.parse(JSON.stringify(response));
+                var notice_list = JSON.parse(JSON.stringify(response.notice));
+                
+
+                detail_title = notice_list[id].title;
+                detail_w_time = notice_list[id].w_time;
+                detail_d_time = notice_list[id].d_time;
+
+                detail = notice_list[id].detail;
+                modifyDetail(type);
+
+            }
+        });
+    }
+
+    function modifyDetail(type){
+        alert(type);
+        // 일반 공지
+        // alert();
+
+        // 청소 구역
+        // alert(detail);
+
+        // 외박 일지
+        // alert(detail['sleep_w_time']);
+        // alert(detail['sleep_d_time']);
+        // alert(detail['application_deadline']);
         //border가 없어진당 
+        //modal  제목
+        $("#modifie-notice-box>div>#notice_title").val(detail_title);
+            $("#modifie-notice-box>div>#notice_title").attr('readonly', 'readonly');
+            $("#modifie-notice-box>div>#notice_title").css('border', 'none');
+           
         if (type == 0) {
             $("#notice-text").val("공지사항");
             $("#modifie-notice-box>#select_notice").css('display', 'block'); 
             $("#modifie-notice-box>#select_clean").css('display', 'none');
             $("#modifie-notice-box>#select_sleep").css('display', 'none');
             
-            //modal  제목
-            $("#modifie-notice-box>div>#notice_title").val("");
-            $("#modifie-notice-box>div>#notice_title").removeAttr('readonly');
-            $("#modifie-notice-box>div>#notice_title").css('border', '');
-            
+            $("#modifie-notice-box>div>#notice_content").val(detail['content']);
         
         } else if (type == 1) {
             $("#notice-text").val("청소구역");
@@ -234,41 +275,22 @@
             $("#modifie-notice-box>#select_clean").css('display', 'block');
             $("#modifie-notice-box>#select_sleep").css('display', 'none');
 
-            $("#modifie-notice-box>div>#notice_title").val("청소구역");
-            $("#modifie-notice-box>div>#notice_title").attr('readonly', 'readonly');
-            $("#modifie-notice-box>div>#notice_title").css('border', 'none');
+
+            var index = 0;
+            for(var i = 4; i<=5; i++){
+                for(var j = 0; j<7; j++){
+                    alert(detail[index++]);
+                    $("#modifie-notice-box>#select_clean>#dialogTable>tr>#"+i+"-clean-"+j).val(detail[index++]);
+                }
+            }
 
         } else if (type == 2) {
             $("#notice-text").val("외박일지");
             $("#modifie-notice-box>#select_notice").css('display', 'none');
             $("#modifie-notice-box>#select_clean").css('display', 'none');
             $("#modifie-notice-box>#select_sleep").css('display', 'block');
-
-            $("#modifie-notice-box>div>#notice_title").val("외박일지 작성");
-            $("#modifie-notice-box>div>#notice_title").attr('readonly', 'readonly');
-            $("#modifie-notice-box>div>#notice_title").css('border', 'none');
+            $("#modifie-notice-box>#sleep_w_time").val("2018-06-06");
         }
-
-        // $.ajax({
-        //     type: "GET",
-        //     async: true,
-        //     url: "http://54.203.113.95/getNotice.php",
-        //     dataType: "json",
-        //     success: function(response, status, result) {
-        //         var response = JSON.parse(JSON.stringify(response));
-        //         var notice_list = JSON.parse(JSON.stringify(response.notice));
-
-        //         var keys = [];
-        //         for(var k in notice_list) keys.push(k);
-            
-
-        //         for(var i = 0; i<keys.length; i++){
-        //             // alert(keys[i]);
-        //             makeListItem(notice_list[keys[i]].notice_id, notice_list[keys[i]].type, notice_list[keys[i]].title, notice_list[keys[i]].w_time, notice_list[keys[i]].d_time);
-        //         }
-                
-        //     }
-        // });
     }
 
     function removeItem(id, type){
