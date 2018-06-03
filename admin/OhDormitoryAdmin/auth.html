@@ -44,21 +44,22 @@
                     <button type="submit"><img id="searchIcon" src="image/searchIcon.svg" alt="web Icon" height="32" width="32"></button>
                 </form>
             </div>
-            <div id="div-fileUpload" class="add-file">
-                <div>
-                    <input type="file" id="fileUpload" style="display:none"  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>                     
-                    <img id="fileUploadImg" class="fileIcon" src="image/fileIcon.svg" alt="web Icon" height="132" width="132">
-                    <p>파일 올리기</p>
+            <div id="file-box">
+                <div id="div-fileUpload" class="add-file">
+                    <div>
+                        <input type="file" id="fileUpload" style="display:none"  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>                     
+                        <img id="fileUploadImg" class="fileIcon" src="image/upload.svg" alt="web Icon" height="132" width="132">
+                        <p>파일 올리기</p>
+                    </div>
                 </div>
+                <div id="div-fileDownload" class="add-file">
+                    <div> 
+                    <!-- //downloadUserCSV.php -->
+                        <img onclick="Export()" id="fileDownloadImg" class="fileIcon" src="image/download.svg" alt="web Icon" height="132" width="132">
+                        <p>파일 내려받기</p>
+                    </div>
+                </div>  
             </div>
-            <div id="div-fileDownload" class="add-file">
-                <div> 
-                <!-- //downloadUserCSV.php -->
-                    <img onclick="Export()" id="fileDownloadImg" class="fileIcon" src="image/fileIcon.svg" alt="web Icon" height="132" width="132">
-                    <p>파일 내려받기</p>
-                </div>
-            </div>  
-            
         </div>
 
     </div>
