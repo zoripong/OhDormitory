@@ -62,6 +62,7 @@
 
     // 게시판 목록 불러오기
     function loadNotice() {
+        $("#notice-add").empty();
         $.ajax({
             type: "GET",
             async: true,
@@ -77,7 +78,7 @@
 
                 for(var i = 0; i<keys.length; i++){
                     // alert(keys[i]);
-                    makeListItem(notice_list[keys[i]].type, notice_list[keys[i]].title, notice_list[keys[i]].w_time, notice_list[keys[i]].d_time);
+                    makeListItem(notice_list[keys[i]].notice_id, notice_list[keys[i]].type, notice_list[keys[i]].title, notice_list[keys[i]].w_time, notice_list[keys[i]].d_time);
                 }
                 
             }
@@ -150,7 +151,7 @@
             success: function(response, status, result) {
                 alert("게시글 등록에 성공하였습니다." + response);
                 sendPush(notice_kind.value);
-                $("#notice-add").empty();
+                
                 loadNotice();
                 var modal = document.getElementById('myModal');
                 modal.style.display = "none";
@@ -164,7 +165,7 @@
 
     }
 
-    function makeListItem(type, title, wDate, dDate) {
+    function makeListItem(id, type, title, wDate, dDate) {
 
         //아니 이거 왜 대체,,,,가장 처음 개체는 그대로임,,????? 포기 gggg
         var typeStr = ['공지사항', '청소구역', '외박일지'];
@@ -176,7 +177,8 @@
             $("#bookmarkAdd").css('background-image', 'url(image/out-bookmark.svg)');
         }
 
-        var e = $('<div>' + "<div style='display:inline;'>" + typeStr[type] + "</div>" +
+        
+        var e = $('<div onclick="showDetail(\''+id+'\', \''+type+'\')">' + "<div style='display:inline;'>" + typeStr[type] + "</div>" +
             "<div id='bookmarkAdd'></div>" +
             "<div style='margin-left:1em;margin-top:0.5em;font-size:1.1em;'>" + title + "</div>" +
             "<div style='text-align:right; font-size:0.9em;'>" + wDate + " - " + dDate + "</div>" +
@@ -199,7 +201,53 @@
 
 
     }
+    function showDetail(id, type){
+        // $.ajax({
+        //     type: "GET",
+        //     async: true,
+        //     url: "http://54.203.113.95/getNotice.php",
+        //     dataType: "json",
+        //     success: function(response, status, result) {
+        //         var response = JSON.parse(JSON.stringify(response));
+        //         var notice_list = JSON.parse(JSON.stringify(response.notice));
 
+        //         var keys = [];
+        //         for(var k in notice_list) keys.push(k);
+            
+
+        //         for(var i = 0; i<keys.length; i++){
+        //             // alert(keys[i]);
+        //             makeListItem(notice_list[keys[i]].notice_id, notice_list[keys[i]].type, notice_list[keys[i]].title, notice_list[keys[i]].w_time, notice_list[keys[i]].d_time);
+        //         }
+                
+        //     }
+        // });
+    }
+
+    function removeItem(id, type){
+        // alert(type+"/"+title+"/"+wDate+"/"+dDate);
+        alert("remove.." + id + "/" + type);
+
+        $.ajax({
+            type: "POST",
+            async: true,
+            url: "http://54.203.113.95/deleteNotice.php",
+            dataType: "text",
+            data: {
+                'id': id,
+                'type' : type
+            },
+            success: function(response, status, result) {
+                alert("게시판 삭제에 성공하였습니다."+response);
+                loadNotice();
+            },
+            error: function(xhr, status, error) {
+                var errorMessage = xhr.status + ': ' + xhr.statusText
+                alert('Error - ' + errorMessage);
+            }
+        });
+
+    }
 
     // Initialize Firebase
     var config = {
