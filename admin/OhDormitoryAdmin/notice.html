@@ -220,8 +220,15 @@
         $("#modifie-notice-box>#date-div>#w_time, #modifie-notice-box>#date-div>#d_time").css('border', '');
         //이거 안 하면 아이디가 같아서 추가하기에서 청소구역을 선택하고 창을 닫아버리면 게시글을 클릭한 곳에서도
         
-       
-        alert(id);
+       $("#trashCan").click(function(){
+           removeItem(id, type);
+            modifieModal.style.display = "none";
+       });
+
+       $("#modify_save_btn").click(function(){
+           updateNotice(id, type);
+       });
+
         $.ajax({
             type: "GET",
             async: true,
@@ -243,6 +250,56 @@
         });
     }
 
+    function updateNotice(id, type){
+        var modify_clean_array = Array();
+        if(type == 1){
+            for(var i = 4; i<=5; i++){
+                for(var j = 0; j<7; j++){
+                    modify_clean_array.push($("#modify_"+i+"-clean-"+j).val());
+                }
+            }
+       }
+
+       var clean_json = JSON.stringify(modify_clean_array);
+        $.ajax({
+            type: "POST",
+            /*FIXME: POST -> PUT */
+            async: true,
+            url: "http://54.203.113.95/updateNotice.php",
+            dataType: "text",
+            data: {
+                // notice
+                "notice_id" : id,
+                "type" : type,
+                "title" : $("#modify_notice_title").val(),
+                "w_time" : $("#modify_w_time").val(),
+                "d_time" : $("#modify_d_time").val(),
+                
+                // basic_notice
+                "content" : $("#modify_notice_content").val(),
+
+                //clean_notice TODO: convert to Array
+                "clean_area" : clean_json,
+
+                //sleepout_notice
+                "sleep_w_time" : $("#modify_sleep_w_time").val(),
+                "sleep_d_time" : $("#modify_sleep_d_time").val()
+            },
+            success: function(response, status, result) {
+                alert("게시글 수정에 성공하였습니다." + response);
+                // sendPush(typeStr[notice_kind.value]);
+                loadNotice();
+                var modal = document.getElementById('modifieModal');
+                modal.style.display = "none";
+            },
+            error: function(xhr, status, error) {
+                var errorMessage = xhr.status + ': ' + xhr.statusText
+                alert('Error - ' + errorMessage);
+            }
+        });
+
+    }
+
     function modifyDetail(type){
         alert(type);
         // 일반 공지
@@ -258,9 +315,11 @@
         //border가 없어진당 
         //modal  제목
         $("#modify_notice_title").val(detail_title);
-            $("#modify_notice_title").attr('readonly', 'readonly');
-            $("#modify_notice_title").css('border', 'none');
-           
+        $("#modify_notice_title").attr('readonly', 'readonly');
+        $("#modify_notice_title").css('border', 'none');
+        $("#modify_w_time").val(detail_w_time);
+        $("#modify_d_time").val(detail_d_time);
+
         if (type == 0) {
             $("#notice-text").val("공지사항");
             $("#modify_select_notice").css('display', 'block'); 
@@ -279,7 +338,6 @@
             var index = 0;
             for(var i = 4; i<=5; i++){
                 for(var j = 0; j<7; j++){
-                    //alert(detail[index++]);
                     $("#modify_"+i+"-clean-"+j).val(detail[index++]);
                 }
             }
@@ -289,7 +347,8 @@
             $("#modify_select_notice").css('display', 'none');
             $("#modify_select_clean").css('display', 'none');
             $("#modify_select_sleep").css('display', 'block');
-            $("#modify_sleep_w_time").val("2018-06-06");
+            $("#modify_sleep_w_time").val(detail['sleep_w_time']);
+            $("#modify_sleep_d_time").val(detail['sleep_d_time']);
         }
     }
 
@@ -580,7 +639,7 @@
                             <input type="date" id="modify_d_time" required>
                         </div>
                         <div id="btn-div">
-                            <input type="button" value="저장" id="save-btn" onclick="">
+                            <input type="button" value="저장" id="modify_save_btn" onclick="">
                             <input type="button" class="close" value="취소" id="modifie-cancle-btn">
                         </div>
                     </div>
@@ -629,6 +688,47 @@
                     number = 501;
                 $("#5-clean-" + i).removeAttr('disabled');
                 $("#5-clean-" + i).val(number);
+            }
+        });
+
+
+        for (var i = 1; i < 7; i++) {
+            $("#modify_4-clean-" + i).attr('disabled', 'disabled');
+            $("#modify_5-clean-" + i).attr('disabled', 'disabled');
+        }
+
+        $("#modify_guideMessage").html("첫 번째 구역을 설정하시면 자동으로 계산됩니다.");
+        $("#modify_guideMessage").css('font-size', '0.65em');
+
+        $("#modify_4-clean-0").change(function() {
+            if ($("#modify_4-clean-0").val() < 401 || $("#modify_4-clean-0").val() > 418) {
+                alert("호수를 잘못 입력하셨습니다.");
+                return;
+            }
+            $("#modify_guideMessage").html("");
+            var number = parseInt($("#modify_4-clean-0").val());
+            for (var i = 1; i < 7; i++) {
+                number++;
+                if (number > 418)
+                    number = 401;
+                $("#modify_4-clean-" + i).removeAttr('disabled');
+                $("#modify_4-clean-" + i).val(number);
+            }
+        });
+
+        $("#modify_5-clean-0").change(function() {
+            if ($("#modify_5-clean-0").val() < 501 || $("#modify_5-clean-0").val() > 519) {
+                alert("호수를 잘못 입력하셨습니다.");
+                return;
+            }
+            $("#modify_guideMessage").html("");
+            var number = parseInt($("#modify_5-clean-0").val());
+            for (var i = 1; i < 7; i++) {
+                number++;
+                if (number > 519)
+                    number = 501;
+                $("#modify_5-clean-" + i).removeAttr('disabled');
+                $("#modify_5-clean-" + i).val(number);
             }
         });
     </script>
