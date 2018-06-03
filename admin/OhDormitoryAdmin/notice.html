@@ -269,6 +269,7 @@
         firebase.initializeApp(config);
 </script>
 <script>
+    
     var http = getRequest();
       function getRequest() {
         try {
@@ -286,6 +287,7 @@
         }
         return xhr;
       }
+
 function sendPush(notice_kind){
       var url = "https://fcm.googleapis.com/fcm/send";
         

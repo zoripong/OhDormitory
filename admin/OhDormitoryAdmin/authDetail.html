@@ -308,14 +308,16 @@
 
     <!--
         * NOTE
-
         http://54.203.113.95/getUser.php
-        http://54.203.113.95/getScore.php
         http://54.203.113.95/getUserScore.php
+        http://54.203.113.95/getScore.php
+        
+       
 
-        1. json 파싱하고 해당하는 객체 저장하기
-        2. 상벌점 내역 뿌리기
-        3. 상벌점 추가시 insert
+        * 1. user json 파싱하고 해당하는 객체 저장하기       GET {domain}/api/users/{name}
+        * 2. 상벌점 내역 뿌리기                             GET {domain}/api/users/{emirim_id}/scores/
+        + 3. 상벌점 추가시 insert                           PUT {domain}/api/users/{emirim_id}/scores/{score_no}
+        * 4. 상벌점 목록 가져오기                           GET {domain}/api/data/scores
 
         [?]
         1. 정보 수정 가능하게 할지 여부 정하기
