@@ -11,11 +11,21 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+    var file_name = "";
     $(document).ready(function() {
         $("#header").load("header.html")
     
         $('#fileUploadImg').click(function(){
+            
             $('#fileUpload').trigger('click');
+            
+        });
+
+        $("#fileUpload").change(function(){
+            var split_file_name = $("#fileUpload").val().split("\\");
+            file_name = $("#fileUpload").val();
+            $("#file_name").html(split_file_name[split_file_name.length-1]);
+            alert("change");
         });
 
         $('#fileDownloadImg').click(function(){
@@ -49,8 +59,11 @@
                     <div>
                         <input type="file" id="fileUpload" style="display:none"  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>                     
                         <img id="fileUploadImg" class="fileIcon" src="image/upload.svg" alt="web Icon" height="132" width="132">
-                        <p>파일 올리기</p>
+                        <p>업로드 파일 선택</p>
+                        
                     </div>
+                    <p id="file_name">파일 이름 : excel </p>
+                    <button id="upload_file_exec">파일 올리기</button>
                 </div>
                 <div id="div-fileDownload" class="add-file">
                     <div> 
