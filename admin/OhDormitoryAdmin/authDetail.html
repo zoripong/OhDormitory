@@ -108,9 +108,7 @@
         }
     }
 
-<<<<<<< HEAD
     function saveBtn(before_emirim_id) {
-        // TODO: confrim dialog
         if(before_emirim_id != $("#email").val()){
             var isOK = confirm("계정이 수정되어 기존 데이터가 모두 초기화 됩니다. 그래도 수정하시겠습니까?");
             if(isOK){
@@ -132,36 +130,37 @@
 
     function updateUser(before_emirim_id){
          $.ajax({
-                    type: "POST",
-                    /* FIXME: POST -> PUT */
-                    async: true,
-                    url: "http://54.203.113.95/updateUser.php",
-                    dataType: "text",
-                    data: {
-                        'before_emirim_id' : before_emirim_id,
-                        'room_num' : $("#room_num").val(),
-                        'name' : $("#name").val(),
-                        'emirim_id' : $("#email").val(),
-                        'student_phone' : $("#student_phone").val(),
-                        'parent_phone' : $("#parent_phone").val()     
-                    },
-                    success: function(response, status, result) {
-                        alert("학생 정보 수정을 성공하였습니다.");
-                        location.href="auth.html";
-                    },
-                    error: function(xhr, status, error) {
-                        var errorMessage = xhr.status + ': ' + xhr.statusText
-                        alert('Error - ' + errorMessage);
-                    }
-                });   
-=======
+            type: "POST",
+            /* FIXME: POST -> PUT */
+            async: true,
+            url: "http://54.203.113.95/updateUser.php",
+            dataType: "text",
+            data: {
+                'before_emirim_id' : before_emirim_id,
+                'room_num' : $("#room_num").val(),
+                'name' : $("#name").val(),
+                'emirim_id' : $("#email").val(),
+                'student_phone' : $("#student_phone").val(),
+                'parent_phone' : $("#parent_phone").val()     
+            },
+            success: function(response, status, result) {
+                alert("학생 정보 수정을 성공하였습니다.");
+                location.href="auth.html";
+            },
+            error: function(xhr, status, error) {
+                var errorMessage = xhr.status + ': ' + xhr.statusText
+                alert('Error - ' + errorMessage);
+            }
+        });
+
+    }
+
     function checkChange() {
     }
 
     function editCancle(){
         check=true;
         infoChange();
->>>>>>> 283606fb4f6ad75807671118eab62f74bdf59378
     }
     function getUserData(student_name) {
 
