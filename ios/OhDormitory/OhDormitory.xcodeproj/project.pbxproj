@@ -1,0 +1,561 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F202889D20C8E6B3000E33FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202889C20C8E6B3000E33FA /* AppDelegate.swift */; };
+		F202889F20C8E6B3000E33FA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202889E20C8E6B3000E33FA /* FirstViewController.swift */; };
+		F20288A120C8E6B3000E33FA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288A020C8E6B3000E33FA /* SecondViewController.swift */; };
+		F20288A420C8E6B3000E33FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20288A220C8E6B3000E33FA /* Main.storyboard */; };
+		F20288A620C8E6B3000E33FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20288A520C8E6B3000E33FA /* Assets.xcassets */; };
+		F20288A920C8E6B3000E33FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */; };
+		F20288B420C8E6B3000E33FA /* OhDormitoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288B320C8E6B3000E33FA /* OhDormitoryTests.swift */; };
+		F20288BF20C8E6B3000E33FA /* OhDormitoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F20288B020C8E6B3000E33FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F202889120C8E6B3000E33FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F202889820C8E6B3000E33FA;
+			remoteInfo = OhDormitory;
+		};
+		F20288BB20C8E6B3000E33FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F202889120C8E6B3000E33FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F202889820C8E6B3000E33FA;
+			remoteInfo = OhDormitory;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F202889920C8E6B3000E33FA /* OhDormitory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OhDormitory.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F202889C20C8E6B3000E33FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F202889E20C8E6B3000E33FA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		F20288A020C8E6B3000E33FA /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		F20288A320C8E6B3000E33FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F20288A520C8E6B3000E33FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F20288A820C8E6B3000E33FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F20288AA20C8E6B3000E33FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F20288AF20C8E6B3000E33FA /* OhDormitoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OhDormitoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F20288B320C8E6B3000E33FA /* OhDormitoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OhDormitoryTests.swift; sourceTree = "<group>"; };
+		F20288B520C8E6B3000E33FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F20288BA20C8E6B3000E33FA /* OhDormitoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OhDormitoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OhDormitoryUITests.swift; sourceTree = "<group>"; };
+		F20288C020C8E6B3000E33FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F202889620C8E6B3000E33FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20288AC20C8E6B3000E33FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20288B720C8E6B3000E33FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F202889020C8E6B3000E33FA = {
+			isa = PBXGroup;
+			children = (
+				F202889B20C8E6B3000E33FA /* OhDormitory */,
+				F20288B220C8E6B3000E33FA /* OhDormitoryTests */,
+				F20288BD20C8E6B3000E33FA /* OhDormitoryUITests */,
+				F202889A20C8E6B3000E33FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F202889A20C8E6B3000E33FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F202889920C8E6B3000E33FA /* OhDormitory.app */,
+				F20288AF20C8E6B3000E33FA /* OhDormitoryTests.xctest */,
+				F20288BA20C8E6B3000E33FA /* OhDormitoryUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F202889B20C8E6B3000E33FA /* OhDormitory */ = {
+			isa = PBXGroup;
+			children = (
+				F202889C20C8E6B3000E33FA /* AppDelegate.swift */,
+				F202889E20C8E6B3000E33FA /* FirstViewController.swift */,
+				F20288A020C8E6B3000E33FA /* SecondViewController.swift */,
+				F20288A220C8E6B3000E33FA /* Main.storyboard */,
+				F20288A520C8E6B3000E33FA /* Assets.xcassets */,
+				F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */,
+				F20288AA20C8E6B3000E33FA /* Info.plist */,
+			);
+			path = OhDormitory;
+			sourceTree = "<group>";
+		};
+		F20288B220C8E6B3000E33FA /* OhDormitoryTests */ = {
+			isa = PBXGroup;
+			children = (
+				F20288B320C8E6B3000E33FA /* OhDormitoryTests.swift */,
+				F20288B520C8E6B3000E33FA /* Info.plist */,
+			);
+			path = OhDormitoryTests;
+			sourceTree = "<group>";
+		};
+		F20288BD20C8E6B3000E33FA /* OhDormitoryUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */,
+				F20288C020C8E6B3000E33FA /* Info.plist */,
+			);
+			path = OhDormitoryUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F202889820C8E6B3000E33FA /* OhDormitory */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F20288C320C8E6B3000E33FA /* Build configuration list for PBXNativeTarget "OhDormitory" */;
+			buildPhases = (
+				F202889520C8E6B3000E33FA /* Sources */,
+				F202889620C8E6B3000E33FA /* Frameworks */,
+				F202889720C8E6B3000E33FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OhDormitory;
+			productName = OhDormitory;
+			productReference = F202889920C8E6B3000E33FA /* OhDormitory.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F20288AE20C8E6B3000E33FA /* OhDormitoryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F20288C620C8E6B3000E33FA /* Build configuration list for PBXNativeTarget "OhDormitoryTests" */;
+			buildPhases = (
+				F20288AB20C8E6B3000E33FA /* Sources */,
+				F20288AC20C8E6B3000E33FA /* Frameworks */,
+				F20288AD20C8E6B3000E33FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F20288B120C8E6B3000E33FA /* PBXTargetDependency */,
+			);
+			name = OhDormitoryTests;
+			productName = OhDormitoryTests;
+			productReference = F20288AF20C8E6B3000E33FA /* OhDormitoryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F20288B920C8E6B3000E33FA /* OhDormitoryUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F20288C920C8E6B3000E33FA /* Build configuration list for PBXNativeTarget "OhDormitoryUITests" */;
+			buildPhases = (
+				F20288B620C8E6B3000E33FA /* Sources */,
+				F20288B720C8E6B3000E33FA /* Frameworks */,
+				F20288B820C8E6B3000E33FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F20288BC20C8E6B3000E33FA /* PBXTargetDependency */,
+			);
+			name = OhDormitoryUITests;
+			productName = OhDormitoryUITests;
+			productReference = F20288BA20C8E6B3000E33FA /* OhDormitoryUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F202889120C8E6B3000E33FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = doori;
+				TargetAttributes = {
+					F202889820C8E6B3000E33FA = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					F20288AE20C8E6B3000E33FA = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F202889820C8E6B3000E33FA;
+					};
+					F20288B920C8E6B3000E33FA = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F202889820C8E6B3000E33FA;
+					};
+				};
+			};
+			buildConfigurationList = F202889420C8E6B3000E33FA /* Build configuration list for PBXProject "OhDormitory" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F202889020C8E6B3000E33FA;
+			productRefGroup = F202889A20C8E6B3000E33FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F202889820C8E6B3000E33FA /* OhDormitory */,
+				F20288AE20C8E6B3000E33FA /* OhDormitoryTests */,
+				F20288B920C8E6B3000E33FA /* OhDormitoryUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F202889720C8E6B3000E33FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20288A920C8E6B3000E33FA /* LaunchScreen.storyboard in Resources */,
+				F20288A620C8E6B3000E33FA /* Assets.xcassets in Resources */,
+				F20288A420C8E6B3000E33FA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20288AD20C8E6B3000E33FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20288B820C8E6B3000E33FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F202889520C8E6B3000E33FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20288A120C8E6B3000E33FA /* SecondViewController.swift in Sources */,
+				F202889D20C8E6B3000E33FA /* AppDelegate.swift in Sources */,
+				F202889F20C8E6B3000E33FA /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20288AB20C8E6B3000E33FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20288B420C8E6B3000E33FA /* OhDormitoryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20288B620C8E6B3000E33FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20288BF20C8E6B3000E33FA /* OhDormitoryUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F20288B120C8E6B3000E33FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F202889820C8E6B3000E33FA /* OhDormitory */;
+			targetProxy = F20288B020C8E6B3000E33FA /* PBXContainerItemProxy */;
+		};
+		F20288BC20C8E6B3000E33FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F202889820C8E6B3000E33FA /* OhDormitory */;
+			targetProxy = F20288BB20C8E6B3000E33FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F20288A220C8E6B3000E33FA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F20288A320C8E6B3000E33FA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F20288A820C8E6B3000E33FA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F20288C120C8E6B3000E33FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F20288C220C8E6B3000E33FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F20288C420C8E6B3000E33FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OhDormitory/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ririri3.OhDormitory;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F20288C520C8E6B3000E33FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OhDormitory/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ririri3.OhDormitory;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F20288C720C8E6B3000E33FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OhDormitoryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ririri3.OhDormitoryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OhDormitory.app/OhDormitory";
+			};
+			name = Debug;
+		};
+		F20288C820C8E6B3000E33FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OhDormitoryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ririri3.OhDormitoryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OhDormitory.app/OhDormitory";
+			};
+			name = Release;
+		};
+		F20288CA20C8E6B3000E33FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OhDormitoryUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ririri3.OhDormitoryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OhDormitory;
+			};
+			name = Debug;
+		};
+		F20288CB20C8E6B3000E33FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OhDormitoryUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ririri3.OhDormitoryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OhDormitory;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F202889420C8E6B3000E33FA /* Build configuration list for PBXProject "OhDormitory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F20288C120C8E6B3000E33FA /* Debug */,
+				F20288C220C8E6B3000E33FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F20288C320C8E6B3000E33FA /* Build configuration list for PBXNativeTarget "OhDormitory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F20288C420C8E6B3000E33FA /* Debug */,
+				F20288C520C8E6B3000E33FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F20288C620C8E6B3000E33FA /* Build configuration list for PBXNativeTarget "OhDormitoryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F20288C720C8E6B3000E33FA /* Debug */,
+				F20288C820C8E6B3000E33FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F20288C920C8E6B3000E33FA /* Build configuration list for PBXNativeTarget "OhDormitoryUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F20288CA20C8E6B3000E33FA /* Debug */,
+				F20288CB20C8E6B3000E33FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F202889120C8E6B3000E33FA /* Project object */;
+}
