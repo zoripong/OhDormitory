@@ -40,6 +40,8 @@
 		F20288A920C8E6B3000E33FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */; };
 		F20288B420C8E6B3000E33FA /* OhDormitoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288B320C8E6B3000E33FA /* OhDormitoryTests.swift */; };
 		F20288BF20C8E6B3000E33FA /* OhDormitoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */; };
+		F29E51E320C9EF4800316003 /* SleepoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E51E120C9EF4800316003 /* SleepoutViewController.swift */; };
+		F29E51E420C9EF4800316003 /* SleepoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29E51E220C9EF4800316003 /* SleepoutViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		F20288BA20C8E6B3000E33FA /* OhDormitoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OhDormitoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OhDormitoryUITests.swift; sourceTree = "<group>"; };
 		F20288C020C8E6B3000E33FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F29E51E120C9EF4800316003 /* SleepoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepoutViewController.swift; sourceTree = "<group>"; };
+		F29E51E220C9EF4800316003 /* SleepoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SleepoutViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +188,8 @@
 				F202889C20C8E6B3000E33FA /* AppDelegate.swift */,
 				F202889E20C8E6B3000E33FA /* FirstViewController.swift */,
 				F20288A020C8E6B3000E33FA /* SecondViewController.swift */,
+				F29E51E120C9EF4800316003 /* SleepoutViewController.swift */,
+				F29E51E220C9EF4800316003 /* SleepoutViewController.xib */,
 				F20288A220C8E6B3000E33FA /* Main.storyboard */,
 				3FFE089020C9428A0090FC8A /* LogInViewController.swift */,
 				F20288A520C8E6B3000E33FA /* Assets.xcassets */,
@@ -329,6 +335,7 @@
 				3FFE088420C9378B0090FC8A /* settings_icon.png in Resources */,
 				3FFE087820C9378B0090FC8A /* back.png in Resources */,
 				3FFE088020C9378B0090FC8A /* header.jpg in Resources */,
+				F29E51E420C9EF4800316003 /* SleepoutViewController.xib in Resources */,
 				3FFE088E20C9379E0090FC8A /* tab2.png in Resources */,
 				3FFE087920C9378B0090FC8A /* dialog.png in Resources */,
 				3F3C48F020C993FB00A6C610 /* login.png in Resources */,
@@ -372,6 +379,7 @@
 				3FFE089120C9428A0090FC8A /* LogInViewController.swift in Sources */,
 				F20288A120C8E6B3000E33FA /* SecondViewController.swift in Sources */,
 				F202889D20C8E6B3000E33FA /* AppDelegate.swift in Sources */,
+				F29E51E320C9EF4800316003 /* SleepoutViewController.swift in Sources */,
 				F202889F20C8E6B3000E33FA /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
