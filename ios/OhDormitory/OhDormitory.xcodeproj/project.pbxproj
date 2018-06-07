@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F3C48F020C993FB00A6C610 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F3C48EF20C993FB00A6C610 /* login.png */; };
 		3FFE087320C9378B0090FC8A /* popup_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE086020C937890090FC8A /* popup_bg.png */; };
 		3FFE087420C9378B0090FC8A /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE086120C937890090FC8A /* profile.png */; };
 		3FFE087520C9378B0090FC8A /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE086220C937890090FC8A /* circle.png */; };
@@ -18,7 +19,6 @@
 		3FFE087B20C9378B0090FC8A /* cardview.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE086820C9378A0090FC8A /* cardview.png */; };
 		3FFE087C20C9378B0090FC8A /* signin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE086920C9378A0090FC8A /* signin.jpg */; };
 		3FFE087D20C9378B0090FC8A /* popup_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE086A20C9378A0090FC8A /* popup_bg2.png */; };
-		3FFE087E20C9378B0090FC8A /* login.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE086B20C9378A0090FC8A /* login.9.png */; };
 		3FFE087F20C9378B0090FC8A /* spinner_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE086C20C9378A0090FC8A /* spinner_bg.png */; };
 		3FFE088020C9378B0090FC8A /* header.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE086D20C9378A0090FC8A /* header.jpg */; };
 		3FFE088120C9378B0090FC8A /* notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE086E20C9378B0090FC8A /* notification.png */; };
@@ -60,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F3C48EF20C993FB00A6C610 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login.png; path = "../../../../../../Downloads/앱 웹 레이아웃/login.png"; sourceTree = "<group>"; };
 		3FFE086020C937890090FC8A /* popup_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = popup_bg.png; path = ../../../../../../Downloads/drawable/popup_bg.png; sourceTree = "<group>"; };
 		3FFE086120C937890090FC8A /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = profile.png; path = ../../../../../../Downloads/drawable/profile.png; sourceTree = "<group>"; };
 		3FFE086220C937890090FC8A /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle.png; path = ../../../../../../Downloads/drawable/circle.png; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		3FFE086820C9378A0090FC8A /* cardview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cardview.png; path = ../../../../../../Downloads/drawable/cardview.png; sourceTree = "<group>"; };
 		3FFE086920C9378A0090FC8A /* signin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = signin.jpg; path = ../../../../../../Downloads/drawable/signin.jpg; sourceTree = "<group>"; };
 		3FFE086A20C9378A0090FC8A /* popup_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = popup_bg2.png; path = ../../../../../../Downloads/drawable/popup_bg2.png; sourceTree = "<group>"; };
-		3FFE086B20C9378A0090FC8A /* login.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login.9.png; path = ../../../../../../Downloads/drawable/login.9.png; sourceTree = "<group>"; };
 		3FFE086C20C9378A0090FC8A /* spinner_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spinner_bg.png; path = ../../../../../../Downloads/drawable/spinner_bg.png; sourceTree = "<group>"; };
 		3FFE086D20C9378A0090FC8A /* header.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = header.jpg; path = ../../../../../../Downloads/drawable/header.jpg; sourceTree = "<group>"; };
 		3FFE086E20C9378B0090FC8A /* notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = notification.png; path = ../../../../../../Downloads/drawable/notification.png; sourceTree = "<group>"; };
@@ -129,6 +129,7 @@
 		3FFE085F20C937080090FC8A /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				3F3C48EF20C993FB00A6C610 /* login.png */,
 				3FFE088720C9379E0090FC8A /* spinner_bg2.png */,
 				3FFE088620C9379E0090FC8A /* tab_background.jpg */,
 				3FFE088820C9379E0090FC8A /* tab1.png */,
@@ -142,7 +143,6 @@
 				3FFE086220C937890090FC8A /* circle.png */,
 				3FFE086620C9378A0090FC8A /* dialog.png */,
 				3FFE086D20C9378A0090FC8A /* header.jpg */,
-				3FFE086B20C9378A0090FC8A /* login.9.png */,
 				3FFE086F20C9378B0090FC8A /* more.png */,
 				3FFE086E20C9378B0090FC8A /* notification.png */,
 				3FFE086020C937890090FC8A /* popup_bg.png */,
@@ -274,7 +274,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = doori;
 				TargetAttributes = {
 					F202889820C8E6B3000E33FA = {
@@ -331,10 +331,10 @@
 				3FFE088020C9378B0090FC8A /* header.jpg in Resources */,
 				3FFE088E20C9379E0090FC8A /* tab2.png in Resources */,
 				3FFE087920C9378B0090FC8A /* dialog.png in Resources */,
+				3F3C48F020C993FB00A6C610 /* login.png in Resources */,
 				F20288A620C8E6B3000E33FA /* Assets.xcassets in Resources */,
 				3FFE088C20C9379E0090FC8A /* spinner_bg2.png in Resources */,
 				3FFE087C20C9378B0090FC8A /* signin.jpg in Resources */,
-				3FFE087E20C9378B0090FC8A /* login.9.png in Resources */,
 				3FFE087F20C9378B0090FC8A /* spinner_bg.png in Resources */,
 				F20288A420C8E6B3000E33FA /* Main.storyboard in Resources */,
 				3FFE088320C9378B0090FC8A /* shadow.9.png in Resources */,
@@ -441,6 +441,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -448,6 +449,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -498,6 +500,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -505,6 +508,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

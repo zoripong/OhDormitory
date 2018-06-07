@@ -11,7 +11,7 @@ import UIKit
 extension UITextField{
     func addBorderBottom(height:CGFloat, color:UIColor){
         let border=CALayer()
-        border.frame=CGRect(x:0, y:self.frame.height-height,width:self.frame.width,height:height)
+        border.frame=CGRect(x:0, y:self.frame.height-height,width:self.frame.width+self.frame.height,height:height)
         border.backgroundColor=color.cgColor
         self.layer.addSublayer(border)
     }
@@ -21,6 +21,7 @@ class LogInViewController: UIViewController {
 
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var pwText: UITextField!
+    @IBOutlet weak var loginBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         //textfield border
@@ -31,6 +32,14 @@ class LogInViewController: UIViewController {
         pwText.addBorderBottom(height: 1.5, color:UIColor.init(red:150/255.0, green: 181/255.0, blue: 195/255.0, alpha: 1.0))
         
         //textfield padding
+        let indentView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
+        pwText.leftView = indentView2
+        
+        let indentView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 30))
+        emailText.leftView = indentView
+        emailText.leftViewMode = .always
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
