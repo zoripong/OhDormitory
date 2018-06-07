@@ -20,11 +20,9 @@ CREATE TABLE user (
   PRIMARY KEY (emirim_id)
 );
 
-INSERT INTO user
-VALUES ('test', 'test', 'test', 519, '01086158458', '01086138458');
+INSERT INTO user VALUES ('test', 'test', 'test', 519, '01086158458', '01086138458');
 
-INSERT INTO user
-VALUES ('test2', 'test2', 'test2', 501, '01086158458', '01086188458');
+INSERT INTO user VALUES ('test2', 'test2', 'test2', 501, '01086158458', '01086188458');
 
 CREATE TABLE sleepout_notice(
 	notice_id BIGINT(20) unsigned NOT NULL auto_increment,
