@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F3C48F020C993FB00A6C610 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F3C48EF20C993FB00A6C610 /* login.png */; };
 		3F43408020C9F7650079C249 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F43406820C9F7630079C249 /* background.jpg */; };
 		3F43408120C9F7650079C249 /* shadow.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F43406920C9F7630079C249 /* shadow.9.png */; };
 		3F43408220C9F7650079C249 /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F43406A20C9F7630079C249 /* more.png */; };
@@ -63,7 +62,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3F3C48EF20C993FB00A6C610 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login.png; path = "../../../../../../Downloads/앱 웹 레이아웃/login.png"; sourceTree = "<group>"; };
 		3F43406820C9F7630079C249 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		3F43406920C9F7630079C249 /* shadow.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow.9.png; sourceTree = "<group>"; };
 		3F43406A20C9F7630079C249 /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 				3F43407B20C9F7650079C249 /* tab1.png */,
 				3F43407020C9F7640079C249 /* tab2.png */,
 				3F43406C20C9F7630079C249 /* tab3.png */,
-				3F3C48EF20C993FB00A6C610 /* login.png */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -336,7 +333,6 @@
 				3F43408620C9F7650079C249 /* settings_icon.png in Resources */,
 				3F43408420C9F7650079C249 /* tab3.png in Resources */,
 				F29E51E420C9EF4800316003 /* SleepoutViewController.xib in Resources */,
-				3F3C48F020C993FB00A6C610 /* login.png in Resources */,
 				3F43408E20C9F7650079C249 /* popup_bg2.png in Resources */,
 				3F43409520C9F7650079C249 /* spinner_bg2.png in Resources */,
 				3F43409220C9F7650079C249 /* signin.jpg in Resources */,
