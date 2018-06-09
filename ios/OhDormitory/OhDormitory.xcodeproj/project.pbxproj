@@ -31,6 +31,8 @@
 		3F43409520C9F7650079C249 /* spinner_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F43407D20C9F7650079C249 /* spinner_bg2.png */; };
 		3F43409620C9F7650079C249 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F43407E20C9F7650079C249 /* profile.png */; };
 		3F43409720C9F7650079C249 /* tab_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F43407F20C9F7650079C249 /* tab_background.jpg */; };
+		3F43409B20CBD0660079C249 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43409A20CBD0660079C249 /* TabViewController.swift */; };
+		3F43409D20CBD9580079C249 /* AppBelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43409C20CBD9580079C249 /* AppBelegate.swift */; };
 		3FFE089120C9428A0090FC8A /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFE089020C9428A0090FC8A /* LogInViewController.swift */; };
 		F202889D20C8E6B3000E33FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202889C20C8E6B3000E33FA /* AppDelegate.swift */; };
 		F202889F20C8E6B3000E33FA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202889E20C8E6B3000E33FA /* FirstViewController.swift */; };
@@ -86,6 +88,8 @@
 		3F43407D20C9F7650079C249 /* spinner_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner_bg2.png; sourceTree = "<group>"; };
 		3F43407E20C9F7650079C249 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		3F43407F20C9F7650079C249 /* tab_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tab_background.jpg; sourceTree = "<group>"; };
+		3F43409A20CBD0660079C249 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		3F43409C20CBD9580079C249 /* AppBelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBelegate.swift; sourceTree = "<group>"; };
 		3FFE089020C9428A0090FC8A /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		F202889920C8E6B3000E33FA /* OhDormitory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OhDormitory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F202889C20C8E6B3000E33FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -186,11 +190,13 @@
 			isa = PBXGroup;
 			children = (
 				F202889C20C8E6B3000E33FA /* AppDelegate.swift */,
+				3F43409C20CBD9580079C249 /* AppBelegate.swift */,
 				F202889E20C8E6B3000E33FA /* FirstViewController.swift */,
 				F20288A020C8E6B3000E33FA /* SecondViewController.swift */,
 				F29E51E120C9EF4800316003 /* SleepoutViewController.swift */,
 				F29E51E220C9EF4800316003 /* SleepoutViewController.xib */,
 				F20288A220C8E6B3000E33FA /* Main.storyboard */,
+				3F43409A20CBD0660079C249 /* TabViewController.swift */,
 				3FFE089020C9428A0090FC8A /* LogInViewController.swift */,
 				F20288A520C8E6B3000E33FA /* Assets.xcassets */,
 				F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */,
@@ -377,9 +383,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FFE089120C9428A0090FC8A /* LogInViewController.swift in Sources */,
+				3F43409D20CBD9580079C249 /* AppBelegate.swift in Sources */,
 				F20288A120C8E6B3000E33FA /* SecondViewController.swift in Sources */,
 				F202889D20C8E6B3000E33FA /* AppDelegate.swift in Sources */,
 				F29E51E320C9EF4800316003 /* SleepoutViewController.swift in Sources */,
+				3F43409B20CBD0660079C249 /* TabViewController.swift in Sources */,
 				F202889F20C8E6B3000E33FA /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
