@@ -16,30 +16,43 @@ class TabViewController: UITabBarController {
         super.viewDidLoad()
         
         setTabBarItems()
-
+        viewWillLayoutSubviews()
         
     }
     
-    func setTabBarItems(){
+    override func viewWillLayoutSubviews() {
+        //tabBar 높이 변경
+        var newTabBarFrame = tabBar.frame
         
+        let newTabBarHeight: CGFloat = 80
+        newTabBarFrame.size.height = newTabBarHeight
+        newTabBarFrame.origin.y = self.view.frame.size.height - newTabBarHeight
+        
+        tabBar.frame = newTabBarFrame
+    }
+    
+    
+    
+    func setTabBarItems(){
+        //tabBar 이미지
         let myTabBarItem1 = (self.tabBar.items?[0])! as UITabBarItem
         myTabBarItem1.image = UIImage(named: "tab1")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         myTabBarItem1.selectedImage = UIImage(named: "tab1")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         myTabBarItem1.title = ""
-        myTabBarItem1.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        myTabBarItem1.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         let myTabBarItem2 = (self.tabBar.items?[1])! as UITabBarItem
         myTabBarItem2.image = UIImage(named: "tab2")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         myTabBarItem2.selectedImage = UIImage(named: "tab2")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         myTabBarItem2.title = ""
-        myTabBarItem2.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        myTabBarItem2.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         
         let myTabBarItem3 = (self.tabBar.items?[2])! as UITabBarItem
         myTabBarItem3.image = UIImage(named: "tab3")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         myTabBarItem3.selectedImage = UIImage(named: "tab3")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         myTabBarItem3.title = ""
-        myTabBarItem3.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        myTabBarItem3.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         
     }
