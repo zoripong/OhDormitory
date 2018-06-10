@@ -564,7 +564,7 @@
         <!--QRscanner View Controller-->
         <scene sceneID="Vlv-vE-Wab">
             <objects>
-                <viewController title="QRscanner View Controller" id="g4p-9K-MRM" customClass="QRscannerViewController" customModule="OhDormitory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="QRscanner View Controller" id="g4p-9K-MRM" customClass="QRreaderViewController" customModule="OhDormitory" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oRt-8a-lgF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

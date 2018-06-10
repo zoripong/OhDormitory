@@ -45,7 +45,7 @@
 		F20288A920C8E6B3000E33FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */; };
 		F20288B420C8E6B3000E33FA /* OhDormitoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288B320C8E6B3000E33FA /* OhDormitoryTests.swift */; };
 		F20288BF20C8E6B3000E33FA /* OhDormitoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */; };
-		F246D86320CD758A002D9558 /* QRscannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F246D86220CD758A002D9558 /* QRscannerViewController.swift */; };
+		F246D86520CD7B47002D9558 /* QRreaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F246D86420CD7B47002D9558 /* QRreaderViewController.swift */; };
 		F29E51E320C9EF4800316003 /* SleepoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E51E120C9EF4800316003 /* SleepoutViewController.swift */; };
 		F29E51E420C9EF4800316003 /* SleepoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29E51E220C9EF4800316003 /* SleepoutViewController.xib */; };
 /* End PBXBuildFile section */
@@ -112,7 +112,7 @@
 		F20288BA20C8E6B3000E33FA /* OhDormitoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OhDormitoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OhDormitoryUITests.swift; sourceTree = "<group>"; };
 		F20288C020C8E6B3000E33FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F246D86220CD758A002D9558 /* QRscannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRscannerViewController.swift; path = ../../../../AndroidStudioProjects/ITshow/OhDormitory/ios/OhDormitory/OhDormitory/QRscannerViewController.swift; sourceTree = "<group>"; };
+		F246D86420CD7B47002D9558 /* QRreaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRreaderViewController.swift; sourceTree = "<group>"; };
 		F29E51E120C9EF4800316003 /* SleepoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepoutViewController.swift; sourceTree = "<group>"; };
 		F29E51E220C9EF4800316003 /* SleepoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SleepoutViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,7 +213,6 @@
 				F29E51E120C9EF4800316003 /* SleepoutViewController.swift */,
 				F29E51E220C9EF4800316003 /* SleepoutViewController.xib */,
 				F20288A220C8E6B3000E33FA /* Main.storyboard */,
-				F246D86220CD758A002D9558 /* QRscannerViewController.swift */,
 				3FFE089020C9428A0090FC8A /* LogInViewController.swift */,
 				F20288A520C8E6B3000E33FA /* Assets.xcassets */,
 				F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */,
@@ -221,6 +220,7 @@
 				7416BB8320CC0D980003772A /* UserInfoViewController.swift */,
 				7416BB8720CC2B270003772A /* ScoreViewController.swift */,
 				3FDB6FA720CC41760081BBFA /* TabViewController.swift */,
+				F246D86420CD7B47002D9558 /* QRreaderViewController.swift */,
 			);
 			path = OhDormitory;
 			sourceTree = "<group>";
@@ -406,8 +406,8 @@
 				7416BB8420CC0D980003772A /* UserInfoViewController.swift in Sources */,
 				7416BB8620CC28930003772A /* Score.swift in Sources */,
 				F20288A120C8E6B3000E33FA /* SecondViewController.swift in Sources */,
+				F246D86520CD7B47002D9558 /* QRreaderViewController.swift in Sources */,
 				7416BB8220CB9A060003772A /* User.swift in Sources */,
-				F246D86320CD758A002D9558 /* QRscannerViewController.swift in Sources */,
 				F202889D20C8E6B3000E33FA /* AppDelegate.swift in Sources */,
 				F29E51E320C9EF4800316003 /* SleepoutViewController.swift in Sources */,
 				F202889F20C8E6B3000E33FA /* NoticeController.swift in Sources */,
