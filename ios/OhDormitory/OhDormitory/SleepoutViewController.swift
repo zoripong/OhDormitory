@@ -19,8 +19,10 @@ class SleepoutViewController: UIViewController,UIImagePickerControllerDelegate,U
     
     @IBOutlet weak var recognizeLabel: UILabel!
     
+    @IBOutlet weak var cameraButton: UIButton!
+    
     let imagePicker: UIImagePickerController! = UIImagePickerController()
-   
+    
     
     struct Return_code : Codable{
         let return_code : Int
@@ -31,6 +33,14 @@ class SleepoutViewController: UIViewController,UIImagePickerControllerDelegate,U
         super.viewDidLoad()
         //print("SleepoutViewController가 시작되었어요!");
         
+        getData()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func getData(){
         DispatchQueue.global(qos: .userInitiated).async {
             // Download file or perform expensive task
             
@@ -82,11 +92,6 @@ class SleepoutViewController: UIViewController,UIImagePickerControllerDelegate,U
             task.resume()
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func getSleepoutInfo(json : Dictionary<String, AnyObject>,message:String){
         if let notice_data =  json["notice"] as? [[String: Any]]{
             print("notice : ",notice_data)
@@ -122,6 +127,7 @@ class SleepoutViewController: UIViewController,UIImagePickerControllerDelegate,U
         self.phoneLabel.text="인증 연락처 : 01012341234"
         self.messageLabel.text=""
         self.recognizeLabel.text=recognize
+        self.cameraButton?.isHidden = false
         
         
     }
@@ -132,6 +138,7 @@ class SleepoutViewController: UIViewController,UIImagePickerControllerDelegate,U
         self.phoneLabel.text=""
         self.messageLabel.text=message
         self.recognizeLabel.text=""
+        self.cameraButton?.isHidden = true
         
     }
     

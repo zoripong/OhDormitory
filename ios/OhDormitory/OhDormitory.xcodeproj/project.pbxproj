@@ -31,16 +31,21 @@
 		3F43409520C9F7650079C249 /* spinner_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F43407D20C9F7650079C249 /* spinner_bg2.png */; };
 		3F43409620C9F7650079C249 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F43407E20C9F7650079C249 /* profile.png */; };
 		3F43409720C9F7650079C249 /* tab_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F43407F20C9F7650079C249 /* tab_background.jpg */; };
-		3F43409B20CBD0660079C249 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43409A20CBD0660079C249 /* TabViewController.swift */; };
+		3FDB6FA820CC41760081BBFA /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB6FA720CC41760081BBFA /* TabViewController.swift */; };
 		3FFE089120C9428A0090FC8A /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFE089020C9428A0090FC8A /* LogInViewController.swift */; };
+		7416BB8220CB9A060003772A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416BB8120CB9A060003772A /* User.swift */; };
+		7416BB8420CC0D980003772A /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416BB8320CC0D980003772A /* UserInfoViewController.swift */; };
+		7416BB8620CC28930003772A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416BB8520CC28930003772A /* Score.swift */; };
+		7416BB8820CC2B270003772A /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416BB8720CC2B270003772A /* ScoreViewController.swift */; };
 		F202889D20C8E6B3000E33FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202889C20C8E6B3000E33FA /* AppDelegate.swift */; };
-		F202889F20C8E6B3000E33FA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202889E20C8E6B3000E33FA /* FirstViewController.swift */; };
+		F202889F20C8E6B3000E33FA /* NoticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202889E20C8E6B3000E33FA /* NoticeController.swift */; };
 		F20288A120C8E6B3000E33FA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288A020C8E6B3000E33FA /* SecondViewController.swift */; };
 		F20288A420C8E6B3000E33FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20288A220C8E6B3000E33FA /* Main.storyboard */; };
 		F20288A620C8E6B3000E33FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20288A520C8E6B3000E33FA /* Assets.xcassets */; };
 		F20288A920C8E6B3000E33FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */; };
 		F20288B420C8E6B3000E33FA /* OhDormitoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288B320C8E6B3000E33FA /* OhDormitoryTests.swift */; };
 		F20288BF20C8E6B3000E33FA /* OhDormitoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */; };
+		F246D86320CD758A002D9558 /* QRscannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F246D86220CD758A002D9558 /* QRscannerViewController.swift */; };
 		F29E51E320C9EF4800316003 /* SleepoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E51E120C9EF4800316003 /* SleepoutViewController.swift */; };
 		F29E51E420C9EF4800316003 /* SleepoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29E51E220C9EF4800316003 /* SleepoutViewController.xib */; };
 /* End PBXBuildFile section */
@@ -87,11 +92,15 @@
 		3F43407D20C9F7650079C249 /* spinner_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner_bg2.png; sourceTree = "<group>"; };
 		3F43407E20C9F7650079C249 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		3F43407F20C9F7650079C249 /* tab_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tab_background.jpg; sourceTree = "<group>"; };
-		3F43409A20CBD0660079C249 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		3FDB6FA720CC41760081BBFA /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		3FFE089020C9428A0090FC8A /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		7416BB8120CB9A060003772A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = SOURCE_ROOT; };
+		7416BB8320CC0D980003772A /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		7416BB8520CC28930003772A /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Score.swift; path = OhDormitory/Score.swift; sourceTree = SOURCE_ROOT; };
+		7416BB8720CC2B270003772A /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		F202889920C8E6B3000E33FA /* OhDormitory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OhDormitory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F202889C20C8E6B3000E33FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F202889E20C8E6B3000E33FA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		F202889E20C8E6B3000E33FA /* NoticeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeController.swift; sourceTree = "<group>"; };
 		F20288A020C8E6B3000E33FA /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		F20288A320C8E6B3000E33FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F20288A520C8E6B3000E33FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,6 +112,7 @@
 		F20288BA20C8E6B3000E33FA /* OhDormitoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OhDormitoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OhDormitoryUITests.swift; sourceTree = "<group>"; };
 		F20288C020C8E6B3000E33FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F246D86220CD758A002D9558 /* QRscannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRscannerViewController.swift; path = ../../../../AndroidStudioProjects/ITshow/OhDormitory/ios/OhDormitory/OhDormitory/QRscannerViewController.swift; sourceTree = "<group>"; };
 		F29E51E120C9EF4800316003 /* SleepoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepoutViewController.swift; sourceTree = "<group>"; };
 		F29E51E220C9EF4800316003 /* SleepoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SleepoutViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +173,15 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		7416BB8020CB99BB0003772A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				7416BB8120CB9A060003772A /* User.swift */,
+				7416BB8520CC28930003772A /* Score.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		F202889020C8E6B3000E33FA = {
 			isa = PBXGroup;
 			children = (
@@ -187,17 +206,21 @@
 		F202889B20C8E6B3000E33FA /* OhDormitory */ = {
 			isa = PBXGroup;
 			children = (
+				7416BB8020CB99BB0003772A /* New Group */,
 				F202889C20C8E6B3000E33FA /* AppDelegate.swift */,
-				F202889E20C8E6B3000E33FA /* FirstViewController.swift */,
+				F202889E20C8E6B3000E33FA /* NoticeController.swift */,
 				F20288A020C8E6B3000E33FA /* SecondViewController.swift */,
 				F29E51E120C9EF4800316003 /* SleepoutViewController.swift */,
 				F29E51E220C9EF4800316003 /* SleepoutViewController.xib */,
 				F20288A220C8E6B3000E33FA /* Main.storyboard */,
-				3F43409A20CBD0660079C249 /* TabViewController.swift */,
+				F246D86220CD758A002D9558 /* QRscannerViewController.swift */,
 				3FFE089020C9428A0090FC8A /* LogInViewController.swift */,
 				F20288A520C8E6B3000E33FA /* Assets.xcassets */,
 				F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */,
 				F20288AA20C8E6B3000E33FA /* Info.plist */,
+				7416BB8320CC0D980003772A /* UserInfoViewController.swift */,
+				7416BB8720CC2B270003772A /* ScoreViewController.swift */,
+				3FDB6FA720CC41760081BBFA /* TabViewController.swift */,
 			);
 			path = OhDormitory;
 			sourceTree = "<group>";
@@ -380,11 +403,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FFE089120C9428A0090FC8A /* LogInViewController.swift in Sources */,
+				7416BB8420CC0D980003772A /* UserInfoViewController.swift in Sources */,
+				7416BB8620CC28930003772A /* Score.swift in Sources */,
 				F20288A120C8E6B3000E33FA /* SecondViewController.swift in Sources */,
+				7416BB8220CB9A060003772A /* User.swift in Sources */,
+				F246D86320CD758A002D9558 /* QRscannerViewController.swift in Sources */,
 				F202889D20C8E6B3000E33FA /* AppDelegate.swift in Sources */,
 				F29E51E320C9EF4800316003 /* SleepoutViewController.swift in Sources */,
-				3F43409B20CBD0660079C249 /* TabViewController.swift in Sources */,
-				F202889F20C8E6B3000E33FA /* FirstViewController.swift in Sources */,
+				F202889F20C8E6B3000E33FA /* NoticeController.swift in Sources */,
+				3FDB6FA820CC41760081BBFA /* TabViewController.swift in Sources */,
+				7416BB8820CC2B270003772A /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +583,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DLF223UJJW;
 				INFOPLIST_FILE = OhDormitory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ririri3.OhDormitory;
@@ -569,6 +598,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DLF223UJJW;
 				INFOPLIST_FILE = OhDormitory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ririri3.OhDormitory;

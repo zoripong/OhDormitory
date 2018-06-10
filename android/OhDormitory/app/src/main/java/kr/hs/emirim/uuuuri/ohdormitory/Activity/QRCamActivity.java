@@ -21,6 +21,10 @@ import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -110,64 +114,6 @@ public class QRCamActivity extends AppCompatActivity {
         }
 
 
-//        mDatabase = FirebaseDatabase.getInstance();
-//
-//        final DatabaseReference sleepOutRef = mDatabase.getReference("sleep-out");
-//
-//        ValueEventListener sleepOutListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot sleepOut) {
-//                Iterator<DataSnapshot> childIterator = sleepOut.getChildren().iterator();
-//                //users의 모든 자식들의 key값과 value 값들을 iterator로 참조
-//                while(childIterator.hasNext()) {
-//                    DataSnapshot sleepOutStudent=childIterator.next();
-//                    String qrContent[] = contents.split("/");
-//                    String uid = sleepOutStudent.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getKey();
-//
-//                    if(qrContent[1].equals(uid)){
-//                        Map<String, Object> sleepRecognizeUpdates = new HashMap<String, Object>();
-//                        sleepRecognizeUpdates.put(contents+"/recognize", "true");
-//                        sleepOutRef.updateChildren(sleepRecognizeUpdates);
-//                        final Dialog mDialog = new Dialog(QRCamActivity.this, R.style.MyDialog);
-//                        mDialog.setContentView(R.layout.dialog_style2);
-//                        ((TextView)mDialog.findViewById(R.id.dialog_text)).setText("인증되었습니다.");
-//                        mDialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener(){
-//                            @Override
-//                            public void onClick(View view) {
-//                                Intent intent = new Intent(QRCamActivity.this, MainActivity.class);
-//                                startActivity(intent);
-//                            }
-//                        });
-//                        mDialog.show();
-//
-//
-//                    }else{
-//                        final Dialog mDialog = new Dialog(QRCamActivity.this, R.style.MyDialog);
-//                        mDialog.setContentView(R.layout.dialog_style2);
-//                        ((TextView)mDialog.findViewById(R.id.dialog_text)).setText("본인의 부모님께 발송된 QR코드로 인증해주세요.");
-//                        mDialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener(){
-//                            @Override
-//                            public void onClick(View view) {
-//                                Intent intent = new Intent(QRCamActivity.this, MainActivity.class);
-//                                startActivity(intent);
-//                            }
-//                        });
-//                        mDialog.show();
-//
-//
-//                    }
-//                }
-//            }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//        };
-//        sleepOutRef.addListenerForSingleValueEvent(sleepOutListener);
-
-
-
-
-
 
 
     }
@@ -205,34 +151,37 @@ public class QRCamActivity extends AppCompatActivity {
 
             progressDialog.dismiss();
 
+            try{
+            JSONObject jsonObject = new JSONObject(result);
+            JSONArray jsonArray = jsonObject.getJSONArray("return_code");
+
+            for(int i=0;i<jsonArray.length();i++){
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String return_code = item.getString("return_code");
+                Log.e(TAG,"return_code : "+return_code);
+                if(return_code.equals("1")){//외박 신청했을 시
+                    final Dialog mCheckDialog = new Dialog(QRCamActivity.this, R.style.MyDialog);
+                    mCheckDialog.setContentView(R.layout.dialog_style2);
+                    ((TextView)mCheckDialog.findViewById(R.id.dialog_text)).setText("인증되었습니다.");
+                    mCheckDialog.show();
+
+                    mCheckDialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mCheckDialog.dismiss();
+
+                            Intent intent = new Intent(view.getContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
 
 
 
-            if (result.equals("1")){
-                Log.e(TAG,"성공"+result);
-                final Dialog mCheckDialog = new Dialog(QRCamActivity.this, R.style.MyDialog);
-                mCheckDialog.setContentView(R.layout.dialog_style2);
-                ((TextView)mCheckDialog.findViewById(R.id.dialog_text)).setText("인증되었습니다.");
-                mCheckDialog.show();
-
-                mCheckDialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mCheckDialog.dismiss();
-
-                        Intent intent = new Intent(view.getContext(), MainActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
-
-
-            }
-
-            else {
-
-
-                Log.e(TAG,"실패"+result);
+                }
+                else {
+                    Log.e(TAG,"실패"+result);
                 final Dialog mCheckDialog = new Dialog(QRCamActivity.this, R.style.MyDialog);
                 mCheckDialog.setContentView(R.layout.dialog_style2);
                 ((TextView)mCheckDialog.findViewById(R.id.dialog_text)).setText("인증에 실패했습니다.");
@@ -248,8 +197,59 @@ public class QRCamActivity extends AppCompatActivity {
                     }
                 });
 
-
+                }
             }
+
+
+        } catch (JSONException e) {
+
+            Log.d(TAG, "showResult : ", e);
+        }
+
+
+
+     //       if (result.equals("1")){
+//                Log.e(TAG,"성공"+result);
+//                final Dialog mCheckDialog = new Dialog(QRCamActivity.this, R.style.MyDialog);
+//                mCheckDialog.setContentView(R.layout.dialog_style2);
+//                ((TextView)mCheckDialog.findViewById(R.id.dialog_text)).setText("인증되었습니다.");
+//                mCheckDialog.show();
+//
+//                mCheckDialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        mCheckDialog.dismiss();
+//
+//                        Intent intent = new Intent(view.getContext(), MainActivity.class);
+//                        startActivity(intent);
+//                    }
+//                });
+//
+//
+//
+//            }
+//
+//            else {
+//
+//
+//                Log.e(TAG,"실패"+result);
+//                final Dialog mCheckDialog = new Dialog(QRCamActivity.this, R.style.MyDialog);
+//                mCheckDialog.setContentView(R.layout.dialog_style2);
+//                ((TextView)mCheckDialog.findViewById(R.id.dialog_text)).setText("인증에 실패했습니다.");
+//                mCheckDialog.show();
+//
+//                mCheckDialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        mCheckDialog.dismiss();
+//
+//                        Intent intent = new Intent(view.getContext(), MainActivity.class);
+//                        startActivity(intent);
+//                    }
+//                });
+//
+//
+//            }
 
         }
 
