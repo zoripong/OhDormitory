@@ -11,9 +11,14 @@ import UIKit
 class WasherViewController: UIViewController {
     
     private var user_room_floor : Int = -1;
+    
+    private var time_type : Int = -1;
     var washer_using_room = [[String]](repeating: Array(repeating: "0",count: 3 ), count: 3)
     
     
+    @IBOutlet weak var timeLabel_1: UILabel!
+    @IBOutlet weak var timeLabel_2: UILabel!
+    @IBOutlet weak var timeLabel_3: UILabel!
     
     
     //private var alert_message_room : String = "";
@@ -23,6 +28,9 @@ class WasherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getTimeType()
+        
         let defaults = UserDefaults.standard
         let user_room_num = defaults.integer(forKey: "room_num")
         if(user_room_num<500){
@@ -40,24 +48,40 @@ class WasherViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func getTimeType(){
+        
+        let cal = Calendar(identifier: .gregorian)
+        let now = Date()
+        let today = cal.dateComponents([.weekday,.hour],from:now)
+        
+       
+        //일요일 1 ~ 토요일 7
+        print("요일 : ",today.weekday!)
+//        var timeList = ["06:00 ~ 07:00", "07:00 ~ 08:00", "08:00 ~ 09:00",
+//                        "09:00 ~ 10:00", "10:00 ~ 11:00", "11:00 ~ 12:00", "20:00 ~ 21:30",
+//                        "21:30 ~ 22:30", "22:30 ~ 23:30"
+//        ];
+        if today.weekday == 1 || today.weekday == 7{
+            print("시간 : ",today.hour!)
+            if today.hour! < 9 {
+                time_type = 0
+            }else if today.hour! < 12 {
+                time_type = 3
+            }else {
+                time_type = 6
+            }
+        }else{
+            time_type = 6
+        }
+        
+    }
+    
     func getData(){
         DispatchQueue.global(qos: .userInitiated).async {
-            // Download file or perform expensive task
             
             //요청할 url
             let components = URLComponents(string: "http://54.203.113.95/getWashList.php")
-            //요청변수
-            
-            // get User Data
-          
-          //  let parent_phone = defaults.string(forKey: "parent_phone") ?? "Unknown user"
-            
-            // print("이거"+emirim_id)
-            // print("이거"+parent_phone)
-//
-//            components?.queryItems = [
-//                URLQueryItem(name: "userID", value: emirim_id)
-//            ]
+     
             
             guard let url = components?.url else { return }
             var request = URLRequest(url: url)
@@ -72,11 +96,7 @@ class WasherViewController: UIViewController {
                     
                     let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                     
-//                    var washer_nums : [String] = [String()]
-//                    var wash_times : [String] = [String()]
-//                    var using_rooms : [String] = [String()]
 
-                    
                     DispatchQueue.main.async {
                         
                         
@@ -88,8 +108,9 @@ class WasherViewController: UIViewController {
                                 let washer_num : String = wash_existing_user["washer_num"]! as! String
                                 let wash_time : String = wash_existing_user["wash_time"] as! String
                                 
-                                let using_room : String = wash_existing_user["using_room"] as! String
+                                var using_room : String = wash_existing_user["using_room"] as! String
 
+                                using_room = using_room + "호"
                                 self.setExistingUser(washer_num: washer_num,wash_time: wash_time,using_room: using_room)
                             
                             }//for
@@ -128,7 +149,11 @@ class WasherViewController: UIViewController {
         else if user_room_floor == 5 && Int(washer_num)!<3{
             return
         }
-        
+        if Int(wash_time)! < time_type ||  Int(wash_time)! > time_type + 2{
+            
+            return
+            
+        }
         var display_washer_num : Int
         
         if Int(washer_num)!>=3{
@@ -145,7 +170,7 @@ class WasherViewController: UIViewController {
         
         washerButtonGroup[buttonIndex].backgroundColor = UIColor.blue
 
-        washer_using_room[display_washer_num][display_washer_time] = using_room+"호"
+        washer_using_room[display_washer_num][display_washer_time] = using_room
        
         washerButtonGroup[buttonIndex].titleLabel?.text = String(display_washer_num) + "_" + String(display_washer_time);
         washerButtonGroup[buttonIndex].addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
