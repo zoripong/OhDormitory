@@ -15,12 +15,20 @@ class WasherViewController: UIViewController {
     private var time_type : Int = -1;
     var washer_using_room = [[String]](repeating: Array(repeating: "0",count: 3 ), count: 3)
     
+    private var isApplyingAvailable : Bool = true ;
+    
+    private let timeList : [String] = ["06:00 ~ 07:00", "07:00 ~ 08:00", "08:00 ~ 09:00",
+                            "09:00 ~ 10:00", "10:00 ~ 11:00", "11:00 ~ 12:00", "20:00 ~ 21:30",
+                            "21:30 ~ 22:30", "22:30 ~ 23:30"];
     
     @IBOutlet weak var timeLabel_1: UILabel!
     @IBOutlet weak var timeLabel_2: UILabel!
     @IBOutlet weak var timeLabel_3: UILabel!
     
+    @IBAction func pressedApplyButton(_ sender: UIButton) {
+    }
     
+    @IBOutlet weak var applyButton: UIButton!
     //private var alert_message_room : String = "";
 
    
@@ -30,6 +38,7 @@ class WasherViewController: UIViewController {
         super.viewDidLoad()
         
         getTimeType()
+        setTimeInfo()
         
         let defaults = UserDefaults.standard
         let user_room_num = defaults.integer(forKey: "room_num")
@@ -50,30 +59,55 @@ class WasherViewController: UIViewController {
     
     func getTimeType(){
         
+        isApplyingAvailable = true
+
         let cal = Calendar(identifier: .gregorian)
         let now = Date()
-        let today = cal.dateComponents([.weekday,.hour],from:now)
+        let today = cal.dateComponents([.weekday,.hour,.minute],from:now)
         
        
         //일요일 1 ~ 토요일 7
         print("요일 : ",today.weekday!)
-//        var timeList = ["06:00 ~ 07:00", "07:00 ~ 08:00", "08:00 ~ 09:00",
-//                        "09:00 ~ 10:00", "10:00 ~ 11:00", "11:00 ~ 12:00", "20:00 ~ 21:30",
-//                        "21:30 ~ 22:30", "22:30 ~ 23:30"
-//        ];
+
         if today.weekday == 1 || today.weekday == 7{
             print("시간 : ",today.hour!)
-            if today.hour! < 9 {
+            if today.hour! >= 6 && today.hour! < 9 {
                 time_type = 0
-            }else if today.hour! < 12 {
+            }else if today.hour! >= 9 && today.hour! < 12 {
                 time_type = 3
-            }else {
+            }else if today.hour! >= 20 && (today.hour! < 23 && today.minute! < 30){
                 time_type = 6
+            }else{
+                isApplyingAvailable = false
+                if(today.hour! < 6){
+                    time_type = 0
+                }else if(today.hour! < 20){
+                    time_type = 3
+                }else {
+                    time_type = 6
+                }
             }
         }else{
             time_type = 6
+            if today.hour! < 20 || (today.hour! >= 23 && today.minute! >= 30){
+                isApplyingAvailable = false
+            }
         }
         
+    }
+    
+    func setTimeInfo(){
+        if(isApplyingAvailable){
+            self.applyButton?.isHidden = false
+
+        }else{
+            self.applyButton?.isHidden = true
+
+        }
+        self.timeLabel_1.text=timeList[time_type]
+        self.timeLabel_2.text=timeList[time_type+1]
+        self.timeLabel_3.text=timeList[time_type+2]
+
     }
     
     func getData(){

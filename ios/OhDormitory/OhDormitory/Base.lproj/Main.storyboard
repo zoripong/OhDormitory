@@ -397,6 +397,17 @@
                                     <constraint firstAttribute="height" constant="180" id="uJo-Jy-VHO"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7K-95-HEo">
+                                <rect key="frame" x="79" y="561" width="216" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="신청하기" backgroundImage="login.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedApplyButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Wxl-XH-1Pa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -422,6 +433,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="applyButton" destination="Z7K-95-HEo" id="LK1-nP-rap"/>
                         <outlet property="timeLabel_1" destination="NCs-Tb-NwF" id="0I3-kr-fpy"/>
                         <outlet property="timeLabel_2" destination="WRv-BS-Rkg" id="P2n-Pw-2k3"/>
                         <outlet property="timeLabel_3" destination="w8k-Il-qcc" id="EaI-sf-0lI"/>
