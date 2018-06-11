@@ -11,6 +11,12 @@ import UIKit
 class WasherViewController: UIViewController {
     
     private var user_room_floor : Int = -1;
+    var washer_using_room = [[String]](repeating: Array(repeating: "0",count: 3 ), count: 3)
+    
+    
+    
+    
+    //private var alert_message_room : String = "";
 
    
     @IBOutlet var washerButtonGroup: [UIButton]!
@@ -84,17 +90,26 @@ class WasherViewController: UIViewController {
                                 
                                 let using_room : String = wash_existing_user["using_room"] as! String
 
-//                                washer_nums.append(washer_num)
-//                                wash_times.append(wash_time)
-//                                using_rooms.append(using_room)
-                             //   if(return_code == 2){
                                 self.setExistingUser(washer_num: washer_num,wash_time: wash_time,using_room: using_room)
-                             //   }else{
-                            //        self.setSleepoutInfo(message :return_message)
-                             //   }
+                            
                             }//for
                             
-                        }//return_data
+                        }//wash_existing_users
+                        
+                        if let wash_applying_users =  json["wash_applying_user"] as? [[String: Any]]{
+                            print("리턴 데이터 : ",wash_applying_users);
+                            for wash_applying_user in wash_applying_users {
+                                
+                                let washer_num : String = wash_applying_user["washer_num"]! as! String
+                                let wash_time : String = wash_applying_user["wash_time"] as! String
+                                
+                                let emirim_id : String = wash_applying_user["emirim_id"] as! String
+                                
+                                self.setExistingUser(washer_num: washer_num,wash_time: wash_time,using_room: emirim_id)
+                                
+                            }//for
+                            
+                        }//wash_existing_users
                         
                     }//ui updating
                     
@@ -129,14 +144,31 @@ class WasherViewController: UIViewController {
         let buttonIndex : Int = display_washer_num + (2 * display_washer_num) + display_washer_time
         
         washerButtonGroup[buttonIndex].backgroundColor = UIColor.blue
+
+        washer_using_room[display_washer_num][display_washer_time] = using_room+"호"
+       
+        washerButtonGroup[buttonIndex].titleLabel?.text = String(display_washer_num) + "_" + String(display_washer_time);
+        washerButtonGroup[buttonIndex].addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+
         
-       print("1",washer_num)
-        print("2",wash_time)
-        print("3",using_room)
-        print("표시",display_washer_num + (2 * display_washer_num))
-        print("표시",display_washer_time)
+       
 
         
         
+    }
+  
+    @objc func buttonPressed(_ sender: UIButton!) {
+        let buttonTitle = sender.titleLabel?.text
+        let buttonIndex = buttonTitle?.split(separator: "_")
+        let washer_num : Int = Int(buttonIndex![0])!
+        let washer_time : Int = Int(buttonIndex![1])!
+        
+        let message = washer_using_room[washer_num][washer_time]
+        
+        let alert = UIAlertController(title: "이미 예약되어있는 자리입니다.", message: message+"에서 사용중입니다.", preferredStyle: .alert)
+
+       // alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
 }
