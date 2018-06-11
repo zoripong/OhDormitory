@@ -401,7 +401,7 @@
                                 <rect key="frame" x="79" y="561" width="216" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="신청하기" backgroundImage="login.png">
+                                <state key="normal" title="신 청" backgroundImage="login.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
