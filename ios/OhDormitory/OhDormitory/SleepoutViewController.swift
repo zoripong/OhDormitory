@@ -47,9 +47,17 @@ class SleepoutViewController: UIViewController,UIImagePickerControllerDelegate,U
             //요청할 url
             var components = URLComponents(string: "http://54.203.113.95/getSleepoutRecord.php")
             //요청변수
+            
+            // get User Data
+            let defaults = UserDefaults.standard
+            let emirim_id = defaults.string(forKey: "emirim_id") ?? "Unknown user"
+            let parent_phone = defaults.string(forKey: "parent_phone") ?? "Unknown user"
+            
+           // print("이거"+emirim_id)
+           // print("이거"+parent_phone)
+            
             components?.queryItems = [
-                URLQueryItem(name: "userID", value: "test2"),
-                URLQueryItem(name: "parentPhone", value: "010"),
+                URLQueryItem(name: "userID", value: emirim_id)
             ]
             
             guard let url = components?.url else { return }

@@ -107,7 +107,11 @@ class QRreaderViewController: UIViewController,AVCaptureMetadataOutputObjectsDel
         
         let noticeID : String = String(contentArray[0])
         let emirimID : String = String(contentArray[1])
-        let parentPhone : String = "01011112222"
+        
+        //let parentPhone : String = "01011112222"
+        // get User Data
+        let defaults = UserDefaults.standard
+        let parentPhone = defaults.string(forKey: "parent_phone") ?? "Unknown user"
         
         if contentArray[2] == parentPhone{
             recognizeSleepout(noticeID:noticeID,emirimID:emirimID)
