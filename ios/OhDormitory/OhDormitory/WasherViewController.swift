@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import UserNotifications
+
 
 class WasherViewController: UIViewController {
     
@@ -36,6 +38,7 @@ class WasherViewController: UIViewController {
         if self.applyButton.titleLabel?.text == "취 소"{
             showConfirm(title:"세탁기 사용을 취소하시겠습니까?",message:"신청했던 세탁기 사용이 취소됩니다.",washer_num: already_apply_washer_num,washer_time:already_apply_washer_time,isInsert:false)
         }else{
+            
         var possibleWasher = searchPossibleWasher()
         let washer_num : Int = possibleWasher["washer_num"]!
         let washer_time : Int = possibleWasher["washer_time"]!
@@ -46,6 +49,40 @@ class WasherViewController: UIViewController {
             showAlert(title:"세탁기 사용을 신청할 수 없습니다.",message:"현재 신청할 수 있는 세탁기가 없습니다.")
 
         }
+            //todo : 업데이트 성공 시점으로 이동시키기
+            //todo : 포그라운드에서도 되게 하기
+            //todo : network try catch
+            let content = UNMutableNotificationContent()
+            content.title = "세탁 알림 제목"
+            
+            content.subtitle = "부제목"
+            
+            content.body = "몸뚱아리"
+            
+            content.badge = 1
+            
+            let calendar = Calendar.current
+            var dateComponents = DateComponents()
+            dateComponents.hour = 2
+            dateComponents.minute = 42
+            print(dateComponents.year)
+            print(dateComponents.month)
+            print(dateComponents.date)
+            print(dateComponents.hour)
+            print(dateComponents.minute)
+            
+            
+            //let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats:false)
+            
+
+            let request = UNNotificationRequest(identifier: "washerpush", content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            
+
+
+            
         }
     }
     
@@ -57,6 +94,13 @@ class WasherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in
+            print(didAllow)
+        })
+        
+        
         
         let defaults = UserDefaults.standard
         let user_room_num = defaults.integer(forKey: "room_num")
@@ -161,7 +205,7 @@ class WasherViewController: UIViewController {
                         
                         
                         if let wash_existing_users =  json["wash_existing_user"] as? [[String: Any]]{
-                            print("리턴 데이터 : ",wash_existing_users);
+                           // print("리턴 데이터 : ",wash_existing_users);
                             for wash_existing_user in wash_existing_users {
                                 
                                 let washer_num : String = wash_existing_user["washer_num"]! as! String
@@ -177,7 +221,7 @@ class WasherViewController: UIViewController {
                         }//wash_existing_users
                         
                         if let wash_applying_users =  json["wash_applying_user"] as? [[String: Any]]{
-                            print("리턴 데이터 : ",wash_applying_users);
+                           // print("리턴 데이터 : ",wash_applying_users);
                             for wash_applying_user in wash_applying_users {
                                 
                                 let washer_num : String = wash_applying_user["washer_num"]! as! String
