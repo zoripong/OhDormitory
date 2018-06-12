@@ -45,6 +45,7 @@
 		F20288A920C8E6B3000E33FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */; };
 		F20288B420C8E6B3000E33FA /* OhDormitoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288B320C8E6B3000E33FA /* OhDormitoryTests.swift */; };
 		F20288BF20C8E6B3000E33FA /* OhDormitoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */; };
+		F2304E2D20CE992200727D51 /* WasherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2304E2C20CE992200727D51 /* WasherViewController.swift */; };
 		F246D86520CD7B47002D9558 /* QRreaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F246D86420CD7B47002D9558 /* QRreaderViewController.swift */; };
 		F29E51E320C9EF4800316003 /* SleepoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E51E120C9EF4800316003 /* SleepoutViewController.swift */; };
 		F29E51E420C9EF4800316003 /* SleepoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29E51E220C9EF4800316003 /* SleepoutViewController.xib */; };
@@ -112,6 +113,7 @@
 		F20288BA20C8E6B3000E33FA /* OhDormitoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OhDormitoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OhDormitoryUITests.swift; sourceTree = "<group>"; };
 		F20288C020C8E6B3000E33FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2304E2C20CE992200727D51 /* WasherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasherViewController.swift; sourceTree = "<group>"; };
 		F246D86420CD7B47002D9558 /* QRreaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRreaderViewController.swift; sourceTree = "<group>"; };
 		F29E51E120C9EF4800316003 /* SleepoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepoutViewController.swift; sourceTree = "<group>"; };
 		F29E51E220C9EF4800316003 /* SleepoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SleepoutViewController.xib; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				7416BB8720CC2B270003772A /* ScoreViewController.swift */,
 				3FDB6FA720CC41760081BBFA /* TabViewController.swift */,
 				F246D86420CD7B47002D9558 /* QRreaderViewController.swift */,
+				F2304E2C20CE992200727D51 /* WasherViewController.swift */,
 			);
 			path = OhDormitory;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				F29E51E320C9EF4800316003 /* SleepoutViewController.swift in Sources */,
 				F202889F20C8E6B3000E33FA /* NoticeController.swift in Sources */,
 				3FDB6FA820CC41760081BBFA /* TabViewController.swift in Sources */,
+				F2304E2D20CE992200727D51 /* WasherViewController.swift in Sources */,
 				7416BB8820CC2B270003772A /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
