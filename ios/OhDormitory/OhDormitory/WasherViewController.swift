@@ -35,6 +35,11 @@ class WasherViewController: UIViewController {
     
     @IBOutlet weak var applyStatusLabel: UILabel!
     
+    @IBAction func pressedRefreshButton(_ sender: UIButton) {
+        initTimeTable()
+    }
+    
+    
     @IBAction func pressedApplyButton(_ sender: UIButton) {
         
         if self.applyStatusLabel.text == "취 소"{
@@ -116,6 +121,7 @@ class WasherViewController: UIViewController {
 
     func initTimeTable(){
         
+        applyStatusLabel.text = ""
         let defaults = UserDefaults.standard
         let user_room_num = defaults.integer(forKey: "room_num")
         emirim_id = defaults.string(forKey: "emirim_id")!
@@ -186,9 +192,13 @@ class WasherViewController: UIViewController {
     
     func setTimeInfo(){
         if(isApplyingAvailable){
+            self.applyStatusLabel?.isHidden = false
+
             self.applyButton?.isHidden = false
 
         }else{
+            self.applyStatusLabel?.isHidden = true
+
             self.applyButton?.isHidden = true
 
         }
@@ -252,10 +262,12 @@ class WasherViewController: UIViewController {
                                 
 
                                 if String(String(self.room_number) + "호 "+self.emirim_id) == apply_emirim_id{
-                                    self.applyStatusLabel.text = "취 소"
-                                    print("내가 신청한 게 있다")
-                                    self.already_apply_washer_num = Int(washer_num)!
-                                    self.already_apply_washer_time = Int(wash_time)!
+                                    if Int(wash_time)! >= self.time_type {
+                                        self.applyStatusLabel.text = "취 소"
+                                        print("내가 신청한 게 있다")
+                                        self.already_apply_washer_num = Int(washer_num)!
+                                        self.already_apply_washer_time = Int(wash_time)!
+                                    }
 
                                 }
                                 
