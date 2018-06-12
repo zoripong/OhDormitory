@@ -33,54 +33,62 @@ class WasherViewController: UIViewController {
     @IBOutlet weak var timeLabel_2: UILabel!
     @IBOutlet weak var timeLabel_3: UILabel!
     
+    @IBOutlet weak var applyStatusLabel: UILabel!
+    
     @IBAction func pressedApplyButton(_ sender: UIButton) {
         
-        if self.applyButton.titleLabel?.text == "취 소"{
-            showConfirm(title:"세탁기 사용을 취소하시겠습니까?",message:"신청했던 세탁기 사용이 취소됩니다.",washer_num: already_apply_washer_num,washer_time:already_apply_washer_time,isInsert:false)
+        if self.applyStatusLabel.text == "취 소"{
+            var display_num : Int = already_apply_washer_num
+            if display_num>=3{
+                display_num -= 3
+            }
+         
+            
+             let message = String(display_num+1) + "번 세탁기 " + timeList[already_apply_washer_time] + " 사용을 취소합니다."
+            showConfirm(title:"세탁기 사용을 취소하시겠습니까?",message:message,washer_num: already_apply_washer_num,washer_time:already_apply_washer_time,isInsert:false)
         }else{
             
         var possibleWasher = searchPossibleWasher()
         let washer_num : Int = possibleWasher["washer_num"]!
         let washer_time : Int = possibleWasher["washer_time"]!
+            
+//            print("거",washer_num)
+//            print("이가",washer_time)
+            
         if washer_time != -1{
             let message = String(washer_num+1) + "번 세탁기를 " + timeList[time_type+washer_time] + "에 사용합니다."
             showConfirm(title:"세탁기 사용을 신청하시겠습니까?",message:message,washer_num: washer_num,washer_time:washer_time,isInsert:true)
         }else{
             showAlert(title:"세탁기 사용을 신청할 수 없습니다.",message:"현재 신청할 수 있는 세탁기가 없습니다.")
 
+
         }
-            //todo : 업데이트 성공 시점으로 이동시키기
-            //todo : 포그라운드에서도 되게 하기
-            //todo : network try catch
-            let content = UNMutableNotificationContent()
-            content.title = "세탁 알림 제목"
-            
-            content.subtitle = "부제목"
-            
-            content.body = "몸뚱아리"
-            
-            content.badge = 1
-            
-            let calendar = Calendar.current
-            var dateComponents = DateComponents()
-            dateComponents.hour = 2
-            dateComponents.minute = 42
-            print(dateComponents.year)
-            print(dateComponents.month)
-            print(dateComponents.date)
-            print(dateComponents.hour)
-            print(dateComponents.minute)
-            
-            
-            //let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats:false)
-            
-
-            let request = UNNotificationRequest(identifier: "washerpush", content: content, trigger: trigger)
-            
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-            
-
+//            //todo : 업데이트 성공 시점으로 이동시키기
+//            //todo : 포그라운드에서도 되게 하기
+//            //todo : network try catch
+//            let content = UNMutableNotificationContent()
+//            content.title = "세탁 알림 제목"
+//
+//            content.subtitle = "부제목"
+//
+//            content.body = "몸뚱아리"
+//
+//            content.badge = 1
+//
+//            let calendar = Calendar.current
+//            var dateComponents = DateComponents()
+//            dateComponents.hour = 2
+//            dateComponents.minute = 42
+//
+//            //let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats:false)
+//
+//
+//            let request = UNNotificationRequest(identifier: "washerpush", content: content, trigger: trigger)
+//
+//            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//
+//
 
             
         }
@@ -100,7 +108,13 @@ class WasherViewController: UIViewController {
             print(didAllow)
         })
         
+      
         
+        initTimeTable()
+        
+    }
+
+    func initTimeTable(){
         
         let defaults = UserDefaults.standard
         let user_room_num = defaults.integer(forKey: "room_num")
@@ -113,14 +127,19 @@ class WasherViewController: UIViewController {
             
         }
         
+        for i in 0..<3{
+            for j in 0..<3{
+                washer_using_room[i][j] = "0"
+                washerButtonGroup[i+i*2+j].backgroundColor = UIColor.gray
+
+            }
+            
+        }
+        
         getTimeType()
         setTimeInfo()
-        
-        
         getData()
-        // Do any additional setup after loading the view.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -136,10 +155,10 @@ class WasherViewController: UIViewController {
         
        
         //일요일 1 ~ 토요일 7
-        print("요일 : ",today.weekday!)
+      //  print("요일 : ",today.weekday!)
 
         if today.weekday == 1 || today.weekday == 7{
-            print("시간 : ",today.hour!)
+        //    print("시간 : ",today.hour!)
             if today.hour! >= 6 && today.hour! < 9 {
                 time_type = 0
             }else if today.hour! >= 9 && today.hour! < 12 {
@@ -221,6 +240,8 @@ class WasherViewController: UIViewController {
                         }//wash_existing_users
                         
                         if let wash_applying_users =  json["wash_applying_user"] as? [[String: Any]]{
+                            self.applyStatusLabel.text = "신 청"
+
                            // print("리턴 데이터 : ",wash_applying_users);
                             for wash_applying_user in wash_applying_users {
                                 
@@ -228,10 +249,13 @@ class WasherViewController: UIViewController {
                                 let wash_time : String = wash_applying_user["wash_time"] as! String
                                 
                                 let apply_emirim_id : String = wash_applying_user["emirim_id"] as! String
+                                
+
                                 if String(String(self.room_number) + "호 "+self.emirim_id) == apply_emirim_id{
-                                    self.applyButton.titleLabel?.text = "취 소"
+                                    self.applyStatusLabel.text = "취 소"
+                                    print("내가 신청한 게 있다")
                                     self.already_apply_washer_num = Int(washer_num)!
-                                    self.already_apply_washer_time = Int(washer_num)!
+                                    self.already_apply_washer_time = Int(wash_time)!
 
                                 }
                                 
@@ -329,6 +353,8 @@ class WasherViewController: UIViewController {
             if self.user_room_floor == 5 {
                 real_washer_num = washer_num + 3
             }
+//            print("self.time_type",self.time_type)
+//            print("washer_time",washer_time)
             
             real_washer_time = self.time_type + washer_time
             self.applyWasher(washer_num:real_washer_num,washer_time:real_washer_time,isInsert: String(isInsert))
@@ -346,9 +372,9 @@ class WasherViewController: UIViewController {
         let today = cal.dateComponents([.hour,.minute],from:now)
         let time = today.hour!
         
-        var possibleWasher : [String:Int] = [:]
+        var possibleWasher : [String:Int] = ["washer_num" : -1 , "washer_time" : -1]
         //일요일 1 ~ 토요일 7
-        print("시간 : ",today.hour!)
+       // print("시간 : ",today.hour!)
         var startIndex : Int = 0
         
         if time == 6 || time == 9 || time == 20{
@@ -360,20 +386,21 @@ class WasherViewController: UIViewController {
         else if time == 8 || time == 11 || time == 22{
             startIndex = 2;
         }
+      //  print("startIndex",String(startIndex))
         
         for i in startIndex..<3{
             for j in 0..<3{
-                if washer_using_room[j][i] == ""{
-                    possibleWasher["washer_num"] =  j
-                    possibleWasher["washer_time"] =  i
+                if washer_using_room[j][i] == "0"{
+                    possibleWasher["washer_num"]! =  j
+                    possibleWasher["washer_time"]! =  i
                     return possibleWasher
                 }
             }
          
             
         }
-        possibleWasher["washer_num"] =  -1
-        possibleWasher["washer_time"] =  -1
+        possibleWasher["washer_num"]! =  -1
+        possibleWasher["washer_time"]! =  -1
         return possibleWasher
     }
     
@@ -381,12 +408,20 @@ class WasherViewController: UIViewController {
         //TODO : 성공하면 set alarm , 버튼 취소로 바꾸기
         DispatchQueue.global(qos: .userInitiated).async {
             
+            do{
+            
             //요청할 url
             var components = URLComponents(string: "http://54.203.113.95/updateWashListForJson.php")
+            
+//            print("요청",String(washer_num))
+//            print("요청",String(washer_time))
+//            print("요청",String(self.emirim_id))
+//            print("요청",String(isInsert))
+            
             //요청변수
             components?.queryItems = [
                 URLQueryItem(name: "washer_num", value: String(washer_num)),
-                URLQueryItem(name: "washer_time", value: String(washer_time)),
+                URLQueryItem(name: "wash_time", value: String(washer_time)),
                 URLQueryItem(name: "emirim_id", value: self.emirim_id),
                 URLQueryItem(name: "isInsert", value: isInsert),
                 
@@ -416,14 +451,16 @@ class WasherViewController: UIViewController {
                                 
                                 // let _ : String = return_data_item["return_message"] as! String
                                 if return_code == 1 {
-                                    self.applyButton.titleLabel?.text = "취 소"
+                                 //   self.applyButton.titleLabel?.text = "취 소"
                                     self.showAlert(title: "세탁 신청에 성공했습니다.", message: "선택하신 요청이 성공적으로 끝났습니다.")
-                                    
+                                    self.initTimeTable()
                                 }else if return_code == 2{
-                                    self.applyButton.titleLabel?.text = "신 청"
+                                  //  self.applyButton.titleLabel?.text = "신 청"
                                     self.showAlert(title: "세탁 취소에 성공했습니다.", message: "선택하신 요청이 성공적으로 끝났습니다.")
+                                    self.initTimeTable()
                                 }else{
                                     self.showAlert(title: "세탁 신청에 실패했습니다.", message: "다시 시도해주세요.")
+                                    self.initTimeTable()
                                 }
                             }//for
                             
@@ -433,10 +470,15 @@ class WasherViewController: UIViewController {
                     
                 } catch {
                     print("error")
+                    self.showAlert(title: "세탁 신청에 실패했습니다.", message: "다시 시도해주세요.")
                 }
             })
             
             task.resume()
+            }catch{
+                self.showAlert(title: "네트워크가 불안정합니다.", message: "다시 시도해주세요.")
+
+            }
         }
     }
 }

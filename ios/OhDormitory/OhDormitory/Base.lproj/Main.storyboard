@@ -398,16 +398,23 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7K-95-HEo">
-                                <rect key="frame" x="79" y="561" width="216" height="58"/>
+                                <rect key="frame" x="79" y="517" width="216" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="신 청" backgroundImage="login.png">
+                                <state key="normal" backgroundImage="login.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="pressedApplyButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Wxl-XH-1Pa"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="신 청" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsG-h6-VvA">
+                                <rect key="frame" x="96" y="536" width="180" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -434,6 +441,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="applyButton" destination="Z7K-95-HEo" id="LK1-nP-rap"/>
+                        <outlet property="applyStatusLabel" destination="PsG-h6-VvA" id="Ajw-8d-dhJ"/>
                         <outlet property="timeLabel_1" destination="NCs-Tb-NwF" id="0I3-kr-fpy"/>
                         <outlet property="timeLabel_2" destination="WRv-BS-Rkg" id="P2n-Pw-2k3"/>
                         <outlet property="timeLabel_3" destination="w8k-Il-qcc" id="EaI-sf-0lI"/>
