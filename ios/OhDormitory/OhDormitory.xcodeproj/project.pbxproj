@@ -39,16 +39,25 @@
 		7416BB8220CB9A060003772A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416BB8120CB9A060003772A /* User.swift */; };
 		7416BB8420CC0D980003772A /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416BB8320CC0D980003772A /* UserInfoViewController.swift */; };
 		7416BB8620CC28930003772A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416BB8520CC28930003772A /* Score.swift */; };
-		7416BB8820CC2B270003772A /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416BB8720CC2B270003772A /* ScoreViewController.swift */; };
+		7416BB8820CC2B270003772A /* ScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416BB8720CC2B270003772A /* ScoreTableViewController.swift */; };
 		F202889D20C8E6B3000E33FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202889C20C8E6B3000E33FA /* AppDelegate.swift */; };
-		F202889F20C8E6B3000E33FA /* NoticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202889E20C8E6B3000E33FA /* NoticeController.swift */; };
 		F20288A120C8E6B3000E33FA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288A020C8E6B3000E33FA /* SecondViewController.swift */; };
 		F20288A420C8E6B3000E33FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20288A220C8E6B3000E33FA /* Main.storyboard */; };
 		F20288A620C8E6B3000E33FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20288A520C8E6B3000E33FA /* Assets.xcassets */; };
 		F20288A920C8E6B3000E33FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */; };
 		F20288B420C8E6B3000E33FA /* OhDormitoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288B320C8E6B3000E33FA /* OhDormitoryTests.swift */; };
 		F20288BF20C8E6B3000E33FA /* OhDormitoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */; };
+		F202938F20D1DE1E00B4F5E1 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202938E20D1DE1E00B4F5E1 /* NoticeDetailViewController.swift */; };
+		F202939120D1DE3D00B4F5E1 /* NoticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202939020D1DE3D00B4F5E1 /* NoticeTableViewController.swift */; };
+		F202939320D1DE5B00B4F5E1 /* ScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202939220D1DE5B00B4F5E1 /* ScoreCell.swift */; };
+		F202939520D1DEB000B4F5E1 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202939420D1DEB000B4F5E1 /* UpdatePasswordViewController.swift */; };
 		F2304E2D20CE992200727D51 /* WasherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2304E2C20CE992200727D51 /* WasherViewController.swift */; };
+		F2393BD120D1DD43000B1131 /* UserScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2393BD020D1DD43000B1131 /* UserScore.swift */; };
+		F2393BD320D1DD67000B1131 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2393BD220D1DD67000B1131 /* Notice.swift */; };
+		F2393BD520D1DD7D000B1131 /* BasicNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2393BD420D1DD7D000B1131 /* BasicNotice.swift */; };
+		F2393BD720D1DD93000B1131 /* CleanNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2393BD620D1DD93000B1131 /* CleanNotice.swift */; };
+		F2393BD920D1DDA5000B1131 /* SleepoutNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2393BD820D1DDA5000B1131 /* SleepoutNotice.swift */; };
+		F2393BDB20D1DDBB000B1131 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2393BDA20D1DDBB000B1131 /* NoticeCell.swift */; };
 		F246D86520CD7B47002D9558 /* QRreaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F246D86420CD7B47002D9558 /* QRreaderViewController.swift */; };
 		F29E51E320C9EF4800316003 /* SleepoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E51E120C9EF4800316003 /* SleepoutViewController.swift */; };
 		F29E51E420C9EF4800316003 /* SleepoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29E51E220C9EF4800316003 /* SleepoutViewController.xib */; };
@@ -104,10 +113,9 @@
 		7416BB8120CB9A060003772A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = SOURCE_ROOT; };
 		7416BB8320CC0D980003772A /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		7416BB8520CC28930003772A /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Score.swift; path = OhDormitory/Score.swift; sourceTree = SOURCE_ROOT; };
-		7416BB8720CC2B270003772A /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		7416BB8720CC2B270003772A /* ScoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewController.swift; sourceTree = "<group>"; };
 		F202889920C8E6B3000E33FA /* OhDormitory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OhDormitory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F202889C20C8E6B3000E33FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F202889E20C8E6B3000E33FA /* NoticeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeController.swift; sourceTree = "<group>"; };
 		F20288A020C8E6B3000E33FA /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		F20288A320C8E6B3000E33FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F20288A520C8E6B3000E33FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,7 +127,17 @@
 		F20288BA20C8E6B3000E33FA /* OhDormitoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OhDormitoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20288BE20C8E6B3000E33FA /* OhDormitoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OhDormitoryUITests.swift; sourceTree = "<group>"; };
 		F20288C020C8E6B3000E33FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F202938E20D1DE1E00B4F5E1 /* NoticeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewController.swift; sourceTree = "<group>"; };
+		F202939020D1DE3D00B4F5E1 /* NoticeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewController.swift; sourceTree = "<group>"; };
+		F202939220D1DE5B00B4F5E1 /* ScoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScoreCell.swift; path = OhDormitory/ScoreCell.swift; sourceTree = SOURCE_ROOT; };
+		F202939420D1DEB000B4F5E1 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		F2304E2C20CE992200727D51 /* WasherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasherViewController.swift; sourceTree = "<group>"; };
+		F2393BD020D1DD43000B1131 /* UserScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserScore.swift; path = OhDormitory/UserScore.swift; sourceTree = SOURCE_ROOT; };
+		F2393BD220D1DD67000B1131 /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Notice.swift; path = OhDormitory/Notice.swift; sourceTree = SOURCE_ROOT; };
+		F2393BD420D1DD7D000B1131 /* BasicNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BasicNotice.swift; path = OhDormitory/BasicNotice.swift; sourceTree = SOURCE_ROOT; };
+		F2393BD620D1DD93000B1131 /* CleanNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CleanNotice.swift; path = OhDormitory/CleanNotice.swift; sourceTree = SOURCE_ROOT; };
+		F2393BD820D1DDA5000B1131 /* SleepoutNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SleepoutNotice.swift; path = OhDormitory/SleepoutNotice.swift; sourceTree = SOURCE_ROOT; };
+		F2393BDA20D1DDBB000B1131 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		F246D86420CD7B47002D9558 /* QRreaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRreaderViewController.swift; sourceTree = "<group>"; };
 		F29E51E120C9EF4800316003 /* SleepoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepoutViewController.swift; sourceTree = "<group>"; };
 		F29E51E220C9EF4800316003 /* SleepoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SleepoutViewController.xib; sourceTree = "<group>"; };
@@ -189,6 +207,11 @@
 			children = (
 				7416BB8120CB9A060003772A /* User.swift */,
 				7416BB8520CC28930003772A /* Score.swift */,
+				F2393BD020D1DD43000B1131 /* UserScore.swift */,
+				F2393BD220D1DD67000B1131 /* Notice.swift */,
+				F2393BD420D1DD7D000B1131 /* BasicNotice.swift */,
+				F2393BD620D1DD93000B1131 /* CleanNotice.swift */,
+				F2393BD820D1DDA5000B1131 /* SleepoutNotice.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -217,21 +240,25 @@
 		F202889B20C8E6B3000E33FA /* OhDormitory */ = {
 			isa = PBXGroup;
 			children = (
-				7416BB8020CB99BB0003772A /* New Group */,
 				F202889C20C8E6B3000E33FA /* AppDelegate.swift */,
-				F202889E20C8E6B3000E33FA /* NoticeController.swift */,
+				F20288A520C8E6B3000E33FA /* Assets.xcassets */,
+				F20288AA20C8E6B3000E33FA /* Info.plist */,
+				F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */,
+				3FFE089020C9428A0090FC8A /* LogInViewController.swift */,
+				F20288A220C8E6B3000E33FA /* Main.storyboard */,
+				7416BB8020CB99BB0003772A /* New Group */,
+				F2393BDA20D1DDBB000B1131 /* NoticeCell.swift */,
+				F202938E20D1DE1E00B4F5E1 /* NoticeDetailViewController.swift */,
+				F202939020D1DE3D00B4F5E1 /* NoticeTableViewController.swift */,
+				F246D86420CD7B47002D9558 /* QRreaderViewController.swift */,
+				F202939220D1DE5B00B4F5E1 /* ScoreCell.swift */,
+				7416BB8720CC2B270003772A /* ScoreTableViewController.swift */,
 				F20288A020C8E6B3000E33FA /* SecondViewController.swift */,
 				F29E51E120C9EF4800316003 /* SleepoutViewController.swift */,
 				F29E51E220C9EF4800316003 /* SleepoutViewController.xib */,
-				F20288A220C8E6B3000E33FA /* Main.storyboard */,
-				3FFE089020C9428A0090FC8A /* LogInViewController.swift */,
-				F20288A520C8E6B3000E33FA /* Assets.xcassets */,
-				F20288A720C8E6B3000E33FA /* LaunchScreen.storyboard */,
-				F20288AA20C8E6B3000E33FA /* Info.plist */,
-				7416BB8320CC0D980003772A /* UserInfoViewController.swift */,
-				7416BB8720CC2B270003772A /* ScoreViewController.swift */,
 				3FDB6FA720CC41760081BBFA /* TabViewController.swift */,
-				F246D86420CD7B47002D9558 /* QRreaderViewController.swift */,
+				F202939420D1DEB000B4F5E1 /* UpdatePasswordViewController.swift */,
+				7416BB8320CC0D980003772A /* UserInfoViewController.swift */,
 				F2304E2C20CE992200727D51 /* WasherViewController.swift */,
 			);
 			path = OhDormitory;
@@ -417,18 +444,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2393BD520D1DD7D000B1131 /* BasicNotice.swift in Sources */,
+				F2393BD720D1DD93000B1131 /* CleanNotice.swift in Sources */,
 				3FFE089120C9428A0090FC8A /* LogInViewController.swift in Sources */,
 				7416BB8420CC0D980003772A /* UserInfoViewController.swift in Sources */,
+				F2393BD120D1DD43000B1131 /* UserScore.swift in Sources */,
+				F2393BD320D1DD67000B1131 /* Notice.swift in Sources */,
+				F2393BD920D1DDA5000B1131 /* SleepoutNotice.swift in Sources */,
 				7416BB8620CC28930003772A /* Score.swift in Sources */,
 				F20288A120C8E6B3000E33FA /* SecondViewController.swift in Sources */,
 				F246D86520CD7B47002D9558 /* QRreaderViewController.swift in Sources */,
+				F202939120D1DE3D00B4F5E1 /* NoticeTableViewController.swift in Sources */,
+				F202939520D1DEB000B4F5E1 /* UpdatePasswordViewController.swift in Sources */,
 				7416BB8220CB9A060003772A /* User.swift in Sources */,
 				F202889D20C8E6B3000E33FA /* AppDelegate.swift in Sources */,
 				F29E51E320C9EF4800316003 /* SleepoutViewController.swift in Sources */,
-				F202889F20C8E6B3000E33FA /* NoticeController.swift in Sources */,
 				3FDB6FA820CC41760081BBFA /* TabViewController.swift in Sources */,
+				F2393BDB20D1DDBB000B1131 /* NoticeCell.swift in Sources */,
 				F2304E2D20CE992200727D51 /* WasherViewController.swift in Sources */,
-				7416BB8820CC2B270003772A /* ScoreViewController.swift in Sources */,
+				7416BB8820CC2B270003772A /* ScoreTableViewController.swift in Sources */,
+				F202939320D1DE5B00B4F5E1 /* ScoreCell.swift in Sources */,
+				F202938F20D1DE1E00B4F5E1 /* NoticeDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

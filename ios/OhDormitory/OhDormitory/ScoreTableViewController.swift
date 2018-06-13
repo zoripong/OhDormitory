@@ -8,13 +8,17 @@
 
 import UIKit
 
-class ScoreViewController: UIViewController {
+class ScoreTableViewController: UITableViewController {
     var scores = [Score]()
+    var userScores = [UserScore]()
+    
+    @IBOutlet weak var scoreTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ScoreViewController~")
         
-        // load score list
+        self.scoreTable.register(UITableViewCell.self, forCellReuseIdentifier: "ScoreCell")
+        
         var request = URLRequest(url: URL(string: "http://54.203.113.95/getScore.php")!)
         request.httpMethod = "POST"
         //request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
@@ -40,6 +44,8 @@ class ScoreViewController: UIViewController {
                         
                     }
                     self.loadUserScore()
+                    
+                    
                 }
                 
             } catch {
@@ -51,15 +57,61 @@ class ScoreViewController: UIViewController {
         
         
         
+        print("scoreTable.count = \(userScores.count)")
+        //scoreTable.reloadData()
+        print("scoreTable.count = \(userScores.count)")
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         print("scoreViewController!")
         
     }
-
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userScores.count
+    }
+    
+    // 셀 생성과 반환 - 필수 메서드
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if userScores.count < 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "scoreCell", for: indexPath as IndexPath) as! ScoreCell
+            
+            cell.date.text = "정보 없음"
+            return cell
+            
+        }else{
+            let cell = self.scoreTable.dequeueReusableCell(withIdentifier: "scoreCell", for: indexPath as IndexPath) as! ScoreCell
+            
+            let row: Int = indexPath.row
+            print("row\(row)")
+            
+            if let dateLabel = cell.date{
+                dateLabel.text = self.userScores[row].date
+            }
+            let score_id = userScores[row].score_id
+            if let detailLabel = cell.detail{
+                detailLabel.text = self.scores[score_id].detail
+                print("detail\(self.scores[score_id].detail)")
+            }
+            if let scoreLabel = cell.date{
+                scoreLabel.text = "\(self.scores[score_id].score)"
+            }
+            
+            return cell
+        }
+        
+    }
+    
+    
+    
+    
     func loadUserScore(){
         
         // get User Data
@@ -93,20 +145,28 @@ class ScoreViewController: UIViewController {
                             print(user_score_data);
                             for user_score_data_item in user_score_data{
                                 print(user_score_data_item["date"] ?? "date")
+                                let id = user_score_data_item["id"] as! String
                                 let score_id = user_score_data_item["score_id"] as! String
-                                let detail = self.scores[Int(score_id)!].detail
-                                let score = self.scores[Int(score_id)!].score
+                                let date = user_score_data_item["date"] as! String
                                 
                                 
-//                                if score < 0 {
-//                                    minus_score = minus_score! + score
-//                                }else{
-//                                    plus_score = plus_score! + score
-//                                }
+                                self.userScores.append(UserScore(id: Int(id)!, date: date, score_id: Int(score_id)!))
+                                
+                                //                                if score < 0 {
+                                //                                    minus_score = minus_score! + score
+                                //                                }else{
+                                //                                    plus_score = plus_score! + score
+                                //                                }
                                 
                             }
+                            
                             print("minus : \(String(describing: minus_score))")
                             print("plus : \(String(describing: plus_score))")
+                            print("scoreTable.count = \(self.userScores.count)")
+                            DispatchQueue.main.async (execute:{()->Void in
+                                self.scoreTable?.reloadData()
+                            })
+                            
                         }
                     }
                     
@@ -118,14 +178,16 @@ class ScoreViewController: UIViewController {
             task.resume()
         }
     }
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
+

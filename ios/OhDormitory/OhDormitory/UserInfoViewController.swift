@@ -9,17 +9,17 @@
 import UIKit
 
 class UserInfoViewController:UITableViewController{
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("UserInfoViewController~")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // your code
@@ -34,11 +34,21 @@ class UserInfoViewController:UITableViewController{
             performSegue(withIdentifier: "UpdatePassword", sender: self)
         case 2:
             print("로그아웃")
-            //performSegue(withIdentifier: "LogOut", sender: self)
+            let defaults = UserDefaults.standard
+            
+            var password = defaults.string(forKey: "password") ?? "Unknown user"
+            print("패스워드는?? : \(password)")
+            
+            defaults.removeObject(forKey: "password")
+            
+            password = defaults.string(forKey: "password") ?? "Unknown user"
+            print("패스워드는?? : \(password)")
+            self.presentingViewController?.dismiss(animated: false, completion:nil)
+        //performSegue(withIdentifier: "LogOut", sender: self)
         default:
             print("default")
             
         }
     }
-
+    
 }
