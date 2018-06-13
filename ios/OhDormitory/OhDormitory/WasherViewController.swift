@@ -8,10 +8,9 @@
 
 import UIKit
 import UserNotifications
-
+import QuartzCore
 
 class WasherViewController: UIViewController {
-    
     private var user_room_floor : Int = -1;
     private var emirim_id : String = "";
     private var already_apply_washer_num : Int = -1;
@@ -32,6 +31,10 @@ class WasherViewController: UIViewController {
     @IBOutlet weak var timeLabel_1: UILabel!
     @IBOutlet weak var timeLabel_2: UILabel!
     @IBOutlet weak var timeLabel_3: UILabel!
+    
+    @IBOutlet weak var washNumberLabel_1: UILabel!
+    @IBOutlet weak var washNumberLabel_2: UILabel!
+    @IBOutlet weak var washNumberLabel_3: UILabel!
     
     @IBOutlet weak var applyStatusLabel: UILabel!
     
@@ -116,7 +119,38 @@ class WasherViewController: UIViewController {
       
         
         initTimeTable()
+        //라벨 둥글게
+        timeLabel_1.layer.masksToBounds = true
+        timeLabel_1.layer.cornerRadius = 10
+        timeLabel_1.layer.borderWidth = 2
+        timeLabel_1.layer.borderColor = UIColor.white.cgColor
         
+        timeLabel_2.layer.masksToBounds = true
+        timeLabel_2.layer.cornerRadius = 10
+        timeLabel_2.layer.borderWidth = 2
+        timeLabel_2.layer.borderColor = UIColor.white.cgColor
+        
+        timeLabel_3.layer.masksToBounds = true
+        timeLabel_3.layer.cornerRadius = 10
+        timeLabel_3.layer.borderWidth = 2
+        timeLabel_3.layer.borderColor = UIColor.white.cgColor
+        
+        washNumberLabel_1.layer.masksToBounds = true
+        washNumberLabel_1.layer.cornerRadius = 10
+        washNumberLabel_1.layer.borderWidth = 2
+        washNumberLabel_1.layer.borderColor = UIColor.white.cgColor
+        
+        washNumberLabel_2.layer.masksToBounds = true
+        washNumberLabel_2.layer.cornerRadius = 10
+        washNumberLabel_2.layer.borderWidth = 2
+        washNumberLabel_2.layer.borderColor = UIColor.white.cgColor
+        
+        washNumberLabel_3.layer.masksToBounds = true
+        washNumberLabel_3.layer.cornerRadius = 10
+        washNumberLabel_3.layer.borderWidth = 2
+        washNumberLabel_3.layer.borderColor = UIColor.white.cgColor
+        
+        //레벨 둥글게 end
     }
 
     func initTimeTable(){
@@ -313,7 +347,7 @@ class WasherViewController: UIViewController {
         
         let buttonIndex : Int = display_washer_num + (2 * display_washer_num) + display_washer_time
         
-        washerButtonGroup[buttonIndex].backgroundColor = UIColor.blue
+        washerButtonGroup[buttonIndex].backgroundColor = UIColor.init(red:150/255.0, green: 181/255.0, blue: 195/255.0, alpha: 1.0)
 
         washer_using_room[display_washer_num][display_washer_time] = using_room
        
