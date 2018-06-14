@@ -452,15 +452,15 @@
                         <outlet property="washNumberLabel_1" destination="dMj-Om-yWi" id="K0U-BX-lQu"/>
                         <outlet property="washNumberLabel_2" destination="aZY-dh-ezD" id="mmK-Et-yCD"/>
                         <outlet property="washNumberLabel_3" destination="gf6-8z-FkM" id="aw0-sQ-Q8F"/>
-                        <outletCollection property="washerButtonGroup" destination="v68-vg-uUt" collectionClass="NSMutableArray" id="rEv-92-tr0"/>
-                        <outletCollection property="washerButtonGroup" destination="LXm-8V-Jfj" collectionClass="NSMutableArray" id="k17-ID-Mfp"/>
-                        <outletCollection property="washerButtonGroup" destination="C8H-iy-kBy" collectionClass="NSMutableArray" id="eg3-Nf-KGd"/>
-                        <outletCollection property="washerButtonGroup" destination="Gzx-j0-NWP" collectionClass="NSMutableArray" id="uqW-5m-rlg"/>
-                        <outletCollection property="washerButtonGroup" destination="Uy2-sl-p9L" collectionClass="NSMutableArray" id="23b-bO-OEG"/>
-                        <outletCollection property="washerButtonGroup" destination="3yY-xJ-U5x" collectionClass="NSMutableArray" id="bS3-Lh-bVC"/>
-                        <outletCollection property="washerButtonGroup" destination="t3g-N9-OhF" collectionClass="NSMutableArray" id="7xc-Kx-WTd"/>
-                        <outletCollection property="washerButtonGroup" destination="yXV-gU-Zpj" collectionClass="NSMutableArray" id="nOW-Eu-b6k"/>
-                        <outletCollection property="washerButtonGroup" destination="uId-0k-Zto" collectionClass="NSMutableArray" id="qDB-HT-hHS"/>
+                        <outletCollection property="washerButtonGroup" destination="yXV-gU-Zpj" collectionClass="NSMutableArray" id="d6d-nG-jna"/>
+                        <outletCollection property="washerButtonGroup" destination="t3g-N9-OhF" collectionClass="NSMutableArray" id="c9M-pe-VBi"/>
+                        <outletCollection property="washerButtonGroup" destination="C8H-iy-kBy" collectionClass="NSMutableArray" id="jCd-GP-3bg"/>
+                        <outletCollection property="washerButtonGroup" destination="v68-vg-uUt" collectionClass="NSMutableArray" id="7QO-o4-Qbr"/>
+                        <outletCollection property="washerButtonGroup" destination="Gzx-j0-NWP" collectionClass="NSMutableArray" id="gVy-sM-1RZ"/>
+                        <outletCollection property="washerButtonGroup" destination="3yY-xJ-U5x" collectionClass="NSMutableArray" id="ZU2-fl-JaB"/>
+                        <outletCollection property="washerButtonGroup" destination="Uy2-sl-p9L" collectionClass="NSMutableArray" id="Hu5-O1-ewc"/>
+                        <outletCollection property="washerButtonGroup" destination="uId-0k-Zto" collectionClass="NSMutableArray" id="5IM-qn-h8n"/>
+                        <outletCollection property="washerButtonGroup" destination="LXm-8V-Jfj" collectionClass="NSMutableArray" id="21n-iO-94d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -1078,6 +1078,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cus-Mb-9aj"/>
-        <segue reference="nIc-Qt-pt3"/>
+        <segue reference="Uyy-OZ-vEl"/>
     </inferredMetricsTieBreakers>
 </document>
