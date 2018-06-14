@@ -20,6 +20,7 @@ extension UIAlertController {
 //TODO : doori 1 닫음
 
 class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource{
+    
     var notices = [Notice]()
     
     //TODO : doori 2
@@ -30,6 +31,17 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //table view custom
+        let backgroundImage = UIImage(named: "tab_background.jpg")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+        //tableView.tableFooterView = UIView(frame: CGRectZero)
+        imageView.contentMode = .scaleAspectFit
+     
+        
+     
+        //tableView.tableFooterView = UIView(frame: CGRectZero)
         // get User Data
         //let defaults = UserDefaults.standard
         //let emirim_id = defaults.string(forKey: "emirim_id") ?? "Unknown user"
@@ -122,6 +134,10 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
         
         task.resume()
         
+        
+    }
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        // translucent cell backgrounds so we can see the image but still easily read the contents
         
     }
     @IBOutlet var noticeTable: UITableView!

@@ -60,7 +60,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         let indentView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 30))
         emailText.leftView = indentView
+        
         emailText.leftViewMode = .always
+        pwText.leftViewMode = .always
         // -------------------------------------
         //var myUserInfo : User? // nil 로 초기화
         

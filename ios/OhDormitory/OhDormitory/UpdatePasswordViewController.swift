@@ -52,6 +52,32 @@ class UpdatePasswordViewController: UIViewController {
         let defaults = UserDefaults.standard
         password = defaults.string(forKey: "password") ?? "Unknown user"
         emirim_id = defaults.string(forKey: "emirim_id") ?? "Unknown user"
+        
+        
+        //텍스트필드 커스텀
+        nowPwField.placeholder="현재 비밀번호";
+        nowPwField.addBorderBottom(height: 1.5, color:UIColor.init(red:150/255.0, green: 181/255.0, blue: 195/255.0, alpha: 1.0))
+        
+        changePwField.placeholder="변경 비밀번호";
+        changePwField.addBorderBottom(height: 1.5, color:UIColor.init(red:150/255.0, green: 181/255.0, blue: 195/255.0, alpha: 1.0))
+        
+        rePwField.placeholder="재입력";
+        rePwField.addBorderBottom(height: 1.5, color:UIColor.init(red:150/255.0, green: 181/255.0, blue: 195/255.0, alpha: 1.0))
+        
+        
+        //textfield padding
+        let indentView2 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 30))
+        changePwField.leftView = indentView2
+        
+        let indentView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 30))
+        nowPwField.leftView = indentView
+        
+        let indentView3 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 30))
+        rePwField.leftView = indentView3
+        
+        nowPwField.leftViewMode = .always
+        changePwField.leftViewMode = .always
+        rePwField.leftViewMode = .always
     }
     
     override func didReceiveMemoryWarning() {
