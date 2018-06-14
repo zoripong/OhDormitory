@@ -19,7 +19,7 @@ extension UITextField{
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     var users = [User]()
-   
+    
     @IBOutlet weak var emailText: UITextField!
     
     @IBOutlet weak var pwText: UITextField!
@@ -30,10 +30,24 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         //textfield border
         emailText.delegate = self
+        
+        let defaults = UserDefaults.standard
+        let password = defaults.string(forKey: "password") ?? "Unknown user"
+        print("패스워드는?? : \(password)")
+        if password != "Unknown user"{
+            performSegue(withIdentifier: "signOK", sender: self)
+        }
+        let emirim_id = defaults.string(forKey: "emirim_id") ?? "Unkown user"
+        if emirim_id != "Unknown user"{
+            emailText.text = emirim_id
+        }
+        
+        pwText.text = ""
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
-    
+        
         emailText.placeholder="email";
         emailText.addBorderBottom(height: 1.5, color:UIColor.init(red:150/255.0, green: 181/255.0, blue: 195/255.0, alpha: 1.0))
         
@@ -51,6 +65,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         //var myUserInfo : User? // nil 로 초기화
         
         
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        users = [User]()
         var request = URLRequest(url: URL(string: "http://54.203.113.95/getUsers.php")!)
         request.httpMethod = "POST"
         //request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
@@ -82,9 +102,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 print("error")
             }
         })
+        
+        
         //        performSegue(withIdentifier: "signOK", sender: self)
         task.resume()
-
     }
     
     @objc func keyboardWillShow(_ sender: Notification) {
@@ -105,15 +126,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func onClick(_ sender: Any) {
-
+        
         let inputEmail = emailText.text
         let inputPw = pwText.text
         
         for user in self.users{
             if inputEmail == user.emirim_id && inputPw == user.password{
-              
+                
                 let defaults = UserDefaults.standard
                 defaults.set(user.emirim_id, forKey: "emirim_id")
                 defaults.set(user.password, forKey: "password")
@@ -127,13 +148,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 
                 if !didSave {
                     //  Couldn't save (I've never seen this happen in real world testing)
+                    print("\(inputEmail) != \(user.password)")
                 }else{
+                    self.pwText.text = ""
                     performSegue(withIdentifier: "signOK", sender: self)
                 }
                 
                 
                 
-
+                
             }
             
         }
@@ -144,18 +167,18 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         
     }
-
-
-
+    
+    
+    
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -8,8 +8,26 @@
 
 import UIKit
 
-class NoticeTableViewController: UITableViewController {
+//TODO : doori 1
+extension UIAlertController {
+    
+    func setMaxHeight(_ height: CGFloat) {
+        let constraint = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height)
+        view.addConstraint(constraint)
+    }
+    
+}
+//TODO : doori 1 닫음
+
+class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource{
     var notices = [Notice]()
+    
+    //TODO : doori 2
+    var sleeptype_choice = ["잔류","금요외박","토요외박"]
+    var pickerView = UIPickerView()
+    var typeValue = String()
+    //TODO : doori 2 닫음
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // get User Data
@@ -172,21 +190,150 @@ class NoticeTableViewController: UITableViewController {
         }else if type == 2 {
             print("sleepout notice")
             //TODO : DOORI
+            //TODO : doori 3
+            showSleepoutApplyAlert(sender: self,notice_id:notices[indexPath.row].notice_id,w_time:notices[indexPath.row].w_time,d_time:notices[indexPath.row].d_time)
+            //TODO : doori 3 닫음
+
         }
         
         
     }
     
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if segue.identifier == "basicNotice"{
-    //            if let vc = segue.destination as? BasicNoticeViewController{
-    //
-    //                vc.noticeTitle = "gd"
-    //                vc.content = "content"
-    //                vc.w_time = "2018-06-12"
-    //                vc.d_time = "2018-06-13"
-    //            }
-    //        }
-    //    }
+    //TODO : doori 4
+    func showSleepoutApplyAlert(sender: Any?,notice_id:Int,w_time:String,d_time:String){
+        let defaults = UserDefaults.standard
+        let parent_phone = defaults.string(forKey: "parent_phone")
+        
+        var message : String = ""
+        message += "날짜 : "+String(w_time)+" ~ "+String(d_time)+"\n"
+        message += "보호자 연락처 : "+parent_phone!
+        
+        let alert = UIAlertController(title: "외박을 신청합니다.", message: message, preferredStyle: .alert)
+        alert.isModalInPopover = true
+        
+        
+        
+        let pickerFrame = UIPickerView(frame: CGRect(x: 5, y: 55, width: 250, height: 100))
+        
+        alert.view.addSubview(pickerFrame)
+        pickerFrame.dataSource = self
+        pickerFrame.delegate = self
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+            //print("You selected " + self.typeValue )
+            self.showConfirm(sleep_type : self.typeValue,notice_id:notice_id,w_time:w_time,d_time:d_time)
+            
+        }))
+        
+        alert.setMaxHeight(CGFloat(220.0))
+        self.present(alert,animated: true, completion: nil )
+        
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return sleeptype_choice.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return sleeptype_choice[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if row == 0 {
+            typeValue = "잔류"
+        } else if row == 1 {
+            typeValue = "금요외박"
+        } else if row == 2 {
+            typeValue = "토요외박"
+        }
+    }
+    func showConfirm(sleep_type:String,notice_id:Int,w_time:String,d_time:String){
+        
+        let message = w_time+" ~ "+d_time+"에 "+sleep_type+"를 신청합니다."
+        let alert = UIAlertController(title: "외박일지를 제출하시겠습니까?", message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "예", style: .default, handler: { action in
+            let defaults = UserDefaults.standard
+            let emirim_id = defaults.string(forKey: "emirim_id") ?? "Unknown user"
+            self.applySleepout(notice_id:notice_id,emirim_id:emirim_id,sleep_type:sleep_type)
+            
+        }))
+        alert.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    func applySleepout(notice_id:Int,emirim_id:String,sleep_type:String){
+        DispatchQueue.global(qos: .userInitiated).async {
+            // Download file or perform expensive task
+            
+            //요청할 url
+            var components = URLComponents(string: "http://54.203.113.95/insertSleepoutRecordForJson.php")
+            //요청변수
+            components?.queryItems = [
+                URLQueryItem(name: "notice_id", value: String(notice_id)),
+                URLQueryItem(name: "emirim_id", value: emirim_id),
+                URLQueryItem(name: "sleep_type", value: sleep_type),
+                URLQueryItem(name: "recognize", value: "0")
+                
+            ]
+            
+            guard let url = components?.url else { return }
+            var request = URLRequest(url: url)
+            
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            let session = URLSession.shared
+            let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+                // print(response!)
+                do {
+                    
+                    let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                    DispatchQueue.main.async {
+                        
+                        
+                        if let return_data =  json["return_code"] as? [[String: Any]]{
+                            print("리턴 데이터 : ",return_data);
+                            for return_data_item in return_data {
+                                
+                                let return_code : Int = return_data_item["return_code"]! as! Int
+                                if(return_code == 1){
+                                    self.showAlert(title:"외박신청에 성공했습니다.",message:"요청이 성공적으로 끝났습니다.")
+                                }else{
+                                    self.showAlert(title:"외박신청에 실패했습니다.",message:"다시 시도해주세요.")
+                                }
+                            }//for
+                            
+                        }//return_data
+                        
+                    }//ui updating
+                    
+                } catch {
+                    print("error")
+                    self.showAlert(title:"외박신청에 실패했습니다.",message:"다시 시도해주세요.")
+                }
+            })
+            
+            task.resume()
+        }
+    }
+    func showAlert(title:String,message:String){
+        
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    //TODO : doori 4 닫음
+
     
 }
