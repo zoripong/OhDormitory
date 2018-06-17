@@ -209,7 +209,7 @@ class WasherViewController: UIViewController {
                 isApplyingAvailable = false
                 if(today.hour! < 6){
                     time_type = 0
-                }else if(today.hour! < 20){
+                }else if(today.hour! < 12){
                     time_type = 3
                 }else {
                     time_type = 6
