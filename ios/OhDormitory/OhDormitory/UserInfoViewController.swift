@@ -10,9 +10,14 @@ import UIKit
 
 class UserInfoViewController:UITableViewController{
     
+    @IBOutlet weak var profil: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("UserInfoViewController~")
+        self.profil.layer.borderWidth = 10
+        self.profil.layer.borderColor = UIColor(red:255/255, green:255/255, blue:255/255, alpha: 1).cgColor
+        profil.layer.cornerRadius = profil.frame.size.width/2
+        profil.clipsToBounds = true
     }
     
     override func didReceiveMemoryWarning() {

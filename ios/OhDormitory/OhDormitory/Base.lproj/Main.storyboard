@@ -32,10 +32,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="43a-7p-2Oo">
-                                                    <rect key="frame" x="0.0" y="109" width="375" height="119"/>
+                                                    <rect key="frame" x="0.0" y="114" width="375" height="124"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="401" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6HB-sD-OMi">
-                                                            <rect key="frame" x="166" y="48" width="42" height="21"/>
+                                                            <rect key="frame" x="166" y="61" width="42" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="42" id="xgi-mk-6HT"/>
                                                             </constraints>
@@ -44,11 +44,22 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbb-cj-kzw">
-                                                            <rect key="frame" x="123" y="-71" width="129" height="111"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <rect key="frame" x="138" y="-45" width="100" height="100"/>
+                                                            <color key="backgroundColor" red="0.97526973490000002" green="0.83109718560000001" blue="0.47159785030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="100" id="8dZ-Qo-k0t"/>
+                                                                <constraint firstAttribute="width" constant="100" id="vot-Sc-fTM"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YVs-p2-ZzC">
+                                                            <rect key="frame" x="0.0" y="114" width="375" height="10"/>
+                                                            <color key="backgroundColor" red="0.97526973490000002" green="0.83109718560000001" blue="0.47159785030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="10" id="QMI-DE-a3X"/>
+                                                            </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="김두리" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="te0-bO-X2X">
-                                                            <rect key="frame" x="153" y="70" width="69" height="21"/>
+                                                            <rect key="frame" x="153" y="83" width="69" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="69" id="ITX-gb-QQt"/>
                                                             </constraints>
@@ -59,23 +70,24 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="zbb-cj-kzw" firstAttribute="leading" secondItem="43a-7p-2Oo" secondAttribute="leading" constant="123" id="2Bu-Eq-6dW"/>
-                                                        <constraint firstItem="6HB-sD-OMi" firstAttribute="top" secondItem="zbb-cj-kzw" secondAttribute="bottom" constant="8" id="77m-w1-DR8"/>
-                                                        <constraint firstItem="6HB-sD-OMi" firstAttribute="centerX" secondItem="zbb-cj-kzw" secondAttribute="centerX" id="8ra-g3-KcU"/>
-                                                        <constraint firstItem="te0-bO-X2X" firstAttribute="centerX" secondItem="zbb-cj-kzw" secondAttribute="centerX" id="B9z-d2-GqL"/>
-                                                        <constraint firstAttribute="bottom" secondItem="te0-bO-X2X" secondAttribute="bottom" constant="28" id="GZ1-Hr-vbc"/>
-                                                        <constraint firstItem="zbb-cj-kzw" firstAttribute="top" secondItem="43a-7p-2Oo" secondAttribute="top" constant="-71" id="a8K-E1-aCQ"/>
-                                                        <constraint firstItem="6HB-sD-OMi" firstAttribute="top" secondItem="zbb-cj-kzw" secondAttribute="bottom" constant="8" symbolic="YES" id="d73-t6-v4l"/>
+                                                        <constraint firstAttribute="bottom" secondItem="YVs-p2-ZzC" secondAttribute="bottom" id="8x5-OW-Kh2"/>
+                                                        <constraint firstItem="YVs-p2-ZzC" firstAttribute="width" secondItem="43a-7p-2Oo" secondAttribute="width" id="C4Y-wN-ble"/>
+                                                        <constraint firstAttribute="bottom" secondItem="te0-bO-X2X" secondAttribute="bottom" constant="20" id="GZ1-Hr-vbc"/>
+                                                        <constraint firstItem="YVs-p2-ZzC" firstAttribute="centerX" secondItem="6HB-sD-OMi" secondAttribute="centerX" id="JI3-lu-JKD"/>
+                                                        <constraint firstAttribute="bottom" secondItem="YVs-p2-ZzC" secondAttribute="bottom" id="Je1-b1-XMf"/>
+                                                        <constraint firstItem="YVs-p2-ZzC" firstAttribute="centerX" secondItem="te0-bO-X2X" secondAttribute="centerX" id="ZO7-Iw-vVu"/>
+                                                        <constraint firstItem="zbb-cj-kzw" firstAttribute="centerX" secondItem="43a-7p-2Oo" secondAttribute="centerX" id="al6-ig-eX1"/>
                                                         <constraint firstItem="6HB-sD-OMi" firstAttribute="centerX" secondItem="43a-7p-2Oo" secondAttribute="centerX" id="kVl-Ec-B6L"/>
                                                         <constraint firstItem="te0-bO-X2X" firstAttribute="top" secondItem="6HB-sD-OMi" secondAttribute="bottom" constant="1" id="t8s-1I-3oH"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="43a-7p-2Oo" firstAttribute="height" secondItem="fHT-TG-03e" secondAttribute="height" multiplier="0.5" id="4UL-dW-WH2"/>
+                                                <constraint firstItem="43a-7p-2Oo" firstAttribute="height" secondItem="fHT-TG-03e" secondAttribute="height" multiplier="0.52" id="4UL-dW-WH2"/>
+                                                <constraint firstAttribute="bottom" secondItem="43a-7p-2Oo" secondAttribute="bottom" id="DtZ-mP-YV3"/>
+                                                <constraint firstItem="zbb-cj-kzw" firstAttribute="centerY" secondItem="fHT-TG-03e" secondAttribute="centerY" id="JwS-s4-8MV"/>
                                                 <constraint firstItem="43a-7p-2Oo" firstAttribute="leading" secondItem="fHT-TG-03e" secondAttribute="leading" id="Mug-wb-jCX"/>
                                                 <constraint firstItem="43a-7p-2Oo" firstAttribute="width" secondItem="fHT-TG-03e" secondAttribute="width" id="vKU-fT-Qv9"/>
-                                                <constraint firstAttribute="bottom" secondItem="43a-7p-2Oo" secondAttribute="bottom" constant="10" id="wGm-ki-0po"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.97526973490000002" green="0.83109718560000001" blue="0.47159785030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -168,6 +180,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="Mdy-Bn-of0"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="profil" destination="zbb-cj-kzw" id="FOd-go-D9M"/>
                         <segue destination="unI-Mz-29e" kind="show" identifier="ScoreView" id="cWv-Bo-o73"/>
                         <segue destination="CXL-x0-PER" kind="show" identifier="UpdatePassword" id="Lzb-uo-wKD"/>
                     </connections>
