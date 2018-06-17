@@ -877,38 +877,34 @@
         <scene sceneID="RFJ-IX-9LJ">
             <objects>
                 <tableViewController id="WdD-Rx-dpq" customClass="NoticeTableViewController" customModule="OhDormitory" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="155" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zxD-gX-LlD" customClass="Noti">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="181" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zxD-gX-LlD" customClass="Noti">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noticeCell" rowHeight="155" id="RSK-ZX-hUg" customClass="NoticeCell" customModule="OhDormitory" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="155"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noticeCell" rowHeight="181" id="RSK-ZX-hUg" customClass="NoticeCell" customModule="OhDormitory" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="181"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RSK-ZX-hUg" id="BFc-vY-RPl" customClass="NoticeCell" customModule="OhDormitory" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="154.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="180.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardview.png" translatesAutoresizingMaskIntoConstraints="NO" id="i7w-lG-riL">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2018-06-06" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6m-5e-mEu">
-                                            <rect key="frame" x="74" y="41" width="95" height="21"/>
+                                            <rect key="frame" x="73" y="55" width="95" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="제목" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqg-Zd-Gny">
-                                            <rect key="frame" x="16" y="79" width="343" height="21"/>
+                                            <rect key="frame" x="16" y="108" width="343" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2018-06-30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkK-RH-KLS">
-                                            <rect key="frame" x="205" y="41" width="95" height="21"/>
+                                            <rect key="frame" x="203" y="55" width="95" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -1148,7 +1144,6 @@
     </scenes>
     <resources>
         <image name="camera.png" width="150" height="149"/>
-        <image name="cardview.png" width="662" height="282"/>
         <image name="login.png" width="289" height="74"/>
         <image name="refresh2.png" width="32" height="32"/>
         <image name="second" width="30" height="30"/>

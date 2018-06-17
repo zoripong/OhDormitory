@@ -21,6 +21,25 @@ extension UIAlertController {
 
 class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource{
     
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
+        
+//        var imageView = UIImageView(frame: CGRect(x:10, y:10, width:cell.frame.width - 10, height:cell.frame.height - 10))
+//        let image = UIImage(named: "tab_background.jpg")
+//        imageView.image = image
+//        //Just add imageView as subview of cell
+//        cell.addSubView(imageView)
+//        cell.sendSubviewToBack(imageView)
+//    }
+        
+        let imageView = UIImageView(frame: CGRect(x:15, y:20, width:cell.frame.width-30, height:cell.frame.height - 20))
+        let image = UIImage(named: "cardview.png")
+        imageView.image = image
+        cell.backgroundView = UIView()
+        cell.backgroundView!.addSubview(imageView)
+    }
+    
     var notices = [Notice]()
     
     //TODO : doori 2
@@ -32,13 +51,15 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        
         //table view custom
         let backgroundImage = UIImage(named: "tab_background.jpg")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
         //tableView.tableFooterView = UIView(frame: CGRectZero)
         imageView.contentMode = .scaleAspectFit
-     
+
         
      
         //tableView.tableFooterView = UIView(frame: CGRectZero)
