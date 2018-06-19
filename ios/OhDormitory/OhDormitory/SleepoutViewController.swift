@@ -144,6 +144,7 @@ class SleepoutViewController: UIViewController,UIImagePickerControllerDelegate,U
         print(message)
         self.dateLabel.text=""
         self.phoneLabel.text=""
+        
         self.messageLabel.text=message
         self.recognizeLabel.text=""
         self.cameraButton?.isHidden = true

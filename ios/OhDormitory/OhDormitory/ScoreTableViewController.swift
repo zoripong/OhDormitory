@@ -94,14 +94,17 @@ class ScoreTableViewController: UITableViewController {
             
             if let dateLabel = cell.date{
                 dateLabel.text = self.userScores[row].date
+                print("date",self.userScores[row].date)
+
             }
             let score_id = userScores[row].score_id
             if let detailLabel = cell.detail{
                 detailLabel.text = self.scores[score_id].detail
                 print("detail\(self.scores[score_id].detail)")
             }
-            if let scoreLabel = cell.date{
+            if let scoreLabel = cell.score{
                 scoreLabel.text = "\(self.scores[score_id].score)"
+                print("score",self.scores[score_id].score)
             }
             
             return cell
