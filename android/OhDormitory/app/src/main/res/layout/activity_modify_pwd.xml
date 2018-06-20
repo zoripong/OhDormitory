@@ -5,31 +5,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <EditText
-        android:id="@+id/et_existing_pwd"
+    android:orientation="vertical"
+    android:background="@drawable/tab_background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/colorAccent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"></LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="기존 비밀 번호"/>
-    <EditText
-        android:id="@+id/et_new_pwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="변경 비밀 번호"/>
-    <EditText
-        android:id="@+id/et_re_pwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="변경 비밀 번호 재입력"/>
-
+        android:background="#FFF"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="55dp"
+        android:paddingBottom="55dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp">
+        <EditText
+            android:id="@+id/et_existing_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="기존 비밀 번호"/>
+        <EditText
+            android:id="@+id/et_new_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="변경 비밀 번호"/>
+        <EditText
+            android:id="@+id/et_re_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="변경 비밀 번호 재입력"/>
+    </LinearLayout>
     <Button
         android:id="@+id/btn_modify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
         android:text="변경하기"
         android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/login"
+        android:layout_height="45dp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
         android:gravity="center"/>
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
 </LinearLayout>
+
+
+
 

@@ -31,6 +31,10 @@ public class FirebaseInstanceIDService extends FirebaseInstanceIdService {
     private final String USER_INFO_PREF = "User info";
     private final String OBJECT_USER = "Object user";
 
+
+    public FirebaseInstanceIDService() {
+
+    }
     public FirebaseInstanceIDService(String phone_number) {
         this.phone_number = phone_number;
 

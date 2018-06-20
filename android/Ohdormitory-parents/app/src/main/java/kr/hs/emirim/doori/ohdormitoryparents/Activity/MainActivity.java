@@ -140,7 +140,9 @@ public class MainActivity extends BaseActivity {
             if(myNumber == null)
                 myNumber = "01050502026"; //test용... 공기계일 떄
             else {
-                myNumber = myNumber.replaceAll("+82", "0");
+                Log.e("내 전화번호", myNumber);
+
+                myNumber = myNumber.replaceAll("[+]82", "0");
                 myNumber = myNumber.replaceAll(" ", "");
                 myNumber = myNumber.replaceAll("-", "");
             }
@@ -316,7 +318,7 @@ public class MainActivity extends BaseActivity {
                     for (int j = 0; j < recordJson.length(); j++) {
                         studentInfoList.add(studentInfos[j]);
                     }
-
+            Log.e("후",getApplicationContext()+"");
             recyclerView.setAdapter(new RecyclerAdapter(getApplicationContext(), studentInfoList, R.layout.activity_main));
 
 

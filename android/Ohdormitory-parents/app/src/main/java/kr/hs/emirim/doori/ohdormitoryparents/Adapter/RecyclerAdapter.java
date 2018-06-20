@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(PUT_STUDENT_INFO, studentInfo);
                     intent.putExtras(bundle);
+                    Log.e("콘텍스트",""+context);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                     context.startActivity(intent);
                 }
             });
