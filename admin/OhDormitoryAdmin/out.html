@@ -11,7 +11,7 @@
     <title>상벌점</title>
 </head>
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#header").load("header.html")
         getSleepoutList();
     });
@@ -49,7 +49,7 @@
         return xhr;
     }
 
-    function sendPush(token, title, body) {//푸시 알림 보내는 함수
+    function sendPush(token, title, body) { //푸시 알림 보내는 함수
         alert("푸시 되긴해?");
         var url = "https://fcm.googleapis.com/fcm/send";
 
@@ -74,9 +74,8 @@
 
     }
 
-// sendPush(parentToken, "자녀의 외박인증 QRcode가 전송되었습니다.", "자녀의 QRcode인증을 도와주세요.");
-// sendPush(token, "외박인증 QRcode가 전송되었습니다.", "부모님 핸드폰의 앱에 전송된 QRcode로 인증해주세요.");
-
+    // sendPush(parentToken, "자녀의 외박인증 QRcode가 전송되었습니다.", "자녀의 QRcode인증을 도와주세요.");
+    // sendPush(token, "외박인증 QRcode가 전송되었습니다.", "부모님 핸드폰의 앱에 전송된 QRcode로 인증해주세요.");
 </script>
 
 </script>
@@ -90,12 +89,12 @@
     function addData(room, name, wDate, dDate, recognize, notice_id, emirim_id) {
         //////버튼클릭하는거로 일단 헀움
 
-        var e = $("<div style='text-align:center; display:flex;'>" + "<span style='t width:100%; font-size:1.1em'>" + room + "</span>"
-            + "<input id='notice_id' type='hidden' value='" + notice_id + "'><input id='emirim_id' type='hidden' value='" + emirim_id + "'>"
-            + "<div style='width:100%; margin-top:0.5em; margin-bottom:2em; '>" + name + "</div>"
-            + "<div style='font-size:0.9em; margin-bottom:1.5em;'>" + wDate + " - " + dDate + "</div>"
-            + "<button id='certification-btn'>" + recognize + "</button>" + "<button id='del-btn' onclick=\"deleteRecord(this,'" + notice_id + "','" + emirim_id + "')\" >삭제</button>"
-            + '</div>');
+        var e = $("<div style='text-align:center; display:flex;'>" + "<span style='t width:100%; font-size:1.1em'>" + room + "</span>" +
+            "<input id='notice_id' type='hidden' value='" + notice_id + "'><input id='emirim_id' type='hidden' value='" + emirim_id + "'>" +
+            "<div style='width:100%; margin-top:0.5em; margin-bottom:2em; '>" + name + "</div>" +
+            "<div style='font-size:0.9em; margin-bottom:1.5em;'>" + wDate + " - " + dDate + "</div>" +
+            "<button id='certification-btn'>" + recognize + "</button>" + "<button id='del-btn' onclick=\"deleteRecord(this,'" + notice_id + "','" + emirim_id + "')\" >삭제</button>" +
+            '</div>');
 
         $("#score-add").append(e);
 
@@ -184,7 +183,7 @@
             async: true,
             url: "http://54.203.113.95/updateQRSend.php",
             dataType: "json",
-            success: function (response, status, result) {
+            success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
                 var return_data = JSON.parse(JSON.stringify(response.return_code));
                 var notice_data = JSON.parse(JSON.stringify(response.notice));
@@ -207,7 +206,7 @@
             url: "http://54.203.113.95/deleteSleepoutRecord.php",
             dataType: "json",
             data: querydata,
-            success: function (response, status, result) {
+            success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
                 var return_code = JSON.parse(JSON.stringify(response.return_code));
                 alert(return_code[0].return_message);
@@ -226,7 +225,7 @@
             url: "http://54.203.113.95/getSleepoutList.php",
             dataType: "json",
             //, data: "name=그렇구먼&type=이렇구먼"
-            success: function (response, status, result) {
+            success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
                 var code = JSON.parse(JSON.stringify(response.return_code));
                 var wDate = "";
@@ -291,7 +290,7 @@
             url: "http://54.203.113.95/getToken.php",
             dataType: "json",
             data: querydata,
-            success: function (response, status, result) {
+            success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
                 var return_data = JSON.parse(JSON.stringify(response.return_code));
                 var parent_data = JSON.parse(JSON.stringify(response.parent));
