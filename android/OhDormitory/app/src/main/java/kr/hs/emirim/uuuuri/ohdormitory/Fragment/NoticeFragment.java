@@ -54,7 +54,7 @@ public class NoticeFragment extends Fragment {
     private ArrayList<Notice> noticeDataset;
 
     private Receiver receiver;
-    private final String URL = "http://dorm.emirim.kr/getNotice.php";
+    private final String URL = "https://dorm.emirim.kr/getNotice.php";
 
     private User mUser;
     private Context mContext;

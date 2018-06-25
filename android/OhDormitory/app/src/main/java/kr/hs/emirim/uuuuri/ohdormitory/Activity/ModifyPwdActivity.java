@@ -40,7 +40,7 @@ public class ModifyPwdActivity extends AppCompatActivity {
     private final String USER_INFO_PREF = "User info";
     private final String OBJECT_USER = "Object user";
 
-    private final String URL = "http://dorm.emirim.kr/updateUserData.php";
+    private final String URL = "https://dorm.emirim.kr/updateUserData.php";
 
     private EditText mEtExistingPw;
     private EditText mEtNewPw;

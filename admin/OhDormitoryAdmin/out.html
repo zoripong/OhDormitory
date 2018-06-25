@@ -239,7 +239,8 @@
                     wDate = notice[0].sleep_w_time.replace(/-/gi, ".");
                     dDate = notice[0].sleep_d_time.replace(/-/gi, ".");
 
-                } else {
+                }
+                else {
                     total = 0;
                     recognizecount = 0;
                     var notice = JSON.parse(JSON.stringify(response.notice));
@@ -247,7 +248,7 @@
                     var notice_id = notice[0].notice_id;
                     wDate = notice[0].sleep_w_time.replace(/-/gi, ".");
                     dDate = notice[0].sleep_d_time.replace(/-/gi, ".");
-                    alert(wDate);
+                   // alert(wDate);
                     for (var i = 0; i < record.length; i++) {
                         var recognize;
                         if (record[i].recognize == 1) {
