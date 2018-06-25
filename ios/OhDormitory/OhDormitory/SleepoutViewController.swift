@@ -51,7 +51,6 @@ class SleepoutViewController: UIViewController,UIImagePickerControllerDelegate,U
             // get User Data
             let defaults = UserDefaults.standard
             let emirim_id = defaults.string(forKey: "emirim_id") ?? "Unknown user"
-            let parent_phone = defaults.string(forKey: "parent_phone") ?? "Unknown user"
             
            // print("이거"+emirim_id)
            // print("이거"+parent_phone)
@@ -132,10 +131,13 @@ class SleepoutViewController: UIViewController,UIImagePickerControllerDelegate,U
         
         self.dateLabel.text=sleep_w_time+" ~ "+sleep_d_time
         //TODO: 번호 넣기
-        self.phoneLabel.text="인증 연락처 : 01012341234"
+        let defaults = UserDefaults.standard
+        let parent_phone = defaults.string(forKey: "parent_phone") ?? "Unknown user"
+
+        self.phoneLabel.text="인증 연락처 : "+parent_phone
         self.messageLabel.text=""
         self.recognizeLabel.text=recognize
-        self.cameraButton?.isHidden = false
+        self.cameraButton?.isHidden = true
         
         
     }

@@ -265,7 +265,9 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
         
         alert.setMaxHeight(CGFloat(220.0))
         self.present(alert,animated: true, completion: nil )
-        
+        //UIApplication.shared.delegate?.window!!.rootViewController?.present(alert, animated: true, completion: nil)
+        //UIViewController().present(alert, animated: true, completion: nil)
+
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -301,7 +303,11 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
             
         }))
         alert.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: nil))
+       
         
+        //UIApplication.shared.delegate?.window!!.rootViewController?.present(alert, animated: true, completion: nil)
+        //UIViewController().present(alert, animated: true, completion: nil)
+
         self.present(alert, animated: true)
     }
     
@@ -367,6 +373,9 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
         
         alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
         
+        //UIApplication.shared.delegate?.window!!.rootViewController?.present(alert, animated: true, completion: nil)
+        //UIViewController().present(alert, animated: true, completion: nil)
+
         self.present(alert, animated: true)
     }
     

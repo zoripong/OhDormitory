@@ -165,8 +165,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         let alert = UIAlertController(title: "로그인 실패", message: "해당하는 계정정보가 없습니다.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-        
+        UIViewController().present(alert, animated: true, completion: nil)
+
         
     }
     
