@@ -114,7 +114,7 @@ public class FirebaseInstanceIDService extends FirebaseInstanceIdService {
             String token = params[1];
 
 
-            String serverURL = "http://54.203.113.95/insertParentToken.php";
+            String serverURL = "http://dorm.emirim.kr/insertParentToken.php";
 
             String postParameters = "parent_phone=" + parent_phone + "&" + "token=" + token;
 

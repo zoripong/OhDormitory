@@ -130,7 +130,7 @@ public class FirebaseInstanceIDService extends FirebaseInstanceIdService {
             String token = params[1];
 
 
-            String serverURL = "http://54.203.113.95/insertUserToken.php";
+            String serverURL = "http://dorm.emirim.kr/insertUserToken.php";
 
             String postParameters = "emirim_id=" + emirim_id + "&" + "token=" + token;
 

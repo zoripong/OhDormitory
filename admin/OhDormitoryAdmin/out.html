@@ -50,7 +50,6 @@
     }
 
     function sendPush(token, title, body) { //푸시 알림 보내는 함수
-        alert("푸시 되긴해?");
         var url = "https://fcm.googleapis.com/fcm/send";
 
         http.open("POST", url, true);
@@ -181,7 +180,7 @@
         $.ajax({
             type: "post",
             async: true,
-            url: "http://54.203.113.95/updateQRSend.php",
+            url: "http://dorm.emirim.kr/updateQRSend.php",
             dataType: "json",
             success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
@@ -203,7 +202,7 @@
         $.ajax({
             type: "get",
             async: true,
-            url: "http://54.203.113.95/deleteSleepoutRecord.php",
+            url: "http://dorm.emirim.kr/deleteSleepoutRecord.php",
             dataType: "json",
             data: querydata,
             success: function(response, status, result) {
@@ -222,7 +221,7 @@
         $.ajax({
             type: "post",
             async: true,
-            url: "http://54.203.113.95/getSleepoutList.php",
+            url: "http://dorm.emirim.kr/getSleepoutList.php",
             dataType: "json",
             //, data: "name=그렇구먼&type=이렇구먼"
             success: function(response, status, result) {
@@ -287,7 +286,7 @@
         $.ajax({
             type: "get",
             async: true,
-            url: "http://54.203.113.95/getToken.php",
+            url: "http://dorm.emirim.kr/getToken.php",
             dataType: "json",
             data: querydata,
             success: function(response, status, result) {
