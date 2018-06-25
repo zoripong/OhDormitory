@@ -73,7 +73,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         users = [User]()
-        var request = URLRequest(url: URL(string: "http://54.203.113.95/getUsers.php")!)
+        var request = URLRequest(url: URL(string: "http://dorm.emirim.kr/getUsers.php")!)
         request.httpMethod = "POST"
         //request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -71,7 +71,7 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
         
         //self.scoreTable.register(UITableViewCell.self, forCellReuseIdentifier: "ScoreCell")
         
-        var request = URLRequest(url: URL(string: "http://54.203.113.95/getNotice.php")!)
+        var request = URLRequest(url: URL(string: "http://dorm.emirim.kr/getNotice.php")!)
         request.httpMethod = "POST"
         //request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -310,7 +310,7 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
             // Download file or perform expensive task
             
             //요청할 url
-            var components = URLComponents(string: "http://54.203.113.95/insertSleepoutRecordForJson.php")
+            var components = URLComponents(string: "http://dorm.emirim.kr/insertSleepoutRecordForJson.php")
             //요청변수
             components?.queryItems = [
                 URLQueryItem(name: "notice_id", value: String(notice_id)),

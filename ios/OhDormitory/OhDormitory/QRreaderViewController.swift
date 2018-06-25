@@ -144,7 +144,7 @@ class QRreaderViewController: UIViewController,AVCaptureMetadataOutputObjectsDel
         DispatchQueue.global(qos: .userInitiated).async {
             
             //요청할 url
-            var components = URLComponents(string: "http://54.203.113.95/updateSleepoutRecognize.php")
+            var components = URLComponents(string: "http://dorm.emirim.kr/updateSleepoutRecognize.php")
             //요청변수
             components?.queryItems = [
                 URLQueryItem(name: "notice_id", value: noticeID),
