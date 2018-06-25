@@ -29,7 +29,7 @@ import kr.hs.emirim.uuuuri.ohdormitory.R;
 public class SignInActivity extends BaseActivity{
     private final String USER_INFO_PREF = "User info";
     private final String OBJECT_USER = "Object user";
-    private final String URL = "http://dorm.emirim.kr/getUsers.php";
+    private final String URL = "https://dorm.emirim.kr/getUsers.php";
 
     private final String TAG = "SIGN_IN_ACTIVITY";
 
