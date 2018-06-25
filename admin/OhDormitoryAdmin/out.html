@@ -180,7 +180,7 @@
         $.ajax({
             type: "post",
             async: true,
-            url: "http://dorm.emirim.kr/updateQRSend.php",
+            url: "https://dorm.emirim.kr/updateQRSend.php",
             dataType: "json",
             success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
@@ -202,7 +202,7 @@
         $.ajax({
             type: "get",
             async: true,
-            url: "http://dorm.emirim.kr/deleteSleepoutRecord.php",
+            url: "https://dorm.emirim.kr/deleteSleepoutRecord.php",
             dataType: "json",
             data: querydata,
             success: function(response, status, result) {
@@ -221,7 +221,7 @@
         $.ajax({
             type: "post",
             async: true,
-            url: "http://dorm.emirim.kr/getSleepoutList.php",
+            url: "https://dorm.emirim.kr/getSleepoutList.php",
             dataType: "json",
             //, data: "name=그렇구먼&type=이렇구먼"
             success: function(response, status, result) {
@@ -230,10 +230,10 @@
                 var wDate = "";
                 var dDate = "";
 
-                if (code[0].return_code == 0) {
+                if (code[0].return_code == 0) {//공지없음
                     alert(code[0].return_message);
 
-                } else if (code[0].return_code == 1) {
+                } else if (code[0].return_code == 1) {//신청안함
                     alert(code[0].return_message);
                     var notice = JSON.parse(JSON.stringify(response.notice));
                     wDate = notice[0].sleep_w_time.replace(/-/gi, ".");
@@ -286,7 +286,7 @@
         $.ajax({
             type: "get",
             async: true,
-            url: "http://dorm.emirim.kr/getToken.php",
+            url: "https://dorm.emirim.kr/getToken.php",
             dataType: "json",
             data: querydata,
             success: function(response, status, result) {
