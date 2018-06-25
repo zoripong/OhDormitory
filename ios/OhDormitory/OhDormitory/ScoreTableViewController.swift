@@ -19,7 +19,7 @@ class ScoreTableViewController: UITableViewController {
         
         self.scoreTable.register(UITableViewCell.self, forCellReuseIdentifier: "ScoreCell")
         
-        var request = URLRequest(url: URL(string: "http://54.203.113.95/getScore.php")!)
+        var request = URLRequest(url: URL(string: "https://dorm.emirim.kr/getScore.php")!)
         request.httpMethod = "POST"
         //request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -132,7 +132,7 @@ class ScoreTableViewController: UITableViewController {
             
         }else{
             //load score list
-            var request = URLRequest(url: URL(string: "http://54.203.113.95/getUserScore.php")!)
+            var request = URLRequest(url: URL(string: "https://dorm.emirim.kr/getUserScore.php")!)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             

@@ -70,7 +70,7 @@
         $.ajax({
             type: "GET",
             async: true,
-            url: "http://54.203.113.95/getNotice.php",
+            url: "https://dorm.emirim.kr/getNotice.php",
             dataType: "json",
             success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
@@ -133,7 +133,7 @@
             type: "POST",
             /*FIXME: POST -> PUT */
             async: true,
-            url: "http://54.203.113.95/insertNotice.php",
+            url: "https://dorm.emirim.kr/insertNotice.php",
             dataType: "text",
             data: {
                 // notice
@@ -232,7 +232,7 @@
         $.ajax({
             type: "GET",
             async: true,
-            url: "http://54.203.113.95/getNotice.php",
+            url: "https://dorm.emirim.kr/getNotice.php",
             dataType: "json",
             success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
@@ -265,7 +265,7 @@
             type: "POST",
             /*FIXME: POST -> PUT */
             async: true,
-            url: "http://54.203.113.95/updateNotice.php",
+            url: "https://dorm.emirim.kr/updateNotice.php",
             dataType: "text",
             data: {
                 // notice
@@ -359,7 +359,7 @@
         $.ajax({
             type: "POST",
             async: true,
-            url: "http://54.203.113.95/deleteNotice.php",
+            url: "https://dorm.emirim.kr/deleteNotice.php",
             dataType: "text",
             data: {
                 'id': id,

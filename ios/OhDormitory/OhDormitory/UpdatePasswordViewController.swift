@@ -88,7 +88,7 @@ class UpdatePasswordViewController: UIViewController {
         DispatchQueue.global(qos: .userInitiated).async {
             // Download file or perform expensive task
             //요청할 url
-            var components = URLComponents(string: "http://54.203.113.95/updateUserData.php")
+            var components = URLComponents(string: "https://dorm.emirim.kr/updateUserData.php")
             //요청변수
             components?.queryItems = [
                 URLQueryItem(name: "emirim_id", value: self.emirim_id),
