@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Zg-9E-5kb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Zg-9E-5kb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -744,14 +744,31 @@
                                     <segue destination="g4p-9K-MRM" kind="push" id="Jnf-wB-yqU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP0-6J-J8K">
+                                <rect key="frame" x="318" y="45" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="B6f-Uy-Mo9"/>
+                                    <constraint firstAttribute="height" constant="32" id="qVp-mV-gFK"/>
+                                </constraints>
+                                <state key="normal" title="새로고침" backgroundImage="refresh2.png">
+                                    <color key="titleColor" red="0.97526973490000002" green="0.83109718560000001" blue="0.47159785030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedRefreshButton:" destination="BJW-jR-OOa" eventType="touchUpInside" id="J2a-N3-mbE"/>
+                                    <action selector="pressedRefreshButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="fWN-iU-AFv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="oP0-6J-J8K" firstAttribute="top" secondItem="qww-Gw-xdb" secondAttribute="top" constant="25" id="7tV-pF-AHH"/>
                             <constraint firstItem="t9K-Sf-Xq4" firstAttribute="leading" secondItem="HLO-ne-RFD" secondAttribute="leading" id="BES-yz-t7p"/>
                             <constraint firstItem="91u-xH-8tU" firstAttribute="centerY" secondItem="HLO-ne-RFD" secondAttribute="centerY" id="F4N-5j-69r"/>
                             <constraint firstItem="6J5-UO-bZd" firstAttribute="centerX" secondItem="Uka-mr-eBN" secondAttribute="centerX" id="GcS-b7-V62"/>
                             <constraint firstItem="91u-xH-8tU" firstAttribute="top" secondItem="C4x-ci-p8O" secondAttribute="top" id="Iyz-Sy-3hN"/>
                             <constraint firstItem="t9K-Sf-Xq4" firstAttribute="centerY" secondItem="HLO-ne-RFD" secondAttribute="centerY" id="Jsc-W4-d15"/>
+                            <constraint firstItem="qww-Gw-xdb" firstAttribute="trailing" secondItem="oP0-6J-J8K" secondAttribute="trailing" constant="25" id="RIz-cE-9xK"/>
+                            <constraint firstItem="qww-Gw-xdb" firstAttribute="trailing" secondItem="oP0-6J-J8K" secondAttribute="trailing" constant="25" id="THh-5Z-lbS"/>
                             <constraint firstItem="t9K-Sf-Xq4" firstAttribute="width" secondItem="HLO-ne-RFD" secondAttribute="width" id="Ul7-tR-SqJ"/>
                             <constraint firstItem="6J5-UO-bZd" firstAttribute="top" secondItem="t9K-Sf-Xq4" secondAttribute="bottom" constant="30" id="WUg-XO-Ew4"/>
                             <constraint firstItem="91u-xH-8tU" firstAttribute="width" secondItem="C4x-ci-p8O" secondAttribute="width" id="YRy-Dj-sEO"/>
@@ -1193,7 +1210,8 @@
         <image name="tab_background.jpg" width="768" height="1280"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Jnf-wB-yqU"/>
         <segue reference="cus-Mb-9aj"/>
-        <segue reference="nIc-Qt-pt3"/>
+        <segue reference="iDy-Vc-zPh"/>
     </inferredMetricsTieBreakers>
 </document>

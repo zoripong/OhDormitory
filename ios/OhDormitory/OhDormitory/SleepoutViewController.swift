@@ -21,6 +21,14 @@ class SleepoutViewController: UIViewController,UIImagePickerControllerDelegate,U
     
     @IBOutlet weak var cameraButton: UIButton!
     
+    
+    @IBAction func pressedRefreshButton(_ sender: UIButton) {
+        getData()
+
+        
+    }
+    
+    
     let imagePicker: UIImagePickerController! = UIImagePickerController()
     
     
