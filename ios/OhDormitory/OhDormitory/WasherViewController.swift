@@ -246,7 +246,7 @@ class WasherViewController: UIViewController {
         DispatchQueue.global(qos: .userInitiated).async {
             
             //요청할 url
-            let components = URLComponents(string: "http://dorm.emirim.kr/getWashList.php")
+            let components = URLComponents(string: "https://dorm.emirim.kr/getWashList.php")
      
             
             guard let url = components?.url else { return }
@@ -457,7 +457,7 @@ class WasherViewController: UIViewController {
             do{
             
             //요청할 url
-            var components = URLComponents(string: "http://dorm.emirim.kr/updateWashListForJson.php")
+            var components = URLComponents(string: "https://dorm.emirim.kr/updateWashListForJson.php")
             
 //            print("요청",String(washer_num))
 //            print("요청",String(washer_time))

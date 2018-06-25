@@ -45,7 +45,7 @@ class SleepoutViewController: UIViewController,UIImagePickerControllerDelegate,U
             // Download file or perform expensive task
             
             //요청할 url
-            var components = URLComponents(string: "http://dorm.emirim.kr/getSleepoutRecord.php")
+            var components = URLComponents(string: "https://dorm.emirim.kr/getSleepoutRecord.php")
             //요청변수
             
             // get User Data

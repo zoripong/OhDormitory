@@ -10,7 +10,7 @@
     <link href="css/noticeCss.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="js/jquery-ui.js"></script>
-   
+
     <script src="js/noticeAdd.js"></script>
 
     <title>공지사항</title>
@@ -70,25 +70,25 @@
         $.ajax({
             type: "GET",
             async: true,
-            url: "http://54.203.113.95/getNotice.php",
+            url: "https://dorm.emirim.kr/getNotice.php",
             dataType: "json",
             success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
                 var notice_list = JSON.parse(JSON.stringify(response.notice));
 
                 var keys = [];
-                for(var k in notice_list) keys.push(k);
-            
+                for (var k in notice_list) keys.push(k);
 
-                for(var i = 0; i<keys.length; i++){
+
+                for (var i = 0; i < keys.length; i++) {
                     // alert(keys[i]);
                     makeListItem(notice_list[keys[i]].notice_id, notice_list[keys[i]].type, notice_list[keys[i]].title, notice_list[keys[i]].w_time, notice_list[keys[i]].d_time);
                 }
-                
+
             }
         });
     }
-    
+
     var typeStr = ['공지사항', '청소구역', '외박일지'];
 
     function addItem() {
@@ -115,49 +115,49 @@
          something-else $("#d_time").val() $("#sleep_w_time").val() $("#sleep_d_time").val() 0
 
         */
-       var clean_array = Array();
-       if($("#notice_kind").val() == 1){
-        //4-clean-0 ~ 4-clean-6
-        //5-clean-0 ~ 5-clean-6
-            for(var i = 4; i<=5; i++){
-                for(var j = 0; j<7; j++){
-//                    alert("#"+i+"-clean-"+j+ " : " + $("#"+i+"-clean-"+j).val());
-                    clean_array.push($("#"+i+"-clean-"+j).val());
+        var clean_array = Array();
+        if ($("#notice_kind").val() == 1) {
+            //4-clean-0 ~ 4-clean-6
+            //5-clean-0 ~ 5-clean-6
+            for (var i = 4; i <= 5; i++) {
+                for (var j = 0; j < 7; j++) {
+                    //                    alert("#"+i+"-clean-"+j+ " : " + $("#"+i+"-clean-"+j).val());
+                    clean_array.push($("#" + i + "-clean-" + j).val());
                 }
             }
 
-       }
-       var clean_json = JSON.stringify(clean_array);
-    
+        }
+        var clean_json = JSON.stringify(clean_array);
+
         $.ajax({
             type: "POST",
             /*FIXME: POST -> PUT */
             async: true,
-            url: "http://54.203.113.95/insertNotice.php",
+            url: "https://dorm.emirim.kr/insertNotice.php",
             dataType: "text",
             data: {
                 // notice
-                "title" : $("#notice_title").val(),
-                "type" : $("#notice_kind").val(),
-                "w_time" : $("#w_time").val(),
-                "d_time" : $("#d_time").val(),
-                
+                "title": $("#notice_title").val(),
+                "type": $("#notice_kind").val(),
+                "w_time": $("#w_time").val(),
+                "d_time": $("#d_time").val(),
+
                 // basic_notice
-                "content" : $("#notice_content").val(),
+                "content": $("#notice_content").val(),
 
                 //clean_notice TODO: convert to Array
-                "clean_area" : clean_json,
+                "clean_area": clean_json,
 
                 //sleepout_notice
-                "sleep_w_time" : $("#sleep_w_time").val(),
-                "sleep_d_time" : $("#sleep_d_time").val()
+                "sleep_w_time": $("#sleep_w_time").val(),
+                "sleep_d_time": $("#sleep_d_time").val()
 
             },
             success: function(response, status, result) {
                 alert("게시글 등록에 성공하였습니다." + response);
 
                 sendPush(typeStr[notice_kind.value]);
-                
+
                 loadNotice();
                 var modal = document.getElementById('myModal');
                 modal.style.display = "none";
@@ -173,7 +173,7 @@
 
     function makeListItem(id, type, title, wDate, dDate) {
 
-        
+
         if (type == 0) {
             $("#bookmarkAdd").css('background-image', 'url(image/notice-bookmark.svg)');
         } else if (type == 1) {
@@ -182,8 +182,8 @@
             $("#bookmarkAdd").css('background-image', 'url(image/out-bookmark.svg)');
         }
 
-        
-        var e = $('<div onclick="showDetail(\''+id+'\', \''+type+'\')">' + "<div style='display:inline;'>" + typeStr[type] + "</div>" +
+
+        var e = $('<div onclick="showDetail(\'' + id + '\', \'' + type + '\')">' + "<div style='display:inline;'>" + typeStr[type] + "</div>" +
             "<div id='bookmarkAdd'></div>" +
             "<div style='margin-left:1em;margin-top:0.5em;font-size:1.1em;'>" + title + "</div>" +
             "<div style='text-align:right; font-size:0.9em;'>" + wDate + " - " + dDate + "</div>" +
@@ -195,7 +195,7 @@
         e.attr('class', 'outBox');
         $('.outBox').css({
             width: "90%",
-            margin:"0 auto",
+            margin: "0 auto",
             padding: "1.5em",
             backgroundColor: "#FFF",
             borderRadius: "15px",
@@ -203,14 +203,14 @@
             marginBottom: "1em"
         });
     }
-    
+
     var detail_title = "";
     var detail_w_time = "";
     var detail_d_time = "";
     var detail = new Array();
 
 
-    function showDetail(id, type){
+    function showDetail(id, type) {
         var modifieModal = document.getElementById('modifieModal');
         modifieModal.style.display = "block";
         $(".modifieModal").css('display', 'flex'); //modal이 가운데 뜨게
@@ -219,25 +219,25 @@
         $("#notice-text").css('border', 'none');
         $("#modifie-notice-box>#date-div>#w_time, #modifie-notice-box>#date-div>#d_time").css('border', '');
         //이거 안 하면 아이디가 같아서 추가하기에서 청소구역을 선택하고 창을 닫아버리면 게시글을 클릭한 곳에서도
-        
-       $("#trashCan").click(function(){
-           removeItem(id, type);
-            modifieModal.style.display = "none";
-       });
 
-       $("#modify_save_btn").click(function(){
-           updateNotice(id, type);
-       });
+        $("#trashCan").click(function() {
+            removeItem(id, type);
+            modifieModal.style.display = "none";
+        });
+
+        $("#modify_save_btn").click(function() {
+            updateNotice(id, type);
+        });
 
         $.ajax({
             type: "GET",
             async: true,
-            url: "http://54.203.113.95/getNotice.php",
+            url: "https://dorm.emirim.kr/getNotice.php",
             dataType: "json",
             success: function(response, status, result) {
                 var response = JSON.parse(JSON.stringify(response));
                 var notice_list = JSON.parse(JSON.stringify(response.notice));
-                
+
 
                 detail_title = notice_list[id].title;
                 detail_w_time = notice_list[id].w_time;
@@ -250,40 +250,40 @@
         });
     }
 
-    function updateNotice(id, type){
+    function updateNotice(id, type) {
         var modify_clean_array = Array();
-        if(type == 1){
-            for(var i = 4; i<=5; i++){
-                for(var j = 0; j<7; j++){
-                    modify_clean_array.push($("#modify_"+i+"-clean-"+j).val());
+        if (type == 1) {
+            for (var i = 4; i <= 5; i++) {
+                for (var j = 0; j < 7; j++) {
+                    modify_clean_array.push($("#modify_" + i + "-clean-" + j).val());
                 }
             }
-       }
+        }
 
-       var clean_json = JSON.stringify(modify_clean_array);
+        var clean_json = JSON.stringify(modify_clean_array);
         $.ajax({
             type: "POST",
             /*FIXME: POST -> PUT */
             async: true,
-            url: "http://54.203.113.95/updateNotice.php",
+            url: "https://dorm.emirim.kr/updateNotice.php",
             dataType: "text",
             data: {
                 // notice
-                "notice_id" : id,
-                "type" : type,
-                "title" : $("#modify_notice_title").val(),
-                "w_time" : $("#modify_w_time").val(),
-                "d_time" : $("#modify_d_time").val(),
-                
+                "notice_id": id,
+                "type": type,
+                "title": $("#modify_notice_title").val(),
+                "w_time": $("#modify_w_time").val(),
+                "d_time": $("#modify_d_time").val(),
+
                 // basic_notice
-                "content" : $("#modify_notice_content").val(),
+                "content": $("#modify_notice_content").val(),
 
                 //clean_notice TODO: convert to Array
-                "clean_area" : clean_json,
+                "clean_area": clean_json,
 
                 //sleepout_notice
-                "sleep_w_time" : $("#modify_sleep_w_time").val(),
-                "sleep_d_time" : $("#modify_sleep_d_time").val()
+                "sleep_w_time": $("#modify_sleep_w_time").val(),
+                "sleep_d_time": $("#modify_sleep_d_time").val()
             },
             success: function(response, status, result) {
                 alert("게시글 수정에 성공하였습니다." + response);
@@ -300,7 +300,7 @@
 
     }
 
-    function modifyDetail(type){
+    function modifyDetail(type) {
         alert(type);
         // 일반 공지
         // alert();
@@ -322,12 +322,12 @@
 
         if (type == 0) {
             $("#notice-text").val("공지사항");
-            $("#modify_select_notice").css('display', 'block'); 
+            $("#modify_select_notice").css('display', 'block');
             $("#modify_select_clean").css('display', 'none');
             $("#modify_select_sleep").css('display', 'none');
-            
+
             $("#modify_notice_content").val(detail['content']);
-        
+
         } else if (type == 1) {
             $("#notice-text").val("청소구역");
             $("#modify_select_notice").css('display', 'none');
@@ -336,9 +336,9 @@
 
 
             var index = 0;
-            for(var i = 4; i<=5; i++){
-                for(var j = 0; j<7; j++){
-                    $("#modify_"+i+"-clean-"+j).val(detail[index++]);
+            for (var i = 4; i <= 5; i++) {
+                for (var j = 0; j < 7; j++) {
+                    $("#modify_" + i + "-clean-" + j).val(detail[index++]);
                 }
             }
 
@@ -352,21 +352,21 @@
         }
     }
 
-    function removeItem(id, type){
+    function removeItem(id, type) {
         // alert(type+"/"+title+"/"+wDate+"/"+dDate);
         alert("remove.." + id + "/" + type);
 
         $.ajax({
             type: "POST",
             async: true,
-            url: "http://54.203.113.95/deleteNotice.php",
+            url: "https://dorm.emirim.kr/deleteNotice.php",
             dataType: "text",
             data: {
                 'id': id,
-                'type' : type
+                'type': type
             },
             success: function(response, status, result) {
-                alert("게시판 삭제에 성공하였습니다."+response);
+                alert("게시판 삭제에 성공하였습니다." + response);
                 loadNotice();
             },
             error: function(xhr, status, error) {
