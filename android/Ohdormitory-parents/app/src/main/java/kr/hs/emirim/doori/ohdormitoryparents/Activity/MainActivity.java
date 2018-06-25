@@ -66,6 +66,7 @@ public class MainActivity extends BaseActivity {
     private static String TAG_JSON_S = "student";
 
     private TextView textView_message;
+    private ImageView refresh_btn;
 
     String mJsonString;
 
@@ -96,8 +97,16 @@ public class MainActivity extends BaseActivity {
             ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.READ_PHONE_STATE},0);
 
         }
+        refresh_btn=(ImageView) findViewById(R.id.refresh_btn);
 
+        refresh_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                checkCallPermission();
+
+            }
+        });
 
 //        //이부분 지우기
 //
