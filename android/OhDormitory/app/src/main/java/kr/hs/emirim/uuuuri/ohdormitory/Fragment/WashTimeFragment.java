@@ -268,7 +268,7 @@ public class WashTimeFragment extends Fragment implements Day{
     // 기존 예약자들 표시
     private void setExistingUser(){
         Receiver receiver = new Receiver();
-        receiver.execute("http://54.203.113.95/getWashList.php");
+        receiver.execute("http://dorm.emirim.kr/getWashList.php");
     }
 
 
@@ -310,7 +310,7 @@ public class WashTimeFragment extends Fragment implements Day{
                         // TODO delete..
                         Log.e(TAG, "DELETE");
                         //Activity mActivity, String urlAddress, int washer_num, int wash_time, String emirim_id, boolean isInsert
-                        Sender s = new Sender(view.getContext(), "http://54.203.113.95/updateWashList.php", 0, 0,mUser.getEmirim_id(),false);
+                        Sender s = new Sender(view.getContext(), "http://dorm.emirim.kr/updateWashList.php", 0, 0,mUser.getEmirim_id(),false);
                         s.execute();
 
                         mApplyText.setText("신  청");
@@ -349,7 +349,7 @@ public class WashTimeFragment extends Fragment implements Day{
 
                         Log.e(TAG, "INSERT");
 
-                        Sender s = new Sender(view.getContext(), "http://54.203.113.95/updateWashList.php", washer_num, getTimeType()*3+finalWasherType,mUser.getEmirim_id(),true);
+                        Sender s = new Sender(view.getContext(), "http://dorm.emirim.kr/updateWashList.php", washer_num, getTimeType()*3+finalWasherType,mUser.getEmirim_id(),true);
                         s.execute();
 
                         mApplyText.setText("취  소");

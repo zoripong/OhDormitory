@@ -76,14 +76,14 @@ public class ScoreActivity extends BaseActivity {
 
         mScoreHashMap = new HashMap<>();
 
-        String URL = "http://54.203.113.95/getScore.php";
+        String URL = "http://dorm.emirim.kr/getScore.php";
         ScoreReceiver scoreReceiver = new ScoreReceiver();
         scoreReceiver.execute(URL);
     }
 
     private void readScore() {
 
-        String URL = "http://54.203.113.95/getUserScore.php";
+        String URL = "http://dorm.emirim.kr/getUserScore.php";
         UserScoreReceiver userScoreReceiver = new UserScoreReceiver();
         userScoreReceiver.execute(URL);
         mMinusScore = 0.0;
