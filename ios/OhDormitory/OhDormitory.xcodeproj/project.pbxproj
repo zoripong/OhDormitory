@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F20984220E1B9A5005EAFA6 /* cleanCardview.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F20983F20E1B99E005EAFA6 /* cleanCardview.png */; };
+		3F20984320E1B9A5005EAFA6 /* noticeCardview.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F20984020E1B9A0005EAFA6 /* noticeCardview.png */; };
+		3F20984420E1B9A5005EAFA6 /* outCardview.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F20984120E1B9A3005EAFA6 /* outCardview.png */; };
 		3F43408020C9F7650079C249 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F43406820C9F7630079C249 /* background.jpg */; };
 		3F43408120C9F7650079C249 /* shadow.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F43406920C9F7630079C249 /* shadow.9.png */; };
 		3F43408220C9F7650079C249 /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F43406A20C9F7630079C249 /* more.png */; };
@@ -79,6 +82,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F20983F20E1B99E005EAFA6 /* cleanCardview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cleanCardview.png; sourceTree = "<group>"; };
+		3F20984020E1B9A0005EAFA6 /* noticeCardview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noticeCardview.png; sourceTree = "<group>"; };
+		3F20984120E1B9A3005EAFA6 /* outCardview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outCardview.png; sourceTree = "<group>"; };
 		3F43406820C9F7630079C249 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		3F43406920C9F7630079C249 /* shadow.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow.9.png; sourceTree = "<group>"; };
 		3F43406A20C9F7630079C249 /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
@@ -176,6 +182,9 @@
 				3F43406F20C9F7640079C249 /* circle.png */,
 				3F43407520C9F7640079C249 /* dialog.png */,
 				3F43407C20C9F7650079C249 /* header.jpg */,
+				3F20983F20E1B99E005EAFA6 /* cleanCardview.png */,
+				3F20984020E1B9A0005EAFA6 /* noticeCardview.png */,
+				3F20984120E1B9A3005EAFA6 /* outCardview.png */,
 				3F43406D20C9F7630079C249 /* login.png */,
 				3F43406A20C9F7630079C249 /* more.png */,
 				3F43407120C9F7640079C249 /* notification.png */,
@@ -383,9 +392,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F20984220E1B9A5005EAFA6 /* cleanCardview.png in Resources */,
 				3F43409420C9F7650079C249 /* header.jpg in Resources */,
 				F20288A920C8E6B3000E33FA /* LaunchScreen.storyboard in Resources */,
 				3F43409320C9F7650079C249 /* tab1.png in Resources */,
+				3F20984320E1B9A5005EAFA6 /* noticeCardview.png in Resources */,
 				3F43408B20C9F7650079C249 /* camera.png in Resources */,
 				3F43409020C9F7650079C249 /* cardview.png in Resources */,
 				3F43409120C9F7650079C249 /* settings_header.png in Resources */,
@@ -396,6 +407,7 @@
 				3F43409520C9F7650079C249 /* spinner_bg2.png in Resources */,
 				3F43409220C9F7650079C249 /* signin.jpg in Resources */,
 				3F43408920C9F7650079C249 /* notification.png in Resources */,
+				3F20984420E1B9A5005EAFA6 /* outCardview.png in Resources */,
 				3F43408020C9F7650079C249 /* background.jpg in Resources */,
 				3F43408820C9F7650079C249 /* tab2.png in Resources */,
 				3F43408120C9F7650079C249 /* shadow.9.png in Resources */,

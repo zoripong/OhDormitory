@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 //TODO : doori 1
 extension UIAlertController {
     
@@ -33,11 +32,6 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
 //        cell.sendSubviewToBack(imageView)
 //    }
         
-        let imageView = UIImageView(frame: CGRect(x:15, y:20, width:cell.frame.width-30, height:cell.frame.height - 20))
-        let image = UIImage(named: "cardview.png")
-        imageView.image = image
-        cell.backgroundView = UIView()
-        cell.backgroundView!.addSubview(imageView)
     }
     
     var notices = [Notice]()
@@ -106,7 +100,9 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
                                 if let detail = notice_data_item["detail"] as? [String]{
                                     self.notices.append(CleanNotice(notice_id: Int(notice_id)!, title: title, type: Int(type)!, w_time: w_time, d_time: d_time, detail: detail))
                                     
+                                    
                                 }
+                                
                             case "2":
                                 print("외박공지")
                                 if let notice_data_detail = notice_data_item["detail"] as? Dictionary<String, AnyObject>{
@@ -190,6 +186,7 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
             
             if let wTimeLabel = cell.w_time{
                 wTimeLabel.text = self.notices[row].w_time
+                
             }
             
             if let dTimeLabel = cell.d_time{
@@ -199,7 +196,27 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
             if let titleLabel = cell.title{
                 titleLabel.text = self.notices[row].title
             }
+            
+            let type : Int = (self.notices[row].type)
+            let image:UIImage;
+            let imageView = UIImageView(frame: CGRect(x:15, y:20, width:cell.frame.width-30, height:cell.frame.height - 20))
+                switch(type){
+                case 1:
+                    
+                    image = UIImage(named: "cleanCardview.png")!
+                case 2:
+                    image = UIImage(named: "outCardview.png")!
+                default:
+                    image = UIImage(named: "noticeCardview.png")!
+                    
+                }
+            imageView.image = image
+            cell.backgroundView = UIView()
+            cell.backgroundView!.addSubview(imageView)
+            
         }
+            
+        
         
         return cell
     }
@@ -217,10 +234,12 @@ class NoticeTableViewController: UITableViewController, UIPickerViewDelegate, UI
                 let notice : BasicNotice = self.notices[indexPath.row] as! BasicNotice
                 print("basic notice")
                 tmpBN.content = notice.content
+                
             }else if type == 1{
                 let notice : CleanNotice = self.notices[indexPath.row] as! CleanNotice
                 print("clean notice")
                 tmpBN.cleanDetails = notice.detail
+                
             }
             tmpBN.view.frame = self.view.bounds
             self.navigationController?.pushViewController( tmpBN, animated: true )
