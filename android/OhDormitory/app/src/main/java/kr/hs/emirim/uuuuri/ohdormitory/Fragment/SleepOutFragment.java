@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -67,6 +68,7 @@ public class SleepOutFragment extends Fragment {
     TextView mTextParentCall;
     TextView mTextRecognize;
     View mView;
+    private ImageView refresh_btn;
 
 
 
@@ -93,7 +95,17 @@ public class SleepOutFragment extends Fragment {
         GetData task = new GetData();
         task.execute("https://dorm.emirim.kr/getSleepoutRecord.php?userID="+mUser.getEmirim_id());
 
+        refresh_btn= mView.findViewById(R.id.refresh_btn);
 
+        refresh_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                GetData task = new GetData();
+                task.execute("https://dorm.emirim.kr/getSleepoutRecord.php?userID="+mUser.getEmirim_id());
+
+            }
+        });
         return mView;
     }
 
