@@ -62,8 +62,9 @@
     var before_name = "";
     var before_student_phone = "";
     var before_parent_phone = "";
+
     function infoChange() {
-       
+
         var changeBtn = document.getElementById("info-change");
         var cancleBtn = document.getElementById("cancle-btn");
         if (check == false) { //정보 수정 버튼을 누른 경우
@@ -75,7 +76,7 @@
 
             changeBtn.value = "저장";
             changeBtn.style.width = "11%";
-            cancleBtn.style.display="block";
+            cancleBtn.style.display = "block";
             $("input[name='room_num']").attr("readonly", false);
             $("input[name='name']").attr("readonly", false);
             $("input[name='email']").attr("readonly", false);
@@ -88,12 +89,12 @@
             $("input[name='parent_phone']").css("border", "1px solid #BBBBBB");
             check = true;
         } else { //저장 버튼을 누른 경우
-            if(before_emirim_id != $("#email").val() || before_room_num != $("#room_num").val() || before_name != $("#name").val() || before_student_phone != $("#student_phone").val() || before_parent_phone != $("#parent_phone").val())
+            if (before_emirim_id != $("#email").val() || before_room_num != $("#room_num").val() || before_name != $("#name").val() || before_student_phone != $("#student_phone").val() || before_parent_phone != $("#parent_phone").val())
                 saveBtn(before_emirim_id);
-            
+
             changeBtn.value = "정보수정";
             changeBtn.style.width = "15%";
-            cancleBtn.style.display="none";
+            cancleBtn.style.display = "none";
             $("input[name='room_num']").attr("readonly", true);
             $("input[name='name']").attr("readonly", true);
             $("input[name='email']").attr("readonly", true);
@@ -110,28 +111,29 @@
     }
 
     function saveBtn(before_emirim_id) {
-        if(before_emirim_id != $("#email").val()){
+        if (before_emirim_id != $("#email").val()) {
             var isOK = confirm("계정이 수정되어 기존 데이터가 모두 초기화 됩니다. 그래도 수정하시겠습니까?");
-            if(isOK){
-               updateUser(before_emirim_id);
+            if (isOK) {
+                updateUser(before_emirim_id);
 
-            }else{
+            } else {
                 setBeforeData();
                 alert("취소되었습니다.");
             }
 
-        }else{
+        } else {
             var isOK = confirm("회원정보를 수정하시겠습니까?");
-            if(isOK){
-               updateUser(before_emirim_id);
-            }else{
+            if (isOK) {
+                updateUser(before_emirim_id);
+            } else {
                 setBeforeData();
                 alert("취소되었습니다.");
             }
         }
-         
+
     }
-    function setBeforeData(){
+
+    function setBeforeData() {
         // before_emirim_id = $("#email").val();
         // before_room_num = $("#room_num").val();
         // before_name = $("#name").val();
@@ -143,33 +145,34 @@
         $("#student_phone").val(before_student_phone);
         $("#parent_phone").val(before_parent_phone);
     }
-    function Export(){
+
+    function Export() {
         var conf = confirm("회원정보 파일을 다운받겠습니까?");
-        if(conf == true)
-        {http
+        if (conf == true) {
+            http
             window.open("http://dorm.emirim.kr/downloadUserCSV.php", '_blank');
         }
     }
 
-    function updateUser(before_emirim_id){
-         $.ajax({
+    function updateUser(before_emirim_id) {
+        $.ajax({
             type: "POST",
             /* FIXME: POST -> PUT */
             async: true,
             url: "http://dorm.emirim.kr/updateUser.php",
             dataType: "text",
             data: {
-                'before_emirim_id' : before_emirim_id,
-                'room_num' : $("#room_num").val(),
-                'name' : $("#name").val(),
-                'emirim_id' : $("#email").val(),
-                'student_phone' : $("#student_phone").val(),
-                'parent_phone' : $("#parent_phone").val()     
+                'before_emirim_id': before_emirim_id,
+                'room_num': $("#room_num").val(),
+                'name': $("#name").val(),
+                'emirim_id': $("#email").val(),
+                'student_phone': $("#student_phone").val(),
+                'parent_phone': $("#parent_phone").val()
             },
             success: function(response, status, result) {
                 alert("학생 정보 수정을 성공하였습니다.");
                 Export();
-                
+
             },
             error: function(xhr, status, error) {
                 var errorMessage = xhr.status + ': ' + xhr.statusText
@@ -179,33 +182,33 @@
 
     }
 
-    function editCancle(){
-        check=true;
-       
+    function editCancle() {
+        check = true;
+
         setBeforeData();
         infoChange();
     }
 
     function getUserData(student_name) {
-
         $.ajax({
             type: "GET",
             async: true,
-            url: "http://dorm.emirim.kr/getUser.php?STUDENT_NAME=" + student_name,
+            url: "https://dorm.emirim.kr/getUser.php?STUDENT_NAME=" + student_name,
             dataType: "json",
             success: function(response, status, result) {
+
                 var response = JSON.parse(JSON.stringify(response));
                 var user_list = JSON.parse(JSON.stringify(response.user));
                 if (user_list.length <= 0) {
                     // 한명도 없는 경우
                     alert("해당 이름의 학생은 존재하지 않습니다.");
-                    location.href="auth.html";
+                    location.href = "auth.html";
 
-                }else if(user_list.length >= 2){
+                } else if (user_list.length >= 2) {
                     //TODO: 동명이인이 있을 경우
-                }else{
+                } else {
                     student = new User(user_list[0].emirim_id, user_list[0].password, user_list[0].name, user_list[0].room_num, user_list[0].student_phone, user_list[0].parent_phone);
-                    
+
                     // set the html value
                     $("#room_num").val(student.room_num);
                     $("#name").val(student.name);
@@ -213,10 +216,15 @@
                     $("#student_phone").val(student.student_phone);
                     $("#parent_phone").val(student.parent_phone);
 
-                    
+
                     getScoreList();
                 }
-                
+
+            },
+            error: function(xhr, status, error) {
+                var errorMessage = xhr.status + ': ' + xhr.statusText
+                alert('Error - ' + errorMessage);
+                // alert("요청을 처리하는데에 문제가 생겼습니다.\n다시시도해보세요.");
             }
         });
     }
@@ -341,8 +349,6 @@
         });
 
     }
-    
-  
 </script>
 
 
