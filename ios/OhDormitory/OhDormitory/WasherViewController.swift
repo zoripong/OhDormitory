@@ -391,19 +391,27 @@ class WasherViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { action in
-            
+            print("하..")
+
             var real_washer_num : Int = washer_num
             var real_washer_time : Int
 
             //todo : 신청하기
             if self.user_room_floor == 5 {
                 real_washer_num = washer_num + 3
+                
             }
-//            print("self.time_type",self.time_type)
-//            print("washer_time",washer_time)
-            
+         
             real_washer_time = self.time_type + washer_time
-            self.applyWasher(washer_num:real_washer_num,washer_time:real_washer_time,isInsert: String(isInsert))
+            
+            
+            if isInsert{
+                self.applyWasher(washer_num:real_washer_num,washer_time:real_washer_time,isInsert: String(isInsert))
+            }
+            else{
+                self.applyWasher(washer_num:washer_num,washer_time:washer_time,isInsert: String(isInsert))
+
+            }
         }))
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         
@@ -472,7 +480,8 @@ class WasherViewController: UIViewController {
                 URLQueryItem(name: "isInsert", value: isInsert),
                 
             ]
-            
+              
+                
             guard let url = components?.url else { return }
             var request = URLRequest(url: url)
             
