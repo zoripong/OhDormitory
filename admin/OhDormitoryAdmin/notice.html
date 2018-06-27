@@ -261,6 +261,7 @@
         }
 
         var clean_json = JSON.stringify(modify_clean_array);
+        // alert(clean_json);
         $.ajax({
             type: "POST",
             /*FIXME: POST -> PUT */
@@ -278,8 +279,7 @@
                 // basic_notice
                 "content": $("#modify_notice_content").val(),
 
-                //clean_notice TODO: convert to Array
-                "clean_area": clean_json,
+                "clean_area": modify_clean_array,
 
                 //sleepout_notice
                 "sleep_w_time": $("#modify_sleep_w_time").val(),
@@ -294,14 +294,15 @@
             },
             error: function(xhr, status, error) {
                 var errorMessage = xhr.status + ': ' + xhr.statusText
-                alert('Error - ' + errorMessage);
+                    // alert('Error - ' + errorMessage);
+                alert("요청을 처리하는데에 문제가 생겼습니다.\n다시시도해보세요.");
             }
         });
 
     }
 
     function modifyDetail(type) {
-        alert(type);
+        // alert(type);
         // 일반 공지
         // alert();
 
@@ -354,7 +355,7 @@
 
     function removeItem(id, type) {
         // alert(type+"/"+title+"/"+wDate+"/"+dDate);
-        alert("remove.." + id + "/" + type);
+        // alert("remove.." + id + "/" + type);
 
         $.ajax({
             type: "POST",
@@ -371,7 +372,7 @@
             },
             error: function(xhr, status, error) {
                 var errorMessage = xhr.status + ': ' + xhr.statusText
-                alert('Error - ' + errorMessage);
+                alert("요청을 처리하는데에 문제가 생겼습니다.\n다시시도해보세요.");
             }
         });
 

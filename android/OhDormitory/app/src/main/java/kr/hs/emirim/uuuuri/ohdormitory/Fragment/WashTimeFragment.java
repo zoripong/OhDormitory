@@ -122,13 +122,17 @@ public class WashTimeFragment extends Fragment implements Day{
         mApplyBtn =  view.findViewById(R.id.application_button);
         mApplyText = view.findViewById(R.id.application_text);
 
+
+
+
         if(isPossibleTime)
             mApplyBtn.setVisibility(View.VISIBLE);
         else
             mApplyBtn.setVisibility(View.INVISIBLE);
 
         //TODO REMOVE UNDER LINE - just Debugging;
-//        mApplyBtn.setVisibility(View.VISIBLE);
+        mApplyBtn.setVisibility(View.VISIBLE);
+
 
         mApplyBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -136,6 +140,7 @@ public class WashTimeFragment extends Fragment implements Day{
                 applyDialog();
             }
         });
+
 
         return view;
     }
@@ -251,7 +256,9 @@ public class WashTimeFragment extends Fragment implements Day{
             }else if(today.after(thirdStartTime) && today.before(thirdEndTime)){
                 return 2;
             }else {
-                isPossibleTime = false;
+                //FIXME
+                Log.e("오잉", "너가 실행되면 어떡해?1");
+                //isPossibleTime = false;
                 return 2;
             }
         }else{
@@ -259,7 +266,10 @@ public class WashTimeFragment extends Fragment implements Day{
             if(today.after(thirdStartTime)&&today.before(thirdEndTime)){
                 return 2;
             }else{
-                isPossibleTime = false;
+                //FIXME
+                Log.e("오잉", "너가 실행되면 어떡해?2");
+                Log.e(TAG, thirdStartTime+"."+thirdEndTime);
+                //isPossibleTime = false;
                 return 2;
             }
         }
@@ -286,7 +296,7 @@ public class WashTimeFragment extends Fragment implements Day{
             washerType = -1;
 
             searchPossibleWasher();
-            if(washTime == -1 && washerType == -1){
+            if(washTime == -1 && washerType == -1 && (address = checkApply())==null){
                 dialog.setContentView(R.layout.dialog_style2);
                 ((TextView)dialog.findViewById(R.id.dialog_text)).setText("사용가능한 세탁기가 없습니다.");
                 dialog.show();
@@ -310,7 +320,7 @@ public class WashTimeFragment extends Fragment implements Day{
                         // TODO delete..
                         Log.e(TAG, "DELETE");
                         //Activity mActivity, String urlAddress, int washer_num, int wash_time, String emirim_id, boolean isInsert
-                        Sender s = new Sender(view.getContext(), "https://dorm.emirim.kr/updateWashList.php", 0, 0,mUser.getEmirim_id(),false);
+                        Sender s = new Sender(view.getContext(), "https://dorm.emirim.kr/updateWashList.php", 0, 0, mUser.getEmirim_id(),false);
                         s.execute();
 
                         mApplyText.setText("신  청");
@@ -371,6 +381,9 @@ public class WashTimeFragment extends Fragment implements Day{
         }else{
             dialog.setContentView(R.layout.dialog_style2);
             ((TextView)dialog.findViewById(R.id.dialog_text)).setText("세탁기 사용시간이 아닙니다.");
+
+            Log.e(TAG, String.valueOf(new Date(System.currentTimeMillis())));
+
             dialog.show();
             dialog.findViewById(R.id.dialog_button_yes).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -405,7 +418,9 @@ public class WashTimeFragment extends Fragment implements Day{
         Iterator<WashUser> iterator = mWashUserSet.iterator();
 
         while(iterator.hasNext()){
+//            Log.e(TAG,"? + "+iterator.next().getUser() +"/"+ (mUser.getRoom_num()+"호 "+mUser.getName()));
             if(iterator.next().getUser().equals(mUser.getRoom_num()+"호 "+mUser.getName())){
+//                Log.e(TAG,"! + "+iterator.next().getUser() +"/"+ (mUser.getRoom_num()+"호 "+mUser.getName()));
                 mApplyText.setText("취  소");
                 return mUser.toString();
             }
@@ -505,6 +520,7 @@ public class WashTimeFragment extends Fragment implements Day{
                             if ( line == null )
                                 break;
                             jsonHtml.append(line + "\n");
+                            Log.e(TAG, "[ABC] : "+line);
                         }
                         br.close();
                     }
@@ -541,6 +557,12 @@ public class WashTimeFragment extends Fragment implements Day{
                 Log.e(TAG, "에러 : "+e.toString());
             }
             appearWashUsers();
+
+            if(checkApply()!=null)
+                mApplyText.setText("취   소");
+            else
+                mApplyText.setText("신   청");
+
         }
 
     }
@@ -623,7 +645,7 @@ public class WashTimeFragment extends Fragment implements Day{
         @Override
         protected void onPostExecute(String response) {
             super.onPostExecute(response);
-
+            Log.e(TAG, "HERE asdf: " + response);
             if(response != null)
             {
                 //SUCCESS
