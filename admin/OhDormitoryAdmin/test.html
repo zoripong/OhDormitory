@@ -12,7 +12,10 @@
 </head>
 
 <body>
-
+    <form action="https://dorm.emirim.kr/uploadCSV.php" class="form-horizontal" action="functions.php" method="post" name="upload_excel" enctype="multipart/form-data">
+        <input type="file" name="file" id="file">
+        <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">Import</button>
+    </form>
 </body>
 
 </html>

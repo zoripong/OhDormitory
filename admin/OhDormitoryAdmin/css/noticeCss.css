@@ -1,18 +1,22 @@
-html,body{
+html,
+body {
     margin: 0px;
     width: 100%;
     min-height: 100%;
     background-color: #f1f1f1;
 }
-#white-place{
+
+#white-place {
     width: 100%;
     height: 75px;
     background-color: #FFF;
 }
-#auth-body{
+
+#auth-body {
     width: 100%;
 }
-#myBtn{
+
+#myBtn {
     float: right;
     width: 6.5em;
     background-color: #FCD465;
@@ -24,21 +28,35 @@ html,body{
     outline: none;
     cursor: pointer;
 }
+
+
 /* The Modal (background) */
-.modal, .modifieModal  {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+
+.modal,
+.modifieModal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
+
 /* Modal Content */
+
 .modal-content {
     background-color: #FFF;
     margin: auto;
@@ -47,81 +65,108 @@ html,body{
     border-radius: 15px;
     box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.13);
 }
-#modifie-notice-box{
-    padding:0px 0.9em;
+
+#modifie-notice-box {
+    padding: 0px 0.9em;
 }
-#modifie_title{
+
+#modifie_title {
     font-size: 1.05em;
     padding: 0.2em;
     margin-bottom: 1em;
 }
-#notice_kind,#modify_notice_kind{
+
+#notice_kind,
+#modify_notice_kind {
     font-size: 1.05em;
     padding: 0.2em;
     margin-bottom: 1em;
 }
-#notice-text{
+
+#notice-text {
     font-size: 1.05em;
     padding: 0.2em;
     margin-bottom: 1em;
 }
-#notice_title,#modify_notice_title{
+
+#notice_title,
+#modify_notice_title {
     display: block;
     width: 97.8%;
     margin-bottom: 0.7em;
     padding: 0.3em;
     font-size: 1em;
 }
-#notice-box{
+
+#notice-box {
     width: 95%;
     margin: 0 auto;
 }
-#bookmark{
+
+#bookmark {
     width: 2.2em;
     height: 2.2em;
     float: right;
     background: url(../image/notice-bookmark.svg);
 }
-#trashCan{
+
+#trashCan {
     width: 2.2em;
     height: 2em;
     float: right;
     background: url(../image/trashCan.svg);
 }
-#bookmarkAdd{
+
+#bookmarkAdd {
     width: 2em;
     height: 2em;
     float: right;
     background: url(../image/notice-bookmark.svg);
 }
-#notice_content,#modify_notice_content{
+
+#notice_content,
+#modify_notice_content {
     width: 98.9%;
     margin-bottom: 1em;
     padding: 0.2em;
     font-size: 1em;
     height: 10em;
 }
-#date-div{
+
+#date-div {
     margin-bottom: 1em;
     width: 100%;
     text-align: right;
 }
-#w_time, #d_time,#sleep_w_time, #sleep_d_time, 
-#modify_w_time,#modify_d_time,#modify_sleep_w_time,#modify_sleep_d_time{
+
+#w_time,
+#d_time,
+#sleep_w_time,
+#sleep_d_time,
+#modify_w_time,
+#modify_d_time,
+#modify_sleep_w_time,
+#modify_sleep_d_time {
     font-size: 0.9em;
     padding: 0.2em;
     width: 9.1em;
     text-align: right;
 }
-#select_sleep,#modify_select_sleep{
+
+#select_sleep,
+#modify_select_sleep {
     margin-bottom: 1em;
     text-align: left;
 }
-#btn-div{
+
+#btn-div {
     width: 100%;
     text-align: right;
 }
-#add-btn,#save-btn{
+
+#add-btn,
+#save-btn,
+#modify_save_btn {
     width: 5em;
     background-color: #FCD465;
     border: #FCD465;
@@ -133,7 +178,9 @@ html,body{
     cursor: pointer;
     margin-right: 0.5em;
 }
-#cancle-btn,#modifie-cancle-btn{
+
+#cancle-btn,
+#modifie-cancle-btn {
     width: 5em;
     background-color: #FFF;
     border: 1px solid #FCD465;
@@ -144,48 +191,61 @@ html,body{
     outline: none;
     cursor: pointer;
 }
-#dialogTable,#modify_dialogTable{
+
+#dialogTable,
+#modify_dialogTable {
     width: 100%;
     text-align: center;
     border-collapse: collapse;
     margin-bottom: 1em;
 }
-#td-border{
+
+#td-border {
     border-bottom: 1px solid #707070;
 }
-.td-border-left{
+
+.td-border-left {
     border-left: 1px solid #707070;
 }
-#dialogTable td,#modify_dialogTable td{
+
+#dialogTable td,
+#modify_dialogTable td {
     height: 2em;
 }
-#dialogTable input[type='text'],#modify_dialogTable input[type='text']{
+
+#dialogTable input[type='text'],
+#modify_dialogTable input[type='text'] {
     width: 100%;
     border: none;
     height: 100%;
     text-align: center;
     font-size: 1em;
 }
-#guideMessage{
+
+#guideMessage {
     margin-top: -1em;
 }
-#notice-add-div{
+
+#notice-add-div {
     width: 55em;
     margin: 0 auto;
     padding-bottom: 1.5em;
 }
-#myBtn-box{
+
+#myBtn-box {
     height: 2em;
     margin-bottom: 1.2em;
     margin-top: 1.2em;
 }
 
+
 /*반응형*/
+
 @media screen and (max-width: 57em) {
-    #notice-add-div{
+    #notice-add-div {
         width: 90%;
     }
-    #myBtn-box{
+    #myBtn-box {
         width: 100%;
     }
 }

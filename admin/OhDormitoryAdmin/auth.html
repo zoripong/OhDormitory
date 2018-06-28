@@ -21,6 +21,16 @@
 
         });
 
+        $("#upload_file_exec").click(function() {
+            if ($("#fileUpload").val() == "") {
+                alert("파일이 선택되지 않았습니다.");
+                return;
+            } else {
+                // $("#uploadCSVForm").submit();
+
+            }
+        });
+
         $("#fileUpload").change(function() {
             var split_file_name = $("#fileUpload").val().split("\\");
             file_name = $("#fileUpload").val();
@@ -35,7 +45,7 @@
     function Export() {
         var conf = confirm("회원정보 파일을 다운받겠습니까?");
         if (conf == true) {
-            window.open("http://dorm.emirim.kr/downloadUserCSV.php", '_blank');
+            window.open("https://dorm.emirim.kr/downloadCSV.php", '_blank');
         }
     }
 </script>
@@ -59,16 +69,19 @@
                     </form>
                     // -->
 
-                    <form action="http://dorm.emirim.kr/uploadUserCSV2.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                    <form action="https://dorm.emirim.kr/uploadCSV.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                         <div>
-                            <input type="file" name="file" id="fileUpload" style="display:none">
                             <!-- <input type="file" id="fileUpload" style="display:none" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" /> -->
+                            <input type="file" name="file" id="fileUpload" style="display:none" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                             <img id="fileUploadImg" class="fileIcon" src="image/upload.svg" alt="web Icon" height="132" width="132">
+
                         </div>
                         <div id="upload-info-box">
                             <p>업로드 파일 선택</p>
                             <p id="file_name">파일 이름 : excel </p>
-                            <button id="upload_file_exec">파일 올리기</button>
+                            <!-- <button id="upload_file_exec">파일 올리기</button> -->
+                            <button type="submit" id="upload_file_exec" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">파일 올리기</button>
+
                         </div>
                     </form>
                 </div>
