@@ -1,117 +1,118 @@
-# ±â¼÷»ç °ü¸® ½Ã½ºÅÛ, ¿À´Ã ¸î ½Ã Á¡È£¾ß?
+# ê¸°ìˆ™ì‚¬ ê´€ë¦¬ ì‹œìŠ¤í…œ, ì˜¤ëŠ˜ ëª‡ ì‹œ ì í˜¸ì•¼?
 
-¿À´Ã ¸î ½Ã Á¡È£¾ß? (ÀÌÇÏ '¿À¸îÁ¡')Àº ¹Ì¸²¿©ÀÚÁ¤º¸°úÇÐ°íµîÇÐ±³ÀÇ ±â¼÷»ç¿¡¼­ »ç¿ëÇÒ ¼ö ÀÕ´Â ±â¼÷»ç °ü¸® ½Ã½ºÅÛÀÔ´Ï´Ù.
+ì˜¤ëŠ˜ ëª‡ ì‹œ ì í˜¸ì•¼? (ì´í•˜ 'ì˜¤ëª‡ì ')ì€ ë¯¸ë¦¼ì—¬ìžì •ë³´ê³¼í•™ê³ ë“±í•™êµì˜ ê¸°ìˆ™ì‚¬ì—ì„œ ì‚¬ìš©í•  ìˆ˜ ìž‡ëŠ” ê¸°ìˆ™ì‚¬ ê´€ë¦¬ ì‹œìŠ¤í…œìž…ë‹ˆë‹¤.
 
-±â¼÷»ç »ýÈ°À» ÇÏ¸ç ¿©·¯°¡Áö ÀÏÁö ÀÛ¼º°ú °øÁö¿¡ ´ëÇÑ ¿©·¯ ºÒÆíÇÔµéÀÌ Á¸ÀçÇÏ¿´½À´Ï´Ù.
-150¸íÀÌ ³Ñ´Â ÇÐ»ýµéÀÌ ÇÏ·ç Áß »ó´ç½Ã°£À» º¸³»´Â ±â¼÷»ç¿¡¼­ Á» ´õ ½ºÆ®·¹½º ¹ÞÁö ¾Ê°í, Æí¸®ÇÏ°Ô ±â¼÷»ç¸¦ »ç¿ëÇÒ ¼ö ÀÖ¾úÀ¸¸é ÇÏ´Â ¹Ù¶÷À¸·Î ¸¸µé¾îÁø ¼Ö·ç¼ÇÀÔ´Ï´Ù.
+ê¸°ìˆ™ì‚¬ ìƒí™œì„ í•˜ë©° ì—¬ëŸ¬ê°€ì§€ ì¼ì§€ ìž‘ì„±ê³¼ ê³µì§€ì— ëŒ€í•œ ì—¬ëŸ¬ ë¶ˆíŽ¸í•¨ë“¤ì´ ì¡´ìž¬í•˜ì˜€ìŠµë‹ˆë‹¤.
+150ëª…ì´ ë„˜ëŠ” í•™ìƒë“¤ì´ í•˜ë£¨ ì¤‘ ìƒë‹¹ì‹œê°„ì„ ë³´ë‚´ëŠ” ê¸°ìˆ™ì‚¬ì—ì„œ ì¢€ ë” ìŠ¤íŠ¸ë ˆìŠ¤ ë°›ì§€ ì•Šê³ , íŽ¸ë¦¬í•˜ê²Œ ê¸°ìˆ™ì‚¬ë¥¼ ì‚¬ìš©í•  ìˆ˜ ìžˆì—ˆìœ¼ë©´ í•˜ëŠ” ë°”ëžŒìœ¼ë¡œ ë§Œë“¤ì–´ì§„ ì†”ë£¨ì…˜ìž…ë‹ˆë‹¤.
 
-¿À¸îÁ¡Àº »ç°¨ ¼±»ý´Ô°ú ÇÐ±³ ¼±»ý´Ô²²¼­ »ç¿ëÇÏ½Ç ¼ö ÀÖ´Â [°ü¸®ÀÚ ÆäÀÌÁö](https://dorm.emirim.kr/OhDormitoryAdmin/auth.html)(Web)¿Í ÇÐ»ýµéÀÌ »ç¿ëÇÒ ¼ö ÀÖ´Â ¾Û(Android/iOS)°ú ÇÐºÎ¸ð²²¼­ ÇÐ»ýµéÀÇ ¿Ü¹ÚÀÏÁ¤À» È®ÀÎÇÒ ¼ö ÀÖ´Â ÇÐºÎ¸ð¿ë ¾Û(Android/iOS)À¸·Î ÀÌ·ç¾îÁ®ÀÖ½À´Ï´Ù.
+ì˜¤ëª‡ì ì€ ì‚¬ê° ì„ ìƒë‹˜ê³¼ í•™êµ ì„ ìƒë‹˜ê»˜ì„œ ì‚¬ìš©í•˜ì‹¤ ìˆ˜ ìžˆëŠ” [ê´€ë¦¬ìž íŽ˜ì´ì§€](https://dorm.emirim.kr/OhDormitoryAdmin/auth.html)(Web)ì™€ í•™ìƒë“¤ì´ ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” ì•±(Android/iOS)ê³¼ í•™ë¶€ëª¨ê»˜ì„œ í•™ìƒë“¤ì˜ ì™¸ë°•ì¼ì •ì„ í™•ì¸í•  ìˆ˜ ìžˆëŠ” í•™ë¶€ëª¨ìš© ì•±(Android/iOS)ìœ¼ë¡œ ì´ë£¨ì–´ì ¸ìžˆìŠµë‹ˆë‹¤.
 
-ÇØ´ç ·¹Æ÷ÁöÅä¸®¿¡´Â [¼­¹ö](https://github.com/zoripong/OhDormitory-Server)¸¦ Á¦¿ÜÇÑ °ü¸®ÀÚÆäÀÌÁö¿Í iOS, Android ÇÁ·ÎÁ§Æ®°¡ Æ÷ÇÔµÇ¾îÀÖ½À´Ï´Ù.
+í•´ë‹¹ ë ˆí¬ì§€í† ë¦¬ì—ëŠ” [ì„œë²„](https://github.com/zoripong/OhDormitory-Server)ë¥¼ ì œì™¸í•œ ê´€ë¦¬ìžíŽ˜ì´ì§€ì™€ iOS, Android í”„ë¡œì íŠ¸ê°€ í¬í•¨ë˜ì–´ìžˆìŠµë‹ˆë‹¤.
 
 
 
 ## Functions
-## ÇÐ»ý Á¤º¸ °ü¸®
-- ±âÁ¸ÀÇ µÎÅÍ¿î ¼­·ùµéÀ» ´ë½ÅÇÏ¿© ÇÐ»ýµéÀÇ Á¤º¸¸¦ ¸ðµÎ °ü¸®ÀÚ ÆäÀÌÁö¿¡¼­ °ü¸® ÇÒ ¼ö ÀÖµµ·Ï ÇÏ¿´½À´Ï´Ù.
-- ÇÐ»ýµé¿¡ ´ëÇÑ Á¤º¸¸¦ CSVÆÄÀÏÀ» ÅëÇØ °ü¸®ÇÒ ¼ö ÀÖ¾î º¸´Ù È¿À²ÀûÀÔ´Ï´Ù.
-  * ºü¸¥ ¹®¼­È­ °¡´É
-  * ÀÏ°ý ¼öÁ¤ ÀÛ¾÷ÀÇ ¼Óµµ Çâ»ó
-  * Ä£±ÙÇÑ »ç¿ë¹ý
 
-### °Ô½ÃÆÇ ¾Ë¸²
+### í•™ìƒ ì •ë³´ ê´€ë¦¬
+- ê¸°ì¡´ì˜ ë‘í„°ìš´ ì„œë¥˜ë“¤ì„ ëŒ€ì‹ í•˜ì—¬ í•™ìƒë“¤ì˜ ì •ë³´ë¥¼ ëª¨ë‘ ê´€ë¦¬ìž íŽ˜ì´ì§€ì—ì„œ ê´€ë¦¬ í•  ìˆ˜ ìžˆë„ë¡ í•˜ì˜€ìŠµë‹ˆë‹¤.
+- í•™ìƒë“¤ì— ëŒ€í•œ ì •ë³´ë¥¼ CSVíŒŒì¼ì„ í†µí•´ ê´€ë¦¬í•  ìˆ˜ ìžˆì–´ ë³´ë‹¤ íš¨ìœ¨ì ìž…ë‹ˆë‹¤.
+  * ë¹ ë¥¸ ë¬¸ì„œí™” ê°€ëŠ¥
+  * ì¼ê´„ ìˆ˜ì • ìž‘ì—…ì˜ ì†ë„ í–¥ìƒ
+  * ì¹œê·¼í•œ ì‚¬ìš©ë²•
+
+### ê²Œì‹œíŒ ì•Œë¦¼
  
-- »ç°¨¼±»ý´ÔÀº ÇÐ»ýµé¿¡°Ô °ü¸®ÀÚ ÆäÀÌÁö¸¦ ÅëÇØ °øÁö»çÇ×À» ¾È³» ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-- ÇÐ»ýµéÀº ¾ÛÀ» ÅëÇÏ¿© Çª½Ã ¾Ë¸²°ú ÇÔ²² »ç°¨¼±»ý´ÔÀÇ °øÁö»çÇ×À» È®ÀÎ ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-- °Ô½ÃÆÇÀº ´ÙÀ½°ú °°Àº °Ô½Ã±Û µîÀ» ¿Ã¸± ¼ö ÀÖ½À´Ï´Ù. 
-  * ÀÏ¹Ý °øÁö»çÇ×
-  * Ã»¼Ò±¸¿ª
-  * ¿Ü¹Ú ÀÏÁö ÀÛ¼º
+- ì‚¬ê°ì„ ìƒë‹˜ì€ í•™ìƒë“¤ì—ê²Œ ê´€ë¦¬ìž íŽ˜ì´ì§€ë¥¼ í†µí•´ ê³µì§€ì‚¬í•­ì„ ì•ˆë‚´ í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+- í•™ìƒë“¤ì€ ì•±ì„ í†µí•˜ì—¬ í‘¸ì‹œ ì•Œë¦¼ê³¼ í•¨ê»˜ ì‚¬ê°ì„ ìƒë‹˜ì˜ ê³µì§€ì‚¬í•­ì„ í™•ì¸ í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+- ê²Œì‹œíŒì€ ë‹¤ìŒê³¼ ê°™ì€ ê²Œì‹œê¸€ ë“±ì„ ì˜¬ë¦´ ìˆ˜ ìžˆìŠµë‹ˆë‹¤. 
+  * ì¼ë°˜ ê³µì§€ì‚¬í•­
+  * ì²­ì†Œêµ¬ì—­
+  * ì™¸ë°• ì¼ì§€ ìž‘ì„±
 
 
-### ¼¼Å¹ ÀÏÁö °ü¸®
+### ì„¸íƒ ì¼ì§€ ê´€ë¦¬
  
-- ¼¼Å¹±âÀÇ »ç¿ë¿©ºÎ / »ç¿ëÈ£½ÇÀ» °ü¸®ÀÚ ÆäÀÌÁö¿Í ¾ÛÀ» ÅëÇÏ¿© È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.
-- ÇÐ»ýµéÀº ¾ÛÀ» ÅëÇÏ¿© ¼¼Å¹ ¿¹¾àÀ» ½ÅÃ» ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+- ì„¸íƒê¸°ì˜ ì‚¬ìš©ì—¬ë¶€ / ì‚¬ìš©í˜¸ì‹¤ì„ ê´€ë¦¬ìž íŽ˜ì´ì§€ì™€ ì•±ì„ í†µí•˜ì—¬ í™•ì¸í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+- í•™ìƒë“¤ì€ ì•±ì„ í†µí•˜ì—¬ ì„¸íƒ ì˜ˆì•½ì„ ì‹ ì²­ í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 
 
-### ¿Ü¹Ú °ü¸®
+### ì™¸ë°• ê´€ë¦¬
 
-- ±âÁ¸ Á¾ÀÌ·Î ¹èºÎÇÏ´ø ¿Ü¹ÚÁõÀ» QRÄÚµå¸¦ ÅëÇÏ¿© °ü¸®ÇÒ ¼ö ÀÖµµ·Ï ÇÏ¿´½À´Ï´Ù.
-- ¸ðµç ¿Ü¹Ú ÀÏÁö ÇöÈ²À» °ü¸®ÀÚ ÆäÀÌÁö¸¦ ÅëÇÏ¿© È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.
-
-
+- ê¸°ì¡´ ì¢…ì´ë¡œ ë°°ë¶€í•˜ë˜ ì™¸ë°•ì¦ì„ QRì½”ë“œë¥¼ í†µí•˜ì—¬ ê´€ë¦¬í•  ìˆ˜ ìžˆë„ë¡ í•˜ì˜€ìŠµë‹ˆë‹¤.
+- ëª¨ë“  ì™¸ë°• ì¼ì§€ í˜„í™©ì„ ê´€ë¦¬ìž íŽ˜ì´ì§€ë¥¼ í†µí•˜ì—¬ í™•ì¸í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 
 
-### °³º° »ó¹úÁ¡ °ü¸® 
 
 
-- ±âÁ¸ °Ô½ÃÆÇ¿¡ °øÁöµÇ¾îÀÖ´ø »ó¹úÁ¡ ¸®½ºÆ®¸¦ °³ÀÎÀûÀ¸·Î È®ÀÎ°¡´ÉÇÏµµ·Ï ÇÏ¿´½À´Ï´Ù.
-- ÇÐ»ýµéÀÇ °³ÀÎÁ¤º¸¸¦ º¸È£ÇÒ ¼ö ÀÖÀ¸¸ç, Á» ´õ Ã¼°èÀûÀ¸·Î È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.
+### ê°œë³„ ìƒë²Œì  ê´€ë¦¬ 
 
 
-## Excel °ü¸®ÇÏ±â
+- ê¸°ì¡´ ê²Œì‹œíŒì— ê³µì§€ë˜ì–´ìžˆë˜ ìƒë²Œì  ë¦¬ìŠ¤íŠ¸ë¥¼ ê°œì¸ì ìœ¼ë¡œ í™•ì¸ê°€ëŠ¥í•˜ë„ë¡ í•˜ì˜€ìŠµë‹ˆë‹¤.
+- í•™ìƒë“¤ì˜ ê°œì¸ì •ë³´ë¥¼ ë³´í˜¸í•  ìˆ˜ ìžˆìœ¼ë©°, ì¢€ ë” ì²´ê³„ì ìœ¼ë¡œ í™•ì¸í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+
+
+## Excel ê´€ë¦¬í•˜ê¸°
 ```
 room_num, name, emirim_id, password,  student_phone, parent_phone
 ```
 
-¾ÆÁ÷Àº CVS Çü½ÄÀÇ ÆÄÀÏ¸¸À» ÀúÀåÇÏ°í ´Ù¿î¹ÞÀ» ¼ö ÀÖÀ¸¸ç ÄÃ·³ÀÇ ¼ø¼­´Â À§¿Í °°½À´Ï´Ù. 
+ì•„ì§ì€ CVS í˜•ì‹ì˜ íŒŒì¼ë§Œì„ ì €ìž¥í•˜ê³  ë‹¤ìš´ë°›ì„ ìˆ˜ ìžˆìœ¼ë©° ì»¬ëŸ¼ì˜ ìˆœì„œëŠ” ìœ„ì™€ ê°™ìŠµë‹ˆë‹¤. 
 
-ÇöÀç¿¡´Â ÀÌ¿ëÁßÀÌÁö ¾ÊÀº ¼­ºñ½º¶ó urlÀÌ °ø°³µÇ¾î ´©±¸³ª »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù. µû¶ó¼­ ´Ù¸¥ »ç¿ëÀÚ¿¡ ÀÇÇØ ÇÐ»ý µ¥ÀÌÅÍ°¡ ¼Õ½Ç µÇ¾îÀÖÀ» ¼ö ÀÖ½À´Ï´Ù.
-ÇÐ»ýµ¥ÀÌÅÍ°¡ ¼Õ½ÇµÇ¾úÀ» °æ¿ì, RepositoryÀÇ DummyData.csv ÆÄÀÏÀ» ÅëÇÏ¿© ¾÷·Îµå ÈÄ ÀÌ¿ëÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
+í˜„ìž¬ì—ëŠ” ì´ìš©ì¤‘ì´ì§€ ì•Šì€ ì„œë¹„ìŠ¤ë¼ urlì´ ê³µê°œë˜ì–´ ëˆ„êµ¬ë‚˜ ì‚¬ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. ë”°ë¼ì„œ ë‹¤ë¥¸ ì‚¬ìš©ìžì— ì˜í•´ í•™ìƒ ë°ì´í„°ê°€ ì†ì‹¤ ë˜ì–´ìžˆì„ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+í•™ìƒë°ì´í„°ê°€ ì†ì‹¤ë˜ì—ˆì„ ê²½ìš°, Repositoryì˜ DummyData.csv íŒŒì¼ì„ í†µí•˜ì—¬ ì—…ë¡œë“œ í›„ ì´ìš©í•´ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.
 
 ## Screenshots
 
-> °ü¸®ÀÚ ÆäÀÌÁö
+> ê´€ë¦¬ìž íŽ˜ì´ì§€
 
-- ·Î±×ÀÎ / °Ô½ÃÆÇ
+- ë¡œê·¸ì¸ / ê²Œì‹œíŒ
 
-<img src="https://bit.ly/2CipiEe" alt="½ºÇÃ·¡½Ã" width="50%"/><img src="https://bit.ly/2yIknt3" alt="°Ô½ÃÆÇ" width="50%"/>
-
-
-- È¸¿øÁ¤º¸
-
-<img src="https://bit.ly/2NKPMjM" alt="È¸¿øÁ¤º¸-1" width="50%"/><img src="https://bit.ly/2PD0lrd" alt="È¸¿øÁ¤º¸-2" width="50%"/>
+<img src="https://bit.ly/2CipiEe" alt="ìŠ¤í”Œëž˜ì‹œ" width="50%"/><img src="https://bit.ly/2yIknt3" alt="ê²Œì‹œíŒ" width="50%"/>
 
 
+- íšŒì›ì •ë³´
 
-- ¼¼Å¹ÀÏÁö / ¿Ü¹Ú°ü¸®
-
-<img src="https://bit.ly/2PBgCNd" alt="¼¼Å¹ÀÏÁö" width="50%"/><img src="https://bit.ly/2CMDHd2" alt="¿Ü¹Ú°ü¸®" width="50%"/>
-
-
-> ÇÐ»ý Android 
-
-- Splash / ·Î±×ÀÎ
-
-<img src="https://bit.ly/2pXnLMK" alt="½ºÇÃ·¡½Ã" width="25%"/><img src="https://bit.ly/2En6NB9" alt="·Î±×ÀÎ" width="25%"/>
-
-- °Ô½ÃÆÇ
-
-<img src="https://bit.ly/2CMY5e1" alt="°Ô½ÃÆÇ" width="25%"/><img src="https://bit.ly/2ysQWvR" alt="ÀÏ¹Ý°Ô½Ã" width="25%"/><img src="https://bit.ly/2IZG24F" alt="Ã»¼Ò±¸¿ª" width="25%"/><img src="https://bit.ly/2Eq0ywu" alt="¿Ü¹ÚÀÏÁö" width="25%"/>
-
-- ¼¼Å¹ÀÏÁö
-
-<img src="https://bit.ly/2PDa8gL" alt="¼¼Å¹±×·¡ÇÁ" width="25%"/><img src="https://bit.ly/2OqfJKV" alt="¼¼Å¹µðÅ×ÀÏ" width="25%"/>
-
-- ¿Ü¹ÚÀÎÁõ / ¼³Á¤
-
-<img src="https://bit.ly/2AdcOwd" alt="¿Ü¹ÚÀÎÁõ" width="25%"/><img src="https://bit.ly/2J05Bm5" alt="¼³Á¤" width="25%"/>
+<img src="https://bit.ly/2NKPMjM" alt="íšŒì›ì •ë³´-1" width="50%"/><img src="https://bit.ly/2PD0lrd" alt="íšŒì›ì •ë³´-2" width="50%"/>
 
 
-> ÇÐºÎ¸ð Android 
 
-- Splash / ¿Ü¹Ú ½ÅÃ» Àü / ¿Ü¹Ú ½ÅÃ» ÈÄ
+- ì„¸íƒì¼ì§€ / ì™¸ë°•ê´€ë¦¬
 
-<img src="https://bit.ly/2Pyqtn2" alt="½ºÇÃ·¡½Ã" width="25%"/><img src="https://bit.ly/2IYtaeW" alt="¿Ü¹Ú½ÅÃ»-Àü" width="25%"/><img src="https://bit.ly/2P1t1gb" alt="¿Ü¹Ú½ÅÃ»-ÈÄ" width="25%"/>
+<img src="https://bit.ly/2PBgCNd" alt="ì„¸íƒì¼ì§€" width="50%"/><img src="https://bit.ly/2CMDHd2" alt="ì™¸ë°•ê´€ë¦¬" width="50%"/>
 
-ÇÚµåÆù ¹øÈ£¸¦ ÅëÇÏ¿© ÇÐºÎ¸ð¸¦ ÀÎÁõÇÏ±â ¶§¹®¿¡ ·Î±×ÀÎÀÌ ÇÊ¿ä¾ø½À´Ï´Ù.
-¶ÇÇÑ, ÇÐ»ýµéÀÌ ÀÓÀÇ·Î ÀÎÁõÇÏ´Â ÀÏÀ» ¹æÁöÇÏ¿´½À´Ï´Ù.
+
+> í•™ìƒ Android 
+
+- Splash / ë¡œê·¸ì¸
+
+<img src="https://bit.ly/2pXnLMK" alt="ìŠ¤í”Œëž˜ì‹œ" width="25%"/><img src="https://bit.ly/2En6NB9" alt="ë¡œê·¸ì¸" width="25%"/>
+
+- ê²Œì‹œíŒ
+
+<img src="https://bit.ly/2CMY5e1" alt="ê²Œì‹œíŒ" width="25%"/><img src="https://bit.ly/2ysQWvR" alt="ì¼ë°˜ê²Œì‹œ" width="25%"/><img src="https://bit.ly/2IZG24F" alt="ì²­ì†Œêµ¬ì—­" width="25%"/><img src="https://bit.ly/2Eq0ywu" alt="ì™¸ë°•ì¼ì§€" width="25%"/>
+
+- ì„¸íƒì¼ì§€
+
+<img src="https://bit.ly/2PDa8gL" alt="ì„¸íƒê·¸ëž˜í”„" width="25%"/><img src="https://bit.ly/2OqfJKV" alt="ì„¸íƒë””í…Œì¼" width="25%"/>
+
+- ì™¸ë°•ì¸ì¦ / ì„¤ì •
+
+<img src="https://bit.ly/2AdcOwd" alt="ì™¸ë°•ì¸ì¦" width="25%"/><img src="https://bit.ly/2J05Bm5" alt="ì„¤ì •" width="25%"/>
+
+
+> í•™ë¶€ëª¨ Android 
+
+- Splash / ì™¸ë°• ì‹ ì²­ ì „ / ì™¸ë°• ì‹ ì²­ í›„
+
+<img src="https://bit.ly/2Pyqtn2" alt="ìŠ¤í”Œëž˜ì‹œ" width="25%"/><img src="https://bit.ly/2IYtaeW" alt="ì™¸ë°•ì‹ ì²­-ì „" width="25%"/><img src="https://bit.ly/2P1t1gb" alt="ì™¸ë°•ì‹ ì²­-í›„" width="25%"/>
+
+í•¸ë“œí° ë²ˆí˜¸ë¥¼ í†µí•˜ì—¬ í•™ë¶€ëª¨ë¥¼ ì¸ì¦í•˜ê¸° ë•Œë¬¸ì— ë¡œê·¸ì¸ì´ í•„ìš”ì—†ìŠµë‹ˆë‹¤.
+ë˜í•œ, í•™ìƒë“¤ì´ ìž„ì˜ë¡œ ì¸ì¦í•˜ëŠ” ì¼ì„ ë°©ì§€í•˜ì˜€ìŠµë‹ˆë‹¤.
 
 
 
 
 ## Extras
-- ¼­¹ö¿¡ ´ëÇÑ Á¤º¸´Â [OhDormitory-Server](https://github.com/zoripong/OhDormitory-Server) ¸¦ Âü°íÇØÁÖ¼¼¿ä.
+- ì„œë²„ì— ëŒ€í•œ ì •ë³´ëŠ” [OhDormitory-Server](https://github.com/zoripong/OhDormitory-Server) ë¥¼ ì°¸ê³ í•´ì£¼ì„¸ìš”.
 - author [zoripong](https://github.com/zoripong/)
 - CONTACT ME : <mailto:devuri404@gmail.com>
